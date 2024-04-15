@@ -1,0 +1,108 @@
+Hello World
+ModemTicking Task created successfully.. 
+DiskTicking Task created successfully.. 
+Open config file for reading succefull 
+
+data file close succefull
+
+open data file for write succefull 
+
+data file close succefull
+
+open data file for write succefull 
+
+data file close succefull
+
+buf:AT
+
+
+OK
+
+buf:AT+IPR=19200
+
+
+OK
+
+buf:AT+CMEE=2
+
+
+OK
+
+Modem Initialized: OK...
+
+Signal...
+
+buf:AT+CSQ
+
+
++CSQ: 16,0
+
+
+
+OK
+
+done
+
+checking network ...
+
+buf:AT+CREG?
+
+
++CREG: 0,1
+
+
+
+OK
+
+done
+
+initializing GPRS ...
+
+buf:AT#USERID="wap"
+
+
+OK
+
+buf:AT#PASSW="wap"
+
+
+OK
+
+buf:AT+CGDCONT=1,"IP","wap.gprs.unifon.com.ar"
+
+
+OK
+
+done
+
+switching GPRS on ...
+
+buf:AT#GPRS=1
+
+
++IP: 10.22.202.227
+
+
+
+OK
+
+done
+
+opening socket ...
+
+buf:AT#FTPOPEN="prototipado.fi.uner.edu.ar","trazabilidad","fiuner2015",0
+
+
+OK
+
+socket open!
+
+buf:AT#FTPCWD="incoming"
+
+
++CME ERROR: Bad or no response from server
+
+FTP CWD! FAIL!!!
+
+buf:AT#FTPPUT="test.txt"
+buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:buf:

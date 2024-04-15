@@ -1,0 +1,117 @@
+Hello World
+ModemTicking Task created successfully.. 
+DiskTicking Task created successfully.. 
+Open config file for reading succefull 
+
+data file close succefull
+
+open data file for write succefull 
+
+data file close succefull
+
+open data file for write succefull 
+
+data file close succefull
+
+buf:AT
+
+
+OK
+
+buf:AT+IPR=19200
+
+
+OK
+
+buf:AT+CMEE=2
+
+
+OK
+
+Modem Initialized: OK...
+
+checking network ...
+
+buf:AT+CREG?
+
+
++CREG: 0,0
+
+
+
+OK
+
+done
+
+Modem registration: FAILURE...
+
+Signal...
+
+buf:AT+CSQ
+
+
++CSQ: 17,0
+
+
+
+OK
+
+done
+
+initializing GPRS ...
+
+buf:AT#USERID="wap"
+
+
+OK
+
+buf:AT#PASSW="wap"
+
+
+OK
+
+buf:AT+CGDCONT=1,"IP","wap.gprs.unifon.com.ar"
+
+
+OK
+
+done
+
+switching GPRS on ...
+
+buf:AT#GPRS=1
+
+
++CME ERROR: activation failed
+
+done
+
+opening socket ...
+
+buf:AT#FTPOPEN="test.talia.net","anonymous","anonymous",0
+
+
++CME ERROR: Can not resolve name
+
+failed socket opening!
+
+buf:AT#FTPPUT="test.txt"
+
+
++CME ERROR: Not connected
+
+buf:AT#FTPPUT="test.txt"
+
+
++CME ERROR: Not connected
+
+buf:AT#FTPPUT="test.txt"
+
+
++CME ERROR: Not connected
+
+buf:AT#FTPPUT="test.txt"
+
+
++CME ERROR: Not connected
+
