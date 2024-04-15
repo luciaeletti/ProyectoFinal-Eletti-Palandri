@@ -3,12 +3,16 @@
         {
             "path": "./drivers"
         },
+		{
+            "path": "data"
+        },
         {
             "path": "modules"
         },
         {
             "path": "projects/aplicacion"
         }
+       
     ],
     "settings": {
         "idf.portWin": "COM9",

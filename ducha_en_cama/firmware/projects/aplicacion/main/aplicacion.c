@@ -18,7 +18,7 @@
 #include "KeyPad.h"
 #include "FDC1004.h"
 #include "ds18b20.h"
-#include "interfaz.h"
+#include "interface.h"
 
 /*==================[macros]=================================================*/
 
