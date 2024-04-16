@@ -2,7 +2,7 @@ idf_build_get_property(target IDF_TARGET)
 
 # Always compiled source files
 set(srcs
-    "src/condiciones.c"
+    "src/conditions.c"
     )
 
 # Always included headers

@@ -116,13 +116,14 @@ void sub_menu(uint8_t select){
             break;
         case 2:
             sub_menu_autolavado();
-            break;
+            break; 
     }
 
 }
 
 void medirtemp(){
 	                LCDI2C_clear();
+                    
                     ds18b20_init(TEMP_BUS);
                     ds18b20_setResolution(tempSensors,2,10);
 

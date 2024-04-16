@@ -9,6 +9,7 @@ set(srcs
     "microcontroller/src/owb_gpio.c"
     "microcontroller/src/owb_rmt.c"
     "microcontroller/src/owb.c"
+    "microcontroller/src/general.c"
     "devices/src/KeyPad.c"
     "devices/src/LCD_I2C.c"
     "devices/src/ds18b20.c"

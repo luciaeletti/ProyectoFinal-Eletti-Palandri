@@ -48,7 +48,9 @@
             "nvs_flash.h": "c",
             "esp_log.h": "c",
             "esp_partition.h": "c",
-            "functional": "c"
+            "functional": "c",
+            "stdio.h": "c",
+            "fdc1004.h": "c"
         },
     },
     "tasks": {

@@ -4,8 +4,8 @@
  *  Created on: 15/04/2024
  *      Author: Prototipado
  */
-#ifndef CONDICIONES_H
-#define CONDICIONES_H
+#ifndef CONDITIONS_H
+#define CONDITIONS_H
 
 /*==================[inclusions]=============================================*/
 #include "esp_log.h"
@@ -29,4 +29,4 @@ float level;
 
 
 
-#endif   #ifndef CONDICIONES_H
+#endif   #ifndef CONDITIONS_H
