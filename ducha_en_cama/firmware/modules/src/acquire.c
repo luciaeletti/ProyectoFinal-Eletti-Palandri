@@ -50,6 +50,7 @@ void ReadSensorData(){
 	
 	//Medicion de nivel de liquido con FDC1004  
 	GetConditions(my_condition);
+
 	double valor_nivel_inicial;
 	double valor_referencia_inicial;
 	double valor_nivel;
@@ -102,10 +103,8 @@ void vAcquiringTask(void *pvParameters) {
 	NewSession=false;
 
 	while(1){
-
 		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
-        ReadSensorData(my_condition);
+        ReadSensorData();
 		vTaskDelay(4000 /portTICK_PERIOD_MS);
 	}
-
 }
