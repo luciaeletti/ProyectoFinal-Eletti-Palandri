@@ -10,6 +10,7 @@
 /*==================[inclusions]=============================================*/
 #include <string.h>
 #include <stdio.h>
+#include "conditions.h"
 /*==================[macros]=================================================*/
 
 /*==================[typedef]================================================*/
@@ -18,7 +19,7 @@
 
 /*==================[internal functions declaration]=========================*/
 void vAcquiringTask(void *pvParameters) ;
-void ReadSensorData(void);
+void ReadSensorData();
 void ClearInactiveSensors(void);
 /*==================[external functions declaration]=========================*/
 

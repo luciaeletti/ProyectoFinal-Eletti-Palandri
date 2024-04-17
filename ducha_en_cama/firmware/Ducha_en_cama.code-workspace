@@ -50,7 +50,8 @@
             "esp_partition.h": "c",
             "functional": "c",
             "stdio.h": "c",
-            "fdc1004.h": "c"
+            "fdc1004.h": "c",
+            "conditions.h": "c"
         },
     },
     "tasks": {
