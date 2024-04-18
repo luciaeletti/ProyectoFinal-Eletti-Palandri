@@ -4,6 +4,7 @@ idf_build_get_property(target IDF_TARGET)
 set(srcs
     "src/interface.c"
     "src/acquire.c"
+    "src/analyzer.c"
     )
 
 # Always included headers

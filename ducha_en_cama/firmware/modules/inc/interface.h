@@ -16,21 +16,26 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 /*==================[macros]=================================================*/
+#define	FALSE		0
+#define	TRUE		1
 
+#define NUM_ROWS	1 /*Cantidad de filas del teclado*/
+#define NUM_COLS	3 /*Cantidad de columnas del teclado*/
+
+#define UP_BUTTON_PIN 26
+#define DOWN_BUTTON_PIN 27
+#define SELECT_BUTTON_PIN 25
+#define PUMP_PIN 33
+#define PUMP_RECIRCUL_PIN 21
+#define ASP_PIN 32
+
+static const char *TAG = "primerversion";
 /*==================[typedef]================================================*/
 
 /*==================[internal functions declaration]==========================*/
 
 /*==================[external functions declaration]==========================*/
 void vScreeningTask(void *pvParameters);
-void InterfaceInit(void);
-
-
-
-
-
-
-
 
 
 #endif   #ifndef INTERFACE_H

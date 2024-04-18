@@ -52,7 +52,8 @@
             "stdio.h": "c",
             "fdc1004.h": "c",
             "conditions.h": "c",
-            "esp_event.h": "c"
+            "esp_event.h": "c",
+            "interface.h": "c"
         },
     },
     "tasks": {

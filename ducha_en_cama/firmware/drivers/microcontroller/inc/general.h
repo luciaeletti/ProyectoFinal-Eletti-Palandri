@@ -14,7 +14,13 @@
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 #include "freertos/timers.h"
+
 /*==================[macros]=================================================*/
+#define I2C_MASTER_SCL_IO    19  /*!< gpio number for I2C master clock */
+#define I2C_MASTER_SDA_IO    18  /*!< gpio number for I2C master data  */
+#define LCD_ADDR  0x3f  /*!< slave address for LCD */
+#define TEMP_BUS 23
+
 
 /*==================[typedef]================================================*/
 
