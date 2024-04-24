@@ -6,9 +6,6 @@ set(srcs
     "microcontroller/src/gpio_fast_out_mcu.c"
     "microcontroller/src/delay_mcu.c"
     "microcontroller/src/timer_mcu.c"
-    "microcontroller/src/owb_gpio.c"
-    "microcontroller/src/owb_rmt.c"
-    "microcontroller/src/owb.c"
     "microcontroller/src/general.c"
     "devices/src/KeyPad.c"
     "devices/src/LCD_I2C.c"
@@ -22,4 +19,4 @@ set(includes "microcontroller/inc"
 
 idf_component_register(SRCS ${srcs}
                        INCLUDE_DIRS ${includes}
-                       REQUIRES driver)
+                       REQUIRES driver esp_rom)

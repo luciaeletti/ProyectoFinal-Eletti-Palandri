@@ -43,12 +43,12 @@ uint32_t i2c_clk;
 	conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
 	conf.master.clk_speed = i2c_clk;
 	conf.clk_flags = I2C_SCLK_SRC_FLAG_FOR_NOMAL;
-	esp_err_t err = i2c_param_config(I2C_NUM_1, &conf);
+	esp_err_t err = i2c_param_config(I2C_NUM_0, &conf);
 	if (err != ESP_OK)
 	{
 		ESP_LOGE(TAG, "fdc1004 begin error %s", esp_err_to_name(err));
 	}
-	err = i2c_driver_install(I2C_NUM_1, conf.mode, 0u, 0u, 0u);
+	err = i2c_driver_install(I2C_NUM_0, conf.mode, 0u, 0u, 0u);
 	if (err != ESP_OK)
 	{
 		ESP_LOGE(TAG, "i2c_driver_install error %s", esp_err_to_name(err));
@@ -64,7 +64,7 @@ void FDC1004_write16(uint8_t reg, uint16_t data){
 	i2c_master_write_byte(cmd, (uint8_t)(data >> 8), true);
 	i2c_master_write_byte(cmd, (uint8_t)(data & 0xFF), true);
 	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_1, cmd, 1000 / portTICK_PERIOD_MS);
+	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 
 }
@@ -77,7 +77,7 @@ uint16_t FDC1004_read16(uint8_t reg){
 	i2c_master_write_byte(cmd, (ADDR << 1) | I2C_MASTER_WRITE, true);
 	i2c_master_write_byte(cmd, reg, true);
 	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_1, cmd, 1000 / portTICK_PERIOD_MS);
+	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 
 	cmd = i2c_cmd_link_create();
@@ -86,7 +86,7 @@ uint16_t FDC1004_read16(uint8_t reg){
 	i2c_master_read_byte(cmd, &msb_data, I2C_MASTER_ACK);
 	i2c_master_read_byte(cmd, &lsb_data, I2C_MASTER_NACK);
 	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_1, cmd, 1000 / portTICK_PERIOD_MS);
+	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 	return ((msb_data << 8u) | lsb_data);
 }

@@ -18,6 +18,9 @@
 /*==================[internal data declaration]==============================*/
 
 /*==================[internal functions declaration]=========================*/
+void connection_wifi(void);
+void connection_mqtt(void);
+void smartconfig_example_task(void * parm);
 
 /*==================[external functions declaration]=========================*/
 void vConnectionTask(void *pvParameters);

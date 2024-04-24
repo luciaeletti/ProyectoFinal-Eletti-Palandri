@@ -64,11 +64,11 @@ void EvaluateRanges(){
  */
 void vMonitoringTask(void *pvParameters){
 
-	xSemaphoreTake(xNewSessionSemaphore,0);
-	NewSession=false;
+//	xSemaphoreTake(xNewSessionSemaphore,0);
+//	NewSession=false;
 
 	while(1){
-		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
+//		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
         EvaluateRanges();
 		vTaskDelay(4000 /portTICK_PERIOD_MS);
 	}

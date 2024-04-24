@@ -25,7 +25,7 @@
 /*==================[typedef]================================================*/
 
 /*==================[internal data declaration]==============================*/
-bool NewSession;
+/*bool NewSession;
 SemaphoreHandle_t xEnviromentFullSemaphore;
 SemaphoreHandle_t xReceivedMsgSemaphore;
 SemaphoreHandle_t xAnalysisDoneSemaphore;
@@ -33,12 +33,16 @@ SemaphoreHandle_t xKeyListenerSemaphore;
 SemaphoreHandle_t xDataStoredSemaphore;
 SemaphoreHandle_t xNewSessionSemaphore;
 SemaphoreHandle_t xChangeStateSemaphore;
-/*==================[internal functions declaration]=========================*/
+
+
+==================[internal functions declaration]=========================
+
+
+
 void COMM_CreateSemaphores(void);
 void COMM_SetSN(uint16_t* sn);
 void COMM_GetSN(uint16_t* sn);
-
-
+*/
 
 #endif /* GENERAL_H_ */
 /*==================[end of file]============================================*/

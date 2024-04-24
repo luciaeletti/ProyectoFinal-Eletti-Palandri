@@ -24,7 +24,7 @@ uint16_t mySN=0;
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
-
+/*
 void COMM_SetSN(uint16_t* sn)
 {
 	mySN=*sn;
@@ -33,9 +33,9 @@ void COMM_SetSN(uint16_t* sn)
 void COMM_GetSN(uint16_t* sn)
 {
 	*sn=mySN;
-}
+}*/
 /*==================[external functions definition]==========================*/
-
+/*
 void COMM_CreateSemaphores(void) {
 	vSemaphoreCreateBinary(xEnviromentFullSemaphore);
 	vSemaphoreCreateBinary(xReceivedMsgSemaphore);
@@ -44,4 +44,4 @@ void COMM_CreateSemaphores(void) {
 	vSemaphoreCreateBinary(xDataStoredSemaphore);
 	vSemaphoreCreateBinary(xNewSessionSemaphore);
 
-}
+}*/

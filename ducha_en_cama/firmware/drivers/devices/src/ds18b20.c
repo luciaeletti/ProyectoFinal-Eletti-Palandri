@@ -62,17 +62,17 @@ void ds18b20_write(char bit){
 		gpio_set_direction(DS_GPIO, GPIO_MODE_OUTPUT);
 		noInterrupts();
 		gpio_set_level(DS_GPIO,0);
-		ets_delay_us(6);
+		esp_rom_delay_us(6);
 		gpio_set_direction(DS_GPIO, GPIO_MODE_INPUT);	// release bus
-		ets_delay_us(64);
+		esp_rom_delay_us(64);
 		interrupts();
 	} else {
 		gpio_set_direction(DS_GPIO, GPIO_MODE_OUTPUT);
 		noInterrupts();
 		gpio_set_level(DS_GPIO,0);
-		ets_delay_us(60);
+		esp_rom_delay_us(60);
 		gpio_set_direction(DS_GPIO, GPIO_MODE_INPUT);	// release bus
-		ets_delay_us(10);
+		esp_rom_delay_us(10);
 		interrupts();
 	}
 }
@@ -83,11 +83,11 @@ unsigned char ds18b20_read(void){
 	gpio_set_direction(DS_GPIO, GPIO_MODE_OUTPUT);
 	noInterrupts();
 	gpio_set_level(DS_GPIO, 0);
-	ets_delay_us(6);
+	esp_rom_delay_us(6);
 	gpio_set_direction(DS_GPIO, GPIO_MODE_INPUT);
-	ets_delay_us(9);
+	esp_rom_delay_us(9);
 	value = gpio_get_level(DS_GPIO);
-	ets_delay_us(55);
+	esp_rom_delay_us(55);
 	interrupts();
 	return (value);
 }
@@ -100,7 +100,7 @@ void ds18b20_write_byte(char data){
     x &= 0x01;
     ds18b20_write(x);
   }
-  ets_delay_us(100);
+  esp_rom_delay_us(100);
 }
 // Reads one byte from bus
 unsigned char ds18b20_read_byte(void){
@@ -109,7 +109,7 @@ unsigned char ds18b20_read_byte(void){
   for (i=0;i<8;i++)
   {
     if(ds18b20_read()) data|=0x01<<i;
-    ets_delay_us(15);
+    esp_rom_delay_us(15);
   }
   return(data);
 }
@@ -119,12 +119,12 @@ unsigned char ds18b20_reset(void){
 	gpio_set_direction(DS_GPIO, GPIO_MODE_OUTPUT);
 	noInterrupts();
 	gpio_set_level(DS_GPIO, 0);
-	ets_delay_us(480);
+	esp_rom_delay_us(480);
 	gpio_set_level(DS_GPIO, 1);
 	gpio_set_direction(DS_GPIO, GPIO_MODE_INPUT);
-	ets_delay_us(70);
+	esp_rom_delay_us(70);
 	presence = (gpio_get_level(DS_GPIO) == 0);
-	ets_delay_us(410);
+	esp_rom_delay_us(410);
 	interrupts();
 	return presence;
 }

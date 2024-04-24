@@ -13,6 +13,6 @@ set(includes "inc")
 
 idf_component_register(SRCS ${srcs}
                        INCLUDE_DIRS ${includes}
-                       REQUIRES drivers esp_wifi esp_event nvs_flash mqtt esp_common esp_system 
+                       REQUIRES drivers esp_wifi esp_event nvs_flash mqtt esp_common esp_system wpa_supplicant
                        REQUIRES data
                         )
