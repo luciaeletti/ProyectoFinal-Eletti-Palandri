@@ -32,10 +32,12 @@
 #include "connection.h"
 
 static const char *TAG = "WIFI + MQTT";
-
+TaskHandle_t senderHandler = NULL;
+TaskHandle_t receiverHandler = NULL;
 EventGroupHandle_t s_wifi_event_group;
 const int CONNECTED_BIT = BIT0; 
 const int ESPTOUCH_DONE_BIT = BIT1;
+
 
 void log_error_if_nonzero(const char *message, int error_code)
 {
@@ -212,13 +214,18 @@ void initialise_wifi(void)
     ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
     ESP_ERROR_CHECK( esp_wifi_start() );
 }
-
-void connection_wifi(void){
+void vConnectionWFTask(void *pvParameters){
     ESP_ERROR_CHECK( nvs_flash_init() );
     initialise_wifi();
+    xTaskNotifyGive(receiverHandler);
+    vTaskDelay(3000 /portTICK_PERIOD_MS);
+
 }
-void connection_mqtt(void)
+
+void vConnectionMQTTTask(void *pvParameters)
 {
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %" PRIu32 " bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
@@ -241,6 +248,7 @@ void connection_mqtt(void)
      */
    // ESP_ERROR_CHECK(example_connect());
     mqtt_app_start();
+
    
 }
 

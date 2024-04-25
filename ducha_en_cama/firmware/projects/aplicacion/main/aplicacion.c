@@ -22,7 +22,7 @@
 #include "connection.h"
 
 /*==================[macros]=================================================*/
-TaskHandle_t connection_handle = NULL;
+
 /*==================[typedef]================================================*/
 
 
@@ -38,11 +38,12 @@ TaskHandle_t connection_handle = NULL;
 
 void app_main(void){
     
-    connection_wifi();
-    vTaskDelay(60000 /portTICK_PERIOD_MS);
-    connection_mqtt();
-  //  xTaskCreate(&vConnectionTask, "Connection", 512, NULL, 5, &connection_handle);
-    printf("hola");
+   // connection_wifi();
+   // vTaskDelay(60000 /portTICK_PERIOD_MS);
+   // connection_mqtt();
+    xTaskCreate(&vConnectionWFTask, "Connection WIFI", 512, NULL, 5, &senderHandler);
+    xTaskCreate(&vConnectionMQTTTask, "Connection MQTT", 512, NULL, 5, &receiverHandler);
+
 }
 
 

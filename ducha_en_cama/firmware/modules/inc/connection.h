@@ -12,22 +12,14 @@
 #include "conditions.h"
 #include "general.h"
 /*==================[macros]=================================================*/
-
 /*==================[typedef]================================================*/
-
 /*==================[internal data declaration]==============================*/
-
 /*==================[internal functions declaration]=========================*/
-void connection_wifi(void);
-void connection_mqtt(void);
+void vConnectionWFTask(void *pvParameters);
+void vConnectionMQTTTask(void *pvParameters);
 void smartconfig_example_task(void * parm);
-
 /*==================[external functions declaration]=========================*/
 void vConnectionTask(void *pvParameters);
-
-
-
-
 
 
 
