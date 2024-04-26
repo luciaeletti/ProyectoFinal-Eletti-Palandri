@@ -1,0 +1,28 @@
+Date:,24/1/2024 13:18:11,,,,
+Tool:,Eeschema (7.0.0),,,,
+Generator:,C:\Program Files\KiCad\7.0\bin\scripting\plugins/bom_csv_grouped_by_value.py,,,,
+Component Count:,57,,,,
+,,,,,
+Collated Components:,,,,,
+,,,,,
+Item,Qty,Reference(s),Value,Descripción,Digikey Part Number
+1,6,"C1, C2, C3, C5, C8, C12",100nF,CAP CER 0.1UF 50V Y5V 0603,311-1343-1-ND
+2,4,"C4, C6, C10, C11",51pF,"51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)",311-3358-1-ND
+3,2,"C7, C13",1uF,1 µF ±10% 10V Ceramic Capacitor X7R 0603 (1608 Metric),587-1242-1-ND
+4,1,C14,C_Polarized,"100 µF 16 V Aluminum Electrolytic Capacitors Radial, Can 2000 Hrs @ 85°C",493-6095-1-ND
+5,1,D1,B140-13-F,Diode 40 V 1A Surface Mount SMA,B140-FDICT-ND
+6,4,"J1, J2, J7, J10",Screw_Terminal_01x10,"10 Position Wire to Board Terminal Block Horizontal with Board 0.100"" (2.54mm) Through Hole",ED10567-ND
+7,1,J3,Conn_01x08_Pin,"8 Position FFC, FPC Connector Contacts, Top 0.100"" (2.54mm) Through Hole, Right Angle",A106934-ND
+8,4,"J4, J5, J6, J8",Conn_01x04_Socket,"Connector Header Through Hole 4 position 0.100"" (2.54mm)",WM4202-ND
+9,1,J9,Screw_Terminal_01x02,"2 Position Wire to Board Terminal Block Horizontal with Board 0.197"" (5.00mm) Through Hole",732-10955-ND
+10,2,"J11, J12",Conn_01x16_Pin,HEADER 16POS 2.54 SINGLE ROW,61301611821-ND
+11,5,"Q1, Q2, Q3, Q4, Q5",2N7002,MOSFET N-CH 60V 280MA SOT23-3,4878-2N7002CT-ND
+12,8,"R1, R2, R4, R6, R7, R9, R13, R19",10k,RES 10K OHM 5% 1/10W 0603,311-10KGRCT-ND
+13,2,"R3, R14",680R,RES 680 OHM 5% 1/10W 0603,311-680GRCT-ND
+14,3,"R5, R12, R18",330k,RES 330K OHM 5% 1/10W 0603,311-330KGRCT-ND
+15,7,"R8, R10, R11, R15, R16, R17, R26",5k1,RES 5.1K OHM 5% 1/10W 0603,311-5.1KGRCT-ND
+16,1,U1,ESP32-C6-DevKitC-1,ESP32-C6 GENERAL-PURPOSE DEVELOP,1965-ESP32-C6-DEVKITC-1-N8-ND
+17,2,"U2, U3",FDC1004DGST,Capacitive Touch Proximity Only 10-VSSOP,296-49639-1-ND
+18,1,U4,TXB0104PW,Voltage Level Translator Bidirectional 1 Circuit 4 Channel 100Mbps 14-TSSOP,296-21929-1-ND
+19,1,U5,TS3A24157DGSR,2 Circuit IC Switch 2:1 600mOhm 10-VSSOP,296-22856-1-ND
+20,1,U6,TXB0102DCT,Voltage Level Translator Bidirectional 1 Circuit 2 Channel 100Mbps 8-VSSOP,296-22862-1-ND

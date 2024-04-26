@@ -15,9 +15,20 @@
 /*==================[typedef]================================================*/
 /*==================[internal data declaration]==============================*/
 /*==================[internal functions declaration]=========================*/
-void vConnectionWFTask(void *pvParameters);
-void vConnectionMQTTTask(void *pvParameters);
+//void vConnectionWFTask(void *pvParameters);
+//void vConnectionMQTTTask(void *pvParameters);
+void event_handler(void* arg, esp_event_base_t event_base,
+                                int32_t event_id, void* event_data);
+                                
+void mqtt_app_start(void);
+void initialise_wifi(void);
+void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data);
+void log_error_if_nonzero(const char *message, int error_code);
 void smartconfig_example_task(void * parm);
+void connection_wifi();
+void connection_mqtt();
+
+
 /*==================[external functions declaration]=========================*/
 void vConnectionTask(void *pvParameters);
 

@@ -1,0 +1,1819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>D:\Documents\Catedras\E_PROG\Proyectos_KiCad\Ducha\Ducha.kicad_sch</source>
+    <date>24/1/2024 13:18:11</date>
+    <tool>Eeschema (7.0.0)</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>Ducha.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">CAP CER 0.1UF 50V Y5V 0603</field>
+        <field name="Digikey Part Number">311-1343-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="CAP CER 0.1UF 50V Y5V 0603"/>
+      <property name="Digikey Part Number" value="311-1343-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bde096e9-1e5e-4592-9705-b69b056e7517</tstamps>
+    </comp>
+    <comp ref="C2">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">CAP CER 0.1UF 50V Y5V 0603</field>
+        <field name="Digikey Part Number">311-1343-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="CAP CER 0.1UF 50V Y5V 0603"/>
+      <property name="Digikey Part Number" value="311-1343-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8705899a-ff11-4af9-b6d8-e9735ca0af6b</tstamps>
+    </comp>
+    <comp ref="C3">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">CAP CER 0.1UF 50V Y5V 0603</field>
+        <field name="Digikey Part Number">311-1343-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="CAP CER 0.1UF 50V Y5V 0603"/>
+      <property name="Digikey Part Number" value="311-1343-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d9079215-3b7a-4471-af0e-0554a0469915</tstamps>
+    </comp>
+    <comp ref="C4">
+      <value>51pF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)</field>
+        <field name="Digikey Part Number">311-3358-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)"/>
+      <property name="Digikey Part Number" value="311-3358-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dd59b3e9-c995-40dc-98f9-e83765472510</tstamps>
+    </comp>
+    <comp ref="C5">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">CAP CER 0.1UF 50V Y5V 0603</field>
+        <field name="Digikey Part Number">311-1343-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="CAP CER 0.1UF 50V Y5V 0603"/>
+      <property name="Digikey Part Number" value="311-1343-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6be27553-8a59-434f-9034-d49fd08834bb</tstamps>
+    </comp>
+    <comp ref="C6">
+      <value>51pF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)</field>
+        <field name="Digikey Part Number">311-3358-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)"/>
+      <property name="Digikey Part Number" value="311-3358-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6f09067b-a898-4bb5-8cca-b02e154444c7</tstamps>
+    </comp>
+    <comp ref="C7">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">1 µF ±10% 10V Ceramic Capacitor X7R 0603 (1608 Metric)</field>
+        <field name="Digikey Part Number">587-1242-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="1 µF ±10% 10V Ceramic Capacitor X7R 0603 (1608 Metric)"/>
+      <property name="Digikey Part Number" value="587-1242-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>57f0ff6a-6eef-4a01-a60c-bdbc57db7748</tstamps>
+    </comp>
+    <comp ref="C8">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">CAP CER 0.1UF 50V Y5V 0603</field>
+        <field name="Digikey Part Number">311-1343-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="CAP CER 0.1UF 50V Y5V 0603"/>
+      <property name="Digikey Part Number" value="311-1343-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4183c794-bb9f-49be-868a-fe0043ea9c2c</tstamps>
+    </comp>
+    <comp ref="C10">
+      <value>51pF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)</field>
+        <field name="Digikey Part Number">311-3358-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)"/>
+      <property name="Digikey Part Number" value="311-3358-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e6b7c6d6-1a0f-4a71-8f21-7758c0d009fd</tstamps>
+    </comp>
+    <comp ref="C11">
+      <value>51pF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)</field>
+        <field name="Digikey Part Number">311-3358-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="51 pF ±5% 50V Ceramic Capacitor C0G, NP0 0603 (1608 Metric)"/>
+      <property name="Digikey Part Number" value="311-3358-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6f4ba1ef-1560-4347-94f5-352113876fa8</tstamps>
+    </comp>
+    <comp ref="C12">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">CAP CER 0.1UF 50V Y5V 0603</field>
+        <field name="Digikey Part Number">311-1343-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="CAP CER 0.1UF 50V Y5V 0603"/>
+      <property name="Digikey Part Number" value="311-1343-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7676f996-333c-441f-92b6-b89a7ea41947</tstamps>
+    </comp>
+    <comp ref="C13">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">1 µF ±10% 10V Ceramic Capacitor X7R 0603 (1608 Metric)</field>
+        <field name="Digikey Part Number">587-1242-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="C" description="Unpolarized capacitor"/>
+      <property name="Descripción" value="1 µF ±10% 10V Ceramic Capacitor X7R 0603 (1608 Metric)"/>
+      <property name="Digikey Part Number" value="587-1242-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0138ca06-54e4-4466-946d-bcf20c86c7ee</tstamps>
+    </comp>
+    <comp ref="C14">
+      <value>C_Polarized</value>
+      <footprint>Capacitor_THT:CP_Radial_D10.0mm_P5.00mm</footprint>
+      <fields>
+        <field name="Descripción">100 µF 16 V Aluminum Electrolytic Capacitors Radial, Can 2000 Hrs @ 85°C</field>
+        <field name="Digikey Part Number">493-6095-1-ND</field>
+      </fields>
+      <libsource lib="Device" part="C_Polarized" description="Polarized capacitor"/>
+      <property name="Descripción" value="100 µF 16 V Aluminum Electrolytic Capacitors Radial, Can 2000 Hrs @ 85°C"/>
+      <property name="Digikey Part Number" value="493-6095-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Polarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3c72284d-f088-4bc4-a79d-707f8c9070e9</tstamps>
+    </comp>
+    <comp ref="D1">
+      <value>B140-13-F</value>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <datasheet>http://www.vishay.com/docs/88525/1n5817.pdf</datasheet>
+      <fields>
+        <field name="Descripción">Diode 40 V 1A Surface Mount SMA</field>
+        <field name="Digikey Part Number">B140-FDICT-ND</field>
+      </fields>
+      <libsource lib="Diode" part="1N5817" description="20V 1A Schottky Barrier Rectifier Diode, DO-41"/>
+      <property name="Descripción" value="Diode 40 V 1A Surface Mount SMA"/>
+      <property name="Digikey Part Number" value="B140-FDICT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="20V 1A Schottky Barrier Rectifier Diode, DO-41"/>
+      <property name="ki_keywords" value="diode Schottky"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>44349b0c-4556-4e19-b063-8809bd6a0b09</tstamps>
+    </comp>
+    <comp ref="J1">
+      <value>Screw_Terminal_01x10</value>
+      <footprint>ducha:CONN_OSTVN10A150_OST</footprint>
+      <fields>
+        <field name="Descripción">10 Position Wire to Board Terminal Block Horizontal with Board 0.100" (2.54mm) Through Hole</field>
+        <field name="Digikey Part Number">ED10567-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x10" description="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Descripción" value="10 Position Wire to Board Terminal Block Horizontal with Board 0.100&quot; (2.54mm) Through Hole"/>
+      <property name="Digikey Part Number" value="ED10567-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="screw terminal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>83585be4-06e8-4e35-8cf5-4925b1cbad00</tstamps>
+    </comp>
+    <comp ref="J2">
+      <value>Screw_Terminal_01x10</value>
+      <footprint>ducha:CONN_OSTVN10A150_OST</footprint>
+      <fields>
+        <field name="Descripción">10 Position Wire to Board Terminal Block Horizontal with Board 0.100" (2.54mm) Through Hole</field>
+        <field name="Digikey Part Number">ED10567-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x10" description="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Descripción" value="10 Position Wire to Board Terminal Block Horizontal with Board 0.100&quot; (2.54mm) Through Hole"/>
+      <property name="Digikey Part Number" value="ED10567-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="screw terminal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4bf31669-7630-45cf-94d6-622f5294eb6d</tstamps>
+    </comp>
+    <comp ref="J3">
+      <value>Conn_01x08_Pin</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal</footprint>
+      <fields>
+        <field name="Descripción">8 Position FFC, FPC Connector Contacts, Top 0.100" (2.54mm) Through Hole, Right Angle</field>
+        <field name="Digikey Part Number">A106934-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Conn_01x08_Pin" description="Generic connector, single row, 01x08, script generated"/>
+      <property name="Descripción" value="8 Position FFC, FPC Connector Contacts, Top 0.100&quot; (2.54mm) Through Hole, Right Angle"/>
+      <property name="Digikey Part Number" value="A106934-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x08, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7938de42-d30f-4151-958b-02ea305dc3a6</tstamps>
+    </comp>
+    <comp ref="J4">
+      <value>Conn_01x04_Socket</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Descripción">Connector Header Through Hole 4 position 0.100" (2.54mm)</field>
+        <field name="Digikey Part Number">WM4202-ND</field>
+      </fields>
+      <libsource lib="ducha" part="Conn_01x04_Socket" description="Generic connector, single row, 01x04, script generated"/>
+      <property name="Descripción" value="Connector Header Through Hole 4 position 0.100&quot; (2.54mm)"/>
+      <property name="Digikey Part Number" value="WM4202-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x04, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1965be8e-13df-4750-ae44-93dd95f85037</tstamps>
+    </comp>
+    <comp ref="J5">
+      <value>Conn_01x04_Socket</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Descripción">Connector Header Through Hole 4 position 0.100" (2.54mm)</field>
+        <field name="Digikey Part Number">WM4202-ND</field>
+      </fields>
+      <libsource lib="ducha" part="Conn_01x04_Socket" description="Generic connector, single row, 01x04, script generated"/>
+      <property name="Descripción" value="Connector Header Through Hole 4 position 0.100&quot; (2.54mm)"/>
+      <property name="Digikey Part Number" value="WM4202-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x04, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d5c3b8e5-e57b-460e-81bd-89a27a9cb5c3</tstamps>
+    </comp>
+    <comp ref="J6">
+      <value>Conn_01x04_Socket</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Descripción">Connector Header Through Hole 4 position 0.100" (2.54mm)</field>
+        <field name="Digikey Part Number">WM4202-ND</field>
+      </fields>
+      <libsource lib="ducha" part="Conn_01x04_Socket" description="Generic connector, single row, 01x04, script generated"/>
+      <property name="Descripción" value="Connector Header Through Hole 4 position 0.100&quot; (2.54mm)"/>
+      <property name="Digikey Part Number" value="WM4202-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x04, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bf4444ae-a29b-44a6-ab9c-7284a958f6de</tstamps>
+    </comp>
+    <comp ref="J7">
+      <value>Screw_Terminal_01x10</value>
+      <footprint>ducha:CONN_OSTVN10A150_OST</footprint>
+      <fields>
+        <field name="Descripción">10 Position Wire to Board Terminal Block Horizontal with Board 0.100" (2.54mm) Through Hole</field>
+        <field name="Digikey Part Number">ED10567-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x10" description="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Descripción" value="10 Position Wire to Board Terminal Block Horizontal with Board 0.100&quot; (2.54mm) Through Hole"/>
+      <property name="Digikey Part Number" value="ED10567-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="screw terminal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0723f47d-7c20-414c-83ec-28b88e6e6130</tstamps>
+    </comp>
+    <comp ref="J8">
+      <value>Conn_01x04_Socket</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Descripción">Connector Header Through Hole 4 position 0.100" (2.54mm)</field>
+        <field name="Digikey Part Number">WM4202-ND</field>
+      </fields>
+      <libsource lib="ducha" part="Conn_01x04_Socket" description="Generic connector, single row, 01x04, script generated"/>
+      <property name="Descripción" value="Connector Header Through Hole 4 position 0.100&quot; (2.54mm)"/>
+      <property name="Digikey Part Number" value="WM4202-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x04, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4d5dba3a-9a5b-451b-b40c-c9bcceb503ca</tstamps>
+    </comp>
+    <comp ref="J9">
+      <value>Screw_Terminal_01x02</value>
+      <footprint>TerminalBlock:TerminalBlock_bornier-2_P5.08mm</footprint>
+      <fields>
+        <field name="Descripción">2 Position Wire to Board Terminal Block Horizontal with Board 0.197" (5.00mm) Through Hole</field>
+        <field name="Digikey Part Number">732-10955-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x02" description="Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Descripción" value="2 Position Wire to Board Terminal Block Horizontal with Board 0.197&quot; (5.00mm) Through Hole"/>
+      <property name="Digikey Part Number" value="732-10955-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="screw terminal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>041368be-b42b-4266-9861-7ef565b409a1</tstamps>
+    </comp>
+    <comp ref="J10">
+      <value>Screw_Terminal_01x10</value>
+      <footprint>ducha:CONN_OSTVN10A150_OST</footprint>
+      <fields>
+        <field name="Descripción">10 Position Wire to Board Terminal Block Horizontal with Board 0.100" (2.54mm) Through Hole</field>
+        <field name="Digikey Part Number">ED10567-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x10" description="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Descripción" value="10 Position Wire to Board Terminal Block Horizontal with Board 0.100&quot; (2.54mm) Through Hole"/>
+      <property name="Digikey Part Number" value="ED10567-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="screw terminal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fc9024e2-9cf5-4618-acf1-c20105f99e03</tstamps>
+    </comp>
+    <comp ref="J11">
+      <value>Conn_01x16_Pin</value>
+      <fields>
+        <field name="Descripción">HEADER 16POS 2.54 SINGLE ROW</field>
+        <field name="Digikey Part Number">61301611821-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Conn_01x16_Pin" description="Generic connector, single row, 01x16, script generated"/>
+      <property name="Descripción" value="HEADER 16POS 2.54 SINGLE ROW"/>
+      <property name="Digikey Part Number" value="61301611821-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x16, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dbb7ed49-7d43-4f2f-b651-5ef9e1a4d1cd</tstamps>
+    </comp>
+    <comp ref="J12">
+      <value>Conn_01x16_Pin</value>
+      <fields>
+        <field name="Descripción">HEADER 16POS 2.54 SINGLE ROW</field>
+        <field name="Digikey Part Number">61301611821-ND</field>
+      </fields>
+      <libsource lib="Connector" part="Conn_01x16_Pin" description="Generic connector, single row, 01x16, script generated"/>
+      <property name="Descripción" value="HEADER 16POS 2.54 SINGLE ROW"/>
+      <property name="Digikey Part Number" value="61301611821-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x16, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>235739bc-fcd8-47bf-8c75-f3b06e2ff244</tstamps>
+    </comp>
+    <comp ref="Q1">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF</datasheet>
+      <fields>
+        <field name="Descripción">MOSFET N-CH 60V 280MA SOT23-3</field>
+        <field name="Digikey Part Number">4878-2N7002CT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="2N7002" description="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="Descripción" value="MOSFET N-CH 60V 280MA SOT23-3"/>
+      <property name="Digikey Part Number" value="4878-2N7002CT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="ki_keywords" value="N-Channel Switching MOSFET"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4715f766-4b63-4a0e-a392-861de94d074a</tstamps>
+    </comp>
+    <comp ref="Q2">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF</datasheet>
+      <fields>
+        <field name="Descripción">MOSFET N-CH 60V 280MA SOT23-3</field>
+        <field name="Digikey Part Number">4878-2N7002CT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="2N7002" description="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="Descripción" value="MOSFET N-CH 60V 280MA SOT23-3"/>
+      <property name="Digikey Part Number" value="4878-2N7002CT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="ki_keywords" value="N-Channel Switching MOSFET"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>44a33527-86d2-4bf3-ac87-59d51f0a7cc4</tstamps>
+    </comp>
+    <comp ref="Q3">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF</datasheet>
+      <fields>
+        <field name="Descripción">MOSFET N-CH 60V 280MA SOT23-3</field>
+        <field name="Digikey Part Number">4878-2N7002CT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="2N7002" description="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="Descripción" value="MOSFET N-CH 60V 280MA SOT23-3"/>
+      <property name="Digikey Part Number" value="4878-2N7002CT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="ki_keywords" value="N-Channel Switching MOSFET"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e60c7917-9c3b-422f-b485-f1b11affd514</tstamps>
+    </comp>
+    <comp ref="Q4">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF</datasheet>
+      <fields>
+        <field name="Descripción">MOSFET N-CH 60V 280MA SOT23-3</field>
+        <field name="Digikey Part Number">4878-2N7002CT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="2N7002" description="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="Descripción" value="MOSFET N-CH 60V 280MA SOT23-3"/>
+      <property name="Digikey Part Number" value="4878-2N7002CT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="ki_keywords" value="N-Channel Switching MOSFET"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d5bb5dbb-31a1-4894-bd82-d114711150b7</tstamps>
+    </comp>
+    <comp ref="Q5">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF</datasheet>
+      <fields>
+        <field name="Descripción">MOSFET N-CH 60V 280MA SOT23-3</field>
+        <field name="Digikey Part Number">4878-2N7002CT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="2N7002" description="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="Descripción" value="MOSFET N-CH 60V 280MA SOT23-3"/>
+      <property name="Digikey Part Number" value="4878-2N7002CT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"/>
+      <property name="ki_keywords" value="N-Channel Switching MOSFET"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>af10bca0-1436-4f42-9aff-5df3205c9da1</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8a7f44e5-12ec-4b5f-b770-421b34699321</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ee5ef257-df8e-44bf-92da-4ee5b8915ca8</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>680R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 680 OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-680GRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 680 OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-680GRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>941535c6-da20-48df-8394-ecf9d67c1859</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>001ac690-4196-49cb-a361-c012fe889b83</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>330k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 330K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-330KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 330K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-330KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7a167f67-d898-4ec8-8d23-9cb12718d7f6</tstamps>
+    </comp>
+    <comp ref="R6">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ee17e833-a662-4948-bc5e-e275b3875f36</tstamps>
+    </comp>
+    <comp ref="R7">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c7062e28-9e80-453b-b006-ede5b1b199f5</tstamps>
+    </comp>
+    <comp ref="R8">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 5.1K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-5.1KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 5.1K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-5.1KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e0e1df89-fa15-4857-8647-62b96feb6b20</tstamps>
+    </comp>
+    <comp ref="R9">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1d58555e-7af7-4fef-af9e-572fb4cef5b3</tstamps>
+    </comp>
+    <comp ref="R10">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 5.1K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-5.1KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 5.1K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-5.1KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0d42a979-0651-4b7d-b03d-41bfcfc7f428</tstamps>
+    </comp>
+    <comp ref="R11">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 5.1K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-5.1KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 5.1K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-5.1KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>543614a3-eef4-4185-aeed-51901c970699</tstamps>
+    </comp>
+    <comp ref="R12">
+      <value>330k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 330K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-330KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 330K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-330KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>54ce0573-2a59-4ab2-bbf8-5f459248e9df</tstamps>
+    </comp>
+    <comp ref="R13">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3fa4b09d-52e6-424c-b3cb-67ea400d0f23</tstamps>
+    </comp>
+    <comp ref="R14">
+      <value>680R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 680 OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-680GRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 680 OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-680GRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9dc5564d-4269-4e2f-9ff0-3b0752e7964a</tstamps>
+    </comp>
+    <comp ref="R15">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 5.1K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-5.1KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 5.1K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-5.1KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9a453863-070d-4b33-8e57-097c6c8e384e</tstamps>
+    </comp>
+    <comp ref="R16">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 5.1K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-5.1KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 5.1K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-5.1KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9e781b00-ab21-4774-bd13-b114e2a95056</tstamps>
+    </comp>
+    <comp ref="R17">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 5.1K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-5.1KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 5.1K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-5.1KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d50c37c7-be8a-4707-8b05-30af40226ce1</tstamps>
+    </comp>
+    <comp ref="R18">
+      <value>330k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 330K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-330KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 330K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-330KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4078531e-740f-43fb-aaf8-193aa987eca7</tstamps>
+    </comp>
+    <comp ref="R19">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 10K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-10KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 10K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-10KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>deb1564d-8021-4ed7-9ca8-f9a6f64baec5</tstamps>
+    </comp>
+    <comp ref="R26">
+      <value>5k1</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Descripción">RES 5.1K OHM 5% 1/10W 0603</field>
+        <field name="Digikey Part Number">311-5.1KGRCT-ND</field>
+      </fields>
+      <libsource lib="ducha" part="R" description="Resistor"/>
+      <property name="Descripción" value="RES 5.1K OHM 5% 1/10W 0603"/>
+      <property name="Digikey Part Number" value="311-5.1KGRCT-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d12be2eb-b58f-4811-89cb-c1c83485993f</tstamps>
+    </comp>
+    <comp ref="U1">
+      <value>ESP32-C6-DevKitC-1</value>
+      <footprint>PCM_Espressif:ESP32-C6-DevKitC-1</footprint>
+      <datasheet>https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitc-1/user_guide.html</datasheet>
+      <fields>
+        <field name="Descripción">ESP32-C6 GENERAL-PURPOSE DEVELOP</field>
+        <field name="Digikey Part Number">1965-ESP32-C6-DEVKITC-1-N8-ND</field>
+      </fields>
+      <libsource lib="ducha" part="ESP32-C6-DevKitC-1" description="ESP32-C6-DevKitC-1"/>
+      <property name="Descripción" value="ESP32-C6 GENERAL-PURPOSE DEVELOP"/>
+      <property name="Digikey Part Number" value="1965-ESP32-C6-DEVKITC-1-N8-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="ESP32-C6-DevKitC-1"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e1107982-69ff-4cde-be8d-387524c2994f</tstamps>
+    </comp>
+    <comp ref="U2">
+      <value>FDC1004DGST</value>
+      <footprint>ducha:DGS0010A_N</footprint>
+      <datasheet>FDC1004DGST</datasheet>
+      <fields>
+        <field name="Descripción">Capacitive Touch Proximity Only 10-VSSOP</field>
+        <field name="Digikey Part Number">296-49639-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="FDC1004DGST" description=""/>
+      <property name="Descripción" value="Capacitive Touch Proximity Only 10-VSSOP"/>
+      <property name="Digikey Part Number" value="296-49639-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_keywords" value="FDC1004DGST"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>608e4464-f3c8-4e5d-a86c-6d6820da0e4a</tstamps>
+    </comp>
+    <comp ref="U3">
+      <value>FDC1004DGST</value>
+      <footprint>ducha:DGS0010A_N</footprint>
+      <datasheet>FDC1004DGST</datasheet>
+      <fields>
+        <field name="Descripción">Capacitive Touch Proximity Only 10-VSSOP</field>
+        <field name="Digikey Part Number">296-49639-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="FDC1004DGST" description=""/>
+      <property name="Descripción" value="Capacitive Touch Proximity Only 10-VSSOP"/>
+      <property name="Digikey Part Number" value="296-49639-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_keywords" value="FDC1004DGST"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0d6a0124-7d87-477f-a652-72739f515bc0</tstamps>
+    </comp>
+    <comp ref="U4">
+      <value>TXB0104PW</value>
+      <footprint>Package_SO:TSSOP-14_4.4x5mm_P0.65mm</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/txb0104.pdf</datasheet>
+      <fields>
+        <field name="Descripción">Voltage Level Translator Bidirectional 1 Circuit 4 Channel 100Mbps 14-TSSOP</field>
+        <field name="Digikey Part Number">296-21929-1-ND</field>
+      </fields>
+      <libsource lib="Logic_LevelTranslator" part="TXB0104PW" description="4-Bit Bidirectional Voltage-Level Translator, Auto Direction Sensing and ±15-kV ESD Protection, 1.2 - 3.6V APort, 1.65 - 5.5V BPort, TSSOP-14"/>
+      <property name="Descripción" value="Voltage Level Translator Bidirectional 1 Circuit 4 Channel 100Mbps 14-TSSOP"/>
+      <property name="Digikey Part Number" value="296-21929-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="4-Bit Bidirectional Voltage-Level Translator, Auto Direction Sensing and ±15-kV ESD Protection, 1.2 - 3.6V APort, 1.65 - 5.5V BPort, TSSOP-14"/>
+      <property name="ki_keywords" value="Level-Shifter CMOS-TTL-Translation"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9b1ab97a-3e57-4a76-a521-16e1b580861e</tstamps>
+    </comp>
+    <comp ref="U5">
+      <value>TS3A24157DGSR</value>
+      <footprint>ducha:SOP50P490X110-10N</footprint>
+      <fields>
+        <field name="Descripción">2 Circuit IC Switch 2:1 600mOhm 10-VSSOP</field>
+        <field name="Digikey Part Number">296-22856-1-ND</field>
+      </fields>
+      <libsource lib="ducha" part="TS3A24157DGSR" description=""/>
+      <property name="Descripción" value="2 Circuit IC Switch 2:1 600mOhm 10-VSSOP"/>
+      <property name="Digikey Part Number" value="296-22856-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dd5f61bf-b371-4fc6-967c-7a2719dcffff</tstamps>
+    </comp>
+    <comp ref="U6">
+      <value>TXB0102DCT</value>
+      <footprint>ducha:SOP50P310X90-8N</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/txb0102.pdf</datasheet>
+      <fields>
+        <field name="Descripción">Voltage Level Translator Bidirectional 1 Circuit 2 Channel 100Mbps 8-VSSOP</field>
+        <field name="Digikey Part Number">296-22862-1-ND</field>
+      </fields>
+      <libsource lib="Logic_LevelTranslator" part="TXB0102DCT" description="2-Bit Bidirectional Voltage-Level Translator in TSSOP Package With Auto Direction Sensing and ±15-kV ESD Protection"/>
+      <property name="Descripción" value="Voltage Level Translator Bidirectional 1 Circuit 2 Channel 100Mbps 8-VSSOP"/>
+      <property name="Digikey Part Number" value="296-22862-1-ND"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="Ducha.kicad_sch"/>
+      <property name="ki_description" value="2-Bit Bidirectional Voltage-Level Translator in TSSOP Package With Auto Direction Sensing and ±15-kV ESD Protection"/>
+      <property name="ki_keywords" value="Level-Shifter CMOS-TTL-Translation"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>65c3993c-30f6-4707-bfdb-7d3ed1db4cff</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector" part="Conn_01x08_Pin">
+      <description>Generic connector, single row, 01x08, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x08_Pin</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x16_Pin">
+      <description>Generic connector, single row, 01x16, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x16_Pin</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+        <pin num="9" name="Pin_9" type="passive"/>
+        <pin num="10" name="Pin_10" type="passive"/>
+        <pin num="11" name="Pin_11" type="passive"/>
+        <pin num="12" name="Pin_12" type="passive"/>
+        <pin num="13" name="Pin_13" type="passive"/>
+        <pin num="14" name="Pin_14" type="passive"/>
+        <pin num="15" name="Pin_15" type="passive"/>
+        <pin num="16" name="Pin_16" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Screw_Terminal_01x02">
+      <description>Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Screw_Terminal_01x02</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Screw_Terminal_01x10">
+      <description>Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Screw_Terminal_01x10</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+        <pin num="9" name="Pin_9" type="passive"/>
+        <pin num="10" name="Pin_10" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C_Polarized">
+      <description>Polarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>CP_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Polarized</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Diode" part="1N5817">
+      <description>20V 1A Schottky Barrier Rectifier Diode, DO-41</description>
+      <docs>http://www.vishay.com/docs/88525/1n5817.pdf</docs>
+      <footprints>
+        <fp>D*DO?41*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">1N5817</field>
+        <field name="Footprint">Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal</field>
+        <field name="Datasheet">http://www.vishay.com/docs/88525/1n5817.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Logic_LevelTranslator" part="TXB0102DCT">
+      <description>2-Bit Bidirectional Voltage-Level Translator in TSSOP Package With Auto Direction Sensing and ±15-kV ESD Protection</description>
+      <docs>http://www.ti.com/lit/ds/symlink/txb0102.pdf</docs>
+      <footprints>
+        <fp>TSSOP*P0.65mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TXB0102DCT</field>
+        <field name="Footprint">Package_SO:TSSOP-8_3x3mm_P0.65mm</field>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/txb0102.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="B2" type="bidirectional"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="VCCA" type="power_in"/>
+        <pin num="4" name="A2" type="bidirectional"/>
+        <pin num="5" name="A1" type="bidirectional"/>
+        <pin num="6" name="OE" type="input"/>
+        <pin num="7" name="VCCB" type="power_in"/>
+        <pin num="8" name="B1" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="Logic_LevelTranslator" part="TXB0104PW">
+      <description>4-Bit Bidirectional Voltage-Level Translator, Auto Direction Sensing and ±15-kV ESD Protection, 1.2 - 3.6V APort, 1.65 - 5.5V BPort, TSSOP-14</description>
+      <docs>http://www.ti.com/lit/ds/symlink/txb0104.pdf</docs>
+      <footprints>
+        <fp>TSSOP*14*5mm*P0.65mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TXB0104PW</field>
+        <field name="Footprint">Package_SO:TSSOP-14_4.4x5mm_P0.65mm</field>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/txb0104.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VCCA" type="power_in"/>
+        <pin num="2" name="A1" type="bidirectional"/>
+        <pin num="3" name="A2" type="bidirectional"/>
+        <pin num="4" name="A3" type="bidirectional"/>
+        <pin num="5" name="A4" type="bidirectional"/>
+        <pin num="6" name="NC" type="no_connect"/>
+        <pin num="7" name="GND" type="power_in"/>
+        <pin num="8" name="OE" type="input"/>
+        <pin num="9" name="NC" type="no_connect"/>
+        <pin num="10" name="B4" type="bidirectional"/>
+        <pin num="11" name="B3" type="bidirectional"/>
+        <pin num="12" name="B2" type="bidirectional"/>
+        <pin num="13" name="B1" type="bidirectional"/>
+        <pin num="14" name="VCCB" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="ducha" part="2N7002">
+      <description>0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23</description>
+      <docs>https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF</docs>
+      <footprints>
+        <fp>SOT?23*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">2N7002</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet">https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ducha" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ducha" part="Conn_01x04_Socket">
+      <description>Generic connector, single row, 01x04, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x04_Socket</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ducha" part="ESP32-C6-DevKitC-1">
+      <description>ESP32-C6-DevKitC-1</description>
+      <docs>https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitc-1/user_guide.html</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ESP32-C6-DevKitC-1</field>
+        <field name="Footprint">PCM_Espressif:ESP32-C6-DevKitC-1</field>
+        <field name="Datasheet">https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitc-1/user_guide.html</field>
+      </fields>
+      <pins>
+        <pin num="1" name="3V3" type="power_in"/>
+        <pin num="2" name="EN/RESET" type="input"/>
+        <pin num="3" name="GPIO4/MTMS" type="bidirectional"/>
+        <pin num="4" name="GPIO5/MTDI" type="bidirectional"/>
+        <pin num="5" name="GPIO6" type="bidirectional"/>
+        <pin num="6" name="GPIO7" type="bidirectional"/>
+        <pin num="7" name="GPIO0" type="bidirectional"/>
+        <pin num="8" name="GPIO1" type="bidirectional"/>
+        <pin num="9" name="GPIO8/BOOT" type="bidirectional"/>
+        <pin num="10" name="GPIO10" type="bidirectional"/>
+        <pin num="11" name="GPIO11" type="bidirectional"/>
+        <pin num="12" name="GPIO2" type="bidirectional"/>
+        <pin num="13" name="GPIO3" type="bidirectional"/>
+        <pin num="14" name="5V" type="power_in"/>
+        <pin num="15" name="GND" type="power_in"/>
+        <pin num="16" name="NC" type="no_connect"/>
+        <pin num="17" name="NC" type="no_connect"/>
+        <pin num="18" name="GND" type="power_in"/>
+        <pin num="19" name="GPIO12/USB_D-" type="bidirectional"/>
+        <pin num="20" name="GPIO13/USB_D+" type="bidirectional"/>
+        <pin num="21" name="GND" type="power_in"/>
+        <pin num="22" name="GPIO9/BOOT" type="bidirectional"/>
+        <pin num="23" name="GPIO18" type="bidirectional"/>
+        <pin num="24" name="GPIO19" type="bidirectional"/>
+        <pin num="25" name="GPIO20" type="bidirectional"/>
+        <pin num="26" name="GPIO21" type="bidirectional"/>
+        <pin num="27" name="GPIO22" type="bidirectional"/>
+        <pin num="28" name="GPIO23" type="bidirectional"/>
+        <pin num="29" name="GPIO15/JTAG" type="bidirectional"/>
+        <pin num="30" name="GPIO17/U0RXD" type="bidirectional"/>
+        <pin num="31" name="GPIO16/U0TXD" type="bidirectional"/>
+        <pin num="32" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="ducha" part="FDC1004DGST">
+      <docs>FDC1004DGST</docs>
+      <footprints>
+        <fp>DGS0010A_N</fp>
+        <fp>DGS0010A_M</fp>
+        <fp>DGS0010A_L</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">FDC1004DGST</field>
+        <field name="Footprint">DGS0010A_N</field>
+        <field name="Datasheet">FDC1004DGST</field>
+      </fields>
+      <pins>
+        <pin num="1" name="SHLD1" type="output"/>
+        <pin num="2" name="CIN1" type="input"/>
+        <pin num="3" name="CIN2" type="input"/>
+        <pin num="4" name="CIN3" type="input"/>
+        <pin num="5" name="CIN4" type="input"/>
+        <pin num="6" name="SHLD2" type="output"/>
+        <pin num="7" name="GND" type="power_in"/>
+        <pin num="8" name="VDD" type="power_in"/>
+        <pin num="9" name="SCL" type="input"/>
+        <pin num="10" name="SDA" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="ducha" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ducha" part="TS3A24157DGSR">
+      <fields>
+        <field name="Reference">U5</field>
+        <field name="Value">TS3A24157DGSR</field>
+        <field name="Footprint">ducha:SOP50P490X110-10N</field>
+      </fields>
+      <pins>
+        <pin num="1" name="NC1" type="bidirectional"/>
+        <pin num="2" name="NO1" type="bidirectional"/>
+        <pin num="3" name="NC2" type="bidirectional"/>
+        <pin num="4" name="NO2" type="bidirectional"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="6" name="COM2" type="bidirectional"/>
+        <pin num="7" name="IN2" type="input"/>
+        <pin num="8" name="IN1" type="input"/>
+        <pin num="9" name="COM1" type="bidirectional"/>
+        <pin num="10" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Connector.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Device.kicad_sym</uri>
+    </library>
+    <library logical="Diode">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Diode.kicad_sym</uri>
+    </library>
+    <library logical="Logic_LevelTranslator">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Logic_LevelTranslator.kicad_sym</uri>
+    </library>
+    <library logical="ducha">
+      <uri>D:\Documents\Catedras\E_PROG\Proyectos_KiCad\Ducha/libs/ducha.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="+3.3V">
+      <node ref="C12" pin="1" pintype="passive"/>
+      <node ref="C13" pin="1" pintype="passive"/>
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="C7" pin="1" pintype="passive"/>
+      <node ref="C8" pin="1" pintype="passive"/>
+      <node ref="J1" pin="5" pinfunction="Pin_5" pintype="passive"/>
+      <node ref="J4" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="J5" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="J6" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="Q3" pin="1" pinfunction="G" pintype="input"/>
+      <node ref="Q4" pin="1" pinfunction="G" pintype="input"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="R10" pin="2" pintype="passive"/>
+      <node ref="R11" pin="2" pintype="passive"/>
+      <node ref="R15" pin="2" pintype="passive"/>
+      <node ref="R16" pin="2" pintype="passive"/>
+      <node ref="R17" pin="2" pintype="passive"/>
+      <node ref="R26" pin="2" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="R8" pin="2" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="3V3" pintype="power_in"/>
+      <node ref="U2" pin="8" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U3" pin="8" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U4" pin="1" pinfunction="VCCA" pintype="power_in"/>
+      <node ref="U4" pin="8" pinfunction="OE" pintype="input"/>
+      <node ref="U5" pin="10" pinfunction="VCC" pintype="power_in"/>
+      <node ref="U6" pin="3" pinfunction="VCCA" pintype="power_in"/>
+      <node ref="U6" pin="6" pinfunction="OE" pintype="input"/>
+    </net>
+    <net code="2" name="+5V">
+      <node ref="C14" pin="1" pintype="passive"/>
+      <node ref="C5" pin="1" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="J1" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J1" pin="10" pinfunction="Pin_10" pintype="passive"/>
+      <node ref="J10" pin="10" pinfunction="Pin_10" pintype="passive"/>
+      <node ref="J10" pin="7" pinfunction="Pin_7" pintype="passive"/>
+      <node ref="J10" pin="9" pinfunction="Pin_9" pintype="passive"/>
+      <node ref="J8" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+      <node ref="U1" pin="14" pinfunction="5V" pintype="power_in"/>
+      <node ref="U4" pin="14" pinfunction="VCCB" pintype="power_in"/>
+      <node ref="U6" pin="7" pinfunction="VCCB" pintype="power_in"/>
+    </net>
+    <net code="3" name="/SHLD1_2">
+      <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="J2" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="J2" pin="5" pinfunction="Pin_5" pintype="passive"/>
+      <node ref="U2" pin="1" pinfunction="SHLD1" pintype="output"/>
+    </net>
+    <net code="4" name="/SHLD1_3">
+      <node ref="C10" pin="1" pintype="passive"/>
+      <node ref="J7" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="J7" pin="5" pinfunction="Pin_5" pintype="passive"/>
+      <node ref="U3" pin="1" pinfunction="SHLD1" pintype="output"/>
+    </net>
+    <net code="5" name="/SHLD2_2">
+      <node ref="C4" pin="1" pintype="passive"/>
+      <node ref="J2" pin="6" pinfunction="Pin_6" pintype="passive"/>
+      <node ref="J2" pin="9" pinfunction="Pin_9" pintype="passive"/>
+      <node ref="U2" pin="6" pinfunction="SHLD2" pintype="output"/>
+    </net>
+    <net code="6" name="/SHLD2_3">
+      <node ref="C11" pin="1" pintype="passive"/>
+      <node ref="J7" pin="6" pinfunction="Pin_6" pintype="passive"/>
+      <node ref="J7" pin="9" pinfunction="Pin_9" pintype="passive"/>
+      <node ref="U3" pin="6" pinfunction="SHLD2" pintype="output"/>
+    </net>
+    <net code="7" name="GND">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C10" pin="2" pintype="passive"/>
+      <node ref="C11" pin="2" pintype="passive"/>
+      <node ref="C12" pin="2" pintype="passive"/>
+      <node ref="C13" pin="2" pintype="passive"/>
+      <node ref="C14" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="C4" pin="2" pintype="passive"/>
+      <node ref="C5" pin="2" pintype="passive"/>
+      <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="C7" pin="2" pintype="passive"/>
+      <node ref="C8" pin="2" pintype="passive"/>
+      <node ref="J1" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="J1" pin="6" pinfunction="Pin_6" pintype="passive"/>
+      <node ref="J1" pin="8" pinfunction="Pin_8" pintype="passive"/>
+      <node ref="J10" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J2" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J2" pin="10" pinfunction="Pin_10" pintype="passive"/>
+      <node ref="J3" pin="8" pinfunction="Pin_8" pintype="passive"/>
+      <node ref="J4" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J5" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J6" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J7" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J7" pin="10" pinfunction="Pin_10" pintype="passive"/>
+      <node ref="J8" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J9" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="Q1" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="Q2" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="Q5" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+      <node ref="R18" pin="2" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="U1" pin="15" pinfunction="GND" pintype="power_in"/>
+      <node ref="U1" pin="18" pinfunction="GND" pintype="power_in"/>
+      <node ref="U1" pin="21" pinfunction="GND" pintype="power_in"/>
+      <node ref="U1" pin="32" pinfunction="GND" pintype="power_in"/>
+      <node ref="U2" pin="7" pinfunction="GND" pintype="power_in"/>
+      <node ref="U3" pin="7" pinfunction="GND" pintype="power_in"/>
+      <node ref="U4" pin="7" pinfunction="GND" pintype="power_in"/>
+      <node ref="U5" pin="5" pinfunction="GND" pintype="power_in"/>
+      <node ref="U6" pin="2" pinfunction="GND" pintype="power_in"/>
+    </net>
+    <net code="8" name="GPIO">
+      <node ref="J1" pin="7" pinfunction="Pin_7" pintype="passive"/>
+      <node ref="U6" pin="8" pinfunction="B1" pintype="bidirectional"/>
+    </net>
+    <net code="9" name="GPIO0">
+      <node ref="R18" pin="1" pintype="passive"/>
+      <node ref="R19" pin="1" pintype="passive"/>
+      <node ref="U1" pin="7" pinfunction="GPIO0" pintype="bidirectional"/>
+    </net>
+    <net code="10" name="GPIO1">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="R9" pin="1" pintype="passive"/>
+      <node ref="U1" pin="8" pinfunction="GPIO1" pintype="bidirectional"/>
+    </net>
+    <net code="11" name="GPIO2">
+      <node ref="R12" pin="1" pintype="passive"/>
+      <node ref="R13" pin="1" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="GPIO2" pintype="bidirectional"/>
+    </net>
+    <net code="12" name="GPIO3">
+      <node ref="J3" pin="7" pinfunction="Pin_7" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="GPIO3" pintype="bidirectional"/>
+    </net>
+    <net code="13" name="GPIO4">
+      <node ref="J3" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="GPIO4/MTMS" pintype="bidirectional"/>
+    </net>
+    <net code="14" name="GPIO5">
+      <node ref="J3" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="U1" pin="4" pinfunction="GPIO5/MTDI" pintype="bidirectional"/>
+    </net>
+    <net code="15" name="GPIO8">
+      <node ref="U1" pin="9" pinfunction="GPIO8/BOOT" pintype="bidirectional"/>
+      <node ref="U6" pin="4" pinfunction="A2" pintype="bidirectional"/>
+    </net>
+    <net code="16" name="GPIO9">
+      <node ref="U1" pin="22" pinfunction="GPIO9/BOOT" pintype="bidirectional"/>
+      <node ref="U6" pin="5" pinfunction="A1" pintype="bidirectional"/>
+    </net>
+    <net code="17" name="GPIO10">
+      <node ref="J3" pin="5" pinfunction="Pin_5" pintype="passive"/>
+      <node ref="U1" pin="10" pinfunction="GPIO10" pintype="bidirectional"/>
+    </net>
+    <net code="18" name="GPIO11">
+      <node ref="J3" pin="6" pinfunction="Pin_6" pintype="passive"/>
+      <node ref="U1" pin="11" pinfunction="GPIO11" pintype="bidirectional"/>
+    </net>
+    <net code="19" name="GPIO12">
+      <node ref="U1" pin="19" pinfunction="GPIO12/USB_D-" pintype="bidirectional"/>
+    </net>
+    <net code="20" name="GPIO13">
+      <node ref="U1" pin="20" pinfunction="GPIO13/USB_D+" pintype="bidirectional"/>
+    </net>
+    <net code="21" name="GPIO15">
+      <node ref="U1" pin="29" pinfunction="GPIO15/JTAG" pintype="bidirectional"/>
+    </net>
+    <net code="22" name="GPIO16">
+      <node ref="U1" pin="31" pinfunction="GPIO16/U0TXD" pintype="bidirectional"/>
+    </net>
+    <net code="23" name="GPIO17">
+      <node ref="U1" pin="30" pinfunction="GPIO17/U0RXD" pintype="bidirectional"/>
+    </net>
+    <net code="24" name="GPIO18">
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="U1" pin="23" pinfunction="GPIO18" pintype="bidirectional"/>
+    </net>
+    <net code="25" name="GPIO19">
+      <node ref="U1" pin="24" pinfunction="GPIO19" pintype="bidirectional"/>
+      <node ref="U5" pin="7" pinfunction="IN2" pintype="input"/>
+      <node ref="U5" pin="8" pinfunction="IN1" pintype="input"/>
+    </net>
+    <net code="26" name="GPIO20">
+      <node ref="U1" pin="25" pinfunction="GPIO20" pintype="bidirectional"/>
+      <node ref="U4" pin="5" pinfunction="A4" pintype="bidirectional"/>
+    </net>
+    <net code="27" name="GPIO21">
+      <node ref="U1" pin="26" pinfunction="GPIO21" pintype="bidirectional"/>
+      <node ref="U4" pin="4" pinfunction="A3" pintype="bidirectional"/>
+    </net>
+    <net code="28" name="GPIO22">
+      <node ref="U1" pin="27" pinfunction="GPIO22" pintype="bidirectional"/>
+      <node ref="U4" pin="3" pinfunction="A2" pintype="bidirectional"/>
+    </net>
+    <net code="29" name="GPIO23">
+      <node ref="U1" pin="28" pinfunction="GPIO23" pintype="bidirectional"/>
+      <node ref="U4" pin="2" pinfunction="A1" pintype="bidirectional"/>
+    </net>
+    <net code="30" name="LED_1">
+      <node ref="J10" pin="6" pinfunction="Pin_6" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+    </net>
+    <net code="31" name="LED_2">
+      <node ref="J10" pin="8" pinfunction="Pin_8" pintype="passive"/>
+      <node ref="R14" pin="1" pintype="passive"/>
+    </net>
+    <net code="32" name="Net-(D1-A)">
+      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="J9" pin="2" pinfunction="Pin_2" pintype="passive"/>
+    </net>
+    <net code="33" name="Net-(J1-Pin_4)">
+      <node ref="J1" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="R10" pin="1" pintype="passive"/>
+      <node ref="R9" pin="2" pintype="passive"/>
+    </net>
+    <net code="34" name="Net-(J2-Pin_3)">
+      <node ref="J2" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="U2" pin="2" pinfunction="CIN1" pintype="input"/>
+    </net>
+    <net code="35" name="Net-(J2-Pin_4)">
+      <node ref="J2" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="CIN2" pintype="input"/>
+    </net>
+    <net code="36" name="Net-(J2-Pin_7)">
+      <node ref="J2" pin="7" pinfunction="Pin_7" pintype="passive"/>
+      <node ref="U2" pin="4" pinfunction="CIN3" pintype="input"/>
+    </net>
+    <net code="37" name="Net-(J2-Pin_8)">
+      <node ref="J2" pin="8" pinfunction="Pin_8" pintype="passive"/>
+      <node ref="U2" pin="5" pinfunction="CIN4" pintype="input"/>
+    </net>
+    <net code="38" name="Net-(J7-Pin_3)">
+      <node ref="J7" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="U3" pin="2" pinfunction="CIN1" pintype="input"/>
+    </net>
+    <net code="39" name="Net-(J7-Pin_4)">
+      <node ref="J7" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="U3" pin="3" pinfunction="CIN2" pintype="input"/>
+    </net>
+    <net code="40" name="Net-(J7-Pin_7)">
+      <node ref="J7" pin="7" pinfunction="Pin_7" pintype="passive"/>
+      <node ref="U3" pin="4" pinfunction="CIN3" pintype="input"/>
+    </net>
+    <net code="41" name="Net-(J7-Pin_8)">
+      <node ref="J7" pin="8" pinfunction="Pin_8" pintype="passive"/>
+      <node ref="U3" pin="5" pinfunction="CIN4" pintype="input"/>
+    </net>
+    <net code="42" name="Net-(J10-Pin_2)">
+      <node ref="J10" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="U4" pin="10" pinfunction="B4" pintype="bidirectional"/>
+    </net>
+    <net code="43" name="Net-(J10-Pin_3)">
+      <node ref="J10" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="U4" pin="11" pinfunction="B3" pintype="bidirectional"/>
+    </net>
+    <net code="44" name="Net-(J10-Pin_4)">
+      <node ref="J10" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="U4" pin="12" pinfunction="B2" pintype="bidirectional"/>
+    </net>
+    <net code="45" name="Net-(J10-Pin_5)">
+      <node ref="J10" pin="5" pinfunction="Pin_5" pintype="passive"/>
+      <node ref="U4" pin="13" pinfunction="B1" pintype="bidirectional"/>
+    </net>
+    <net code="46" name="Net-(Q1-D)">
+      <node ref="Q1" pin="3" pinfunction="D" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+    </net>
+    <net code="47" name="Net-(Q1-G)">
+      <node ref="Q1" pin="1" pinfunction="G" pintype="input"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+    </net>
+    <net code="48" name="Net-(Q2-D)">
+      <node ref="Q2" pin="3" pinfunction="D" pintype="passive"/>
+      <node ref="R14" pin="2" pintype="passive"/>
+    </net>
+    <net code="49" name="Net-(Q2-G)">
+      <node ref="Q2" pin="1" pinfunction="G" pintype="input"/>
+      <node ref="R13" pin="2" pintype="passive"/>
+    </net>
+    <net code="50" name="Net-(Q5-G)">
+      <node ref="Q5" pin="1" pinfunction="G" pintype="input"/>
+      <node ref="R19" pin="2" pintype="passive"/>
+    </net>
+    <net code="51" name="Piezo">
+      <node ref="J1" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="Q5" pin="3" pinfunction="D" pintype="passive"/>
+    </net>
+    <net code="52" name="RGB">
+      <node ref="J1" pin="9" pinfunction="Pin_9" pintype="passive"/>
+      <node ref="U6" pin="1" pinfunction="B2" pintype="bidirectional"/>
+    </net>
+    <net code="53" name="SCL">
+      <node ref="J4" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="J5" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="J6" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="Q3" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="R17" pin="1" pintype="passive"/>
+      <node ref="U1" pin="6" pinfunction="GPIO7" pintype="bidirectional"/>
+      <node ref="U5" pin="6" pinfunction="COM2" pintype="bidirectional"/>
+    </net>
+    <net code="54" name="SCL_1">
+      <node ref="R26" pin="1" pintype="passive"/>
+      <node ref="U2" pin="10" pinfunction="SDA" pintype="bidirectional"/>
+      <node ref="U5" pin="3" pinfunction="NC2" pintype="bidirectional"/>
+    </net>
+    <net code="55" name="SCL_2">
+      <node ref="R15" pin="1" pintype="passive"/>
+      <node ref="U3" pin="10" pinfunction="SDA" pintype="bidirectional"/>
+      <node ref="U5" pin="4" pinfunction="NO2" pintype="bidirectional"/>
+    </net>
+    <net code="56" name="SCL_5V">
+      <node ref="J8" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="Q3" pin="3" pinfunction="D" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+    </net>
+    <net code="57" name="SDA">
+      <node ref="J4" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="J5" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="J6" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="Q4" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="R16" pin="1" pintype="passive"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="GPIO6" pintype="bidirectional"/>
+      <node ref="U5" pin="9" pinfunction="COM1" pintype="bidirectional"/>
+    </net>
+    <net code="58" name="SDA_1">
+      <node ref="R8" pin="1" pintype="passive"/>
+      <node ref="U2" pin="9" pinfunction="SCL" pintype="input"/>
+      <node ref="U5" pin="1" pinfunction="NC1" pintype="bidirectional"/>
+    </net>
+    <net code="59" name="SDA_2">
+      <node ref="R11" pin="1" pintype="passive"/>
+      <node ref="U3" pin="9" pinfunction="SCL" pintype="input"/>
+      <node ref="U5" pin="2" pinfunction="NO1" pintype="bidirectional"/>
+    </net>
+    <net code="60" name="SDA_5V">
+      <node ref="J8" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="Q4" pin="3" pinfunction="D" pintype="passive"/>
+      <node ref="R7" pin="1" pintype="passive"/>
+    </net>
+    <net code="61" name="unconnected-(J3-Pin_2-Pad2)">
+      <node ref="J3" pin="2" pinfunction="Pin_2" pintype="passive+no_connect"/>
+    </net>
+    <net code="62" name="unconnected-(J3-Pin_3-Pad3)">
+      <node ref="J3" pin="3" pinfunction="Pin_3" pintype="passive+no_connect"/>
+    </net>
+    <net code="63" name="unconnected-(J11-Pin_1-Pad1)">
+      <node ref="J11" pin="1" pinfunction="Pin_1" pintype="passive"/>
+    </net>
+    <net code="64" name="unconnected-(J11-Pin_2-Pad2)">
+      <node ref="J11" pin="2" pinfunction="Pin_2" pintype="passive"/>
+    </net>
+    <net code="65" name="unconnected-(J11-Pin_3-Pad3)">
+      <node ref="J11" pin="3" pinfunction="Pin_3" pintype="passive"/>
+    </net>
+    <net code="66" name="unconnected-(J11-Pin_4-Pad4)">
+      <node ref="J11" pin="4" pinfunction="Pin_4" pintype="passive"/>
+    </net>
+    <net code="67" name="unconnected-(J11-Pin_5-Pad5)">
+      <node ref="J11" pin="5" pinfunction="Pin_5" pintype="passive"/>
+    </net>
+    <net code="68" name="unconnected-(J11-Pin_6-Pad6)">
+      <node ref="J11" pin="6" pinfunction="Pin_6" pintype="passive"/>
+    </net>
+    <net code="69" name="unconnected-(J11-Pin_7-Pad7)">
+      <node ref="J11" pin="7" pinfunction="Pin_7" pintype="passive"/>
+    </net>
+    <net code="70" name="unconnected-(J11-Pin_8-Pad8)">
+      <node ref="J11" pin="8" pinfunction="Pin_8" pintype="passive"/>
+    </net>
+    <net code="71" name="unconnected-(J11-Pin_9-Pad9)">
+      <node ref="J11" pin="9" pinfunction="Pin_9" pintype="passive"/>
+    </net>
+    <net code="72" name="unconnected-(J11-Pin_10-Pad10)">
+      <node ref="J11" pin="10" pinfunction="Pin_10" pintype="passive"/>
+    </net>
+    <net code="73" name="unconnected-(J11-Pin_11-Pad11)">
+      <node ref="J11" pin="11" pinfunction="Pin_11" pintype="passive"/>
+    </net>
+    <net code="74" name="unconnected-(J11-Pin_12-Pad12)">
+      <node ref="J11" pin="12" pinfunction="Pin_12" pintype="passive"/>
+    </net>
+    <net code="75" name="unconnected-(J11-Pin_13-Pad13)">
+      <node ref="J11" pin="13" pinfunction="Pin_13" pintype="passive"/>
+    </net>
+    <net code="76" name="unconnected-(J11-Pin_14-Pad14)">
+      <node ref="J11" pin="14" pinfunction="Pin_14" pintype="passive"/>
+    </net>
+    <net code="77" name="unconnected-(J11-Pin_15-Pad15)">
+      <node ref="J11" pin="15" pinfunction="Pin_15" pintype="passive"/>
+    </net>
+    <net code="78" name="unconnected-(J11-Pin_16-Pad16)">
+      <node ref="J11" pin="16" pinfunction="Pin_16" pintype="passive"/>
+    </net>
+    <net code="79" name="unconnected-(J12-Pin_1-Pad1)">
+      <node ref="J12" pin="1" pinfunction="Pin_1" pintype="passive"/>
+    </net>
+    <net code="80" name="unconnected-(J12-Pin_2-Pad2)">
+      <node ref="J12" pin="2" pinfunction="Pin_2" pintype="passive"/>
+    </net>
+    <net code="81" name="unconnected-(J12-Pin_3-Pad3)">
+      <node ref="J12" pin="3" pinfunction="Pin_3" pintype="passive"/>
+    </net>
+    <net code="82" name="unconnected-(J12-Pin_4-Pad4)">
+      <node ref="J12" pin="4" pinfunction="Pin_4" pintype="passive"/>
+    </net>
+    <net code="83" name="unconnected-(J12-Pin_5-Pad5)">
+      <node ref="J12" pin="5" pinfunction="Pin_5" pintype="passive"/>
+    </net>
+    <net code="84" name="unconnected-(J12-Pin_6-Pad6)">
+      <node ref="J12" pin="6" pinfunction="Pin_6" pintype="passive"/>
+    </net>
+    <net code="85" name="unconnected-(J12-Pin_7-Pad7)">
+      <node ref="J12" pin="7" pinfunction="Pin_7" pintype="passive"/>
+    </net>
+    <net code="86" name="unconnected-(J12-Pin_8-Pad8)">
+      <node ref="J12" pin="8" pinfunction="Pin_8" pintype="passive"/>
+    </net>
+    <net code="87" name="unconnected-(J12-Pin_9-Pad9)">
+      <node ref="J12" pin="9" pinfunction="Pin_9" pintype="passive"/>
+    </net>
+    <net code="88" name="unconnected-(J12-Pin_10-Pad10)">
+      <node ref="J12" pin="10" pinfunction="Pin_10" pintype="passive"/>
+    </net>
+    <net code="89" name="unconnected-(J12-Pin_11-Pad11)">
+      <node ref="J12" pin="11" pinfunction="Pin_11" pintype="passive"/>
+    </net>
+    <net code="90" name="unconnected-(J12-Pin_12-Pad12)">
+      <node ref="J12" pin="12" pinfunction="Pin_12" pintype="passive"/>
+    </net>
+    <net code="91" name="unconnected-(J12-Pin_13-Pad13)">
+      <node ref="J12" pin="13" pinfunction="Pin_13" pintype="passive"/>
+    </net>
+    <net code="92" name="unconnected-(J12-Pin_14-Pad14)">
+      <node ref="J12" pin="14" pinfunction="Pin_14" pintype="passive"/>
+    </net>
+    <net code="93" name="unconnected-(J12-Pin_15-Pad15)">
+      <node ref="J12" pin="15" pinfunction="Pin_15" pintype="passive"/>
+    </net>
+    <net code="94" name="unconnected-(J12-Pin_16-Pad16)">
+      <node ref="J12" pin="16" pinfunction="Pin_16" pintype="passive"/>
+    </net>
+    <net code="95" name="unconnected-(U1-EN{slash}RESET-Pad2)">
+      <node ref="U1" pin="2" pinfunction="EN/RESET" pintype="input"/>
+    </net>
+    <net code="96" name="unconnected-(U1-NC-Pad16)">
+      <node ref="U1" pin="16" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="97" name="unconnected-(U1-NC-Pad17)">
+      <node ref="U1" pin="17" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="98" name="unconnected-(U4-NC-Pad6)">
+      <node ref="U4" pin="6" pinfunction="NC" pintype="no_connect"/>
+    </net>
+    <net code="99" name="unconnected-(U4-NC-Pad9)">
+      <node ref="U4" pin="9" pinfunction="NC" pintype="no_connect"/>
+    </net>
+  </nets>
+</export>
