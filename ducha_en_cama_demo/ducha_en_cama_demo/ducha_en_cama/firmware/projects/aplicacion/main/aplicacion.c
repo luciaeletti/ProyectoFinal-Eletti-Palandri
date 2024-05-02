@@ -159,7 +159,7 @@ void medirtemperatura(){
 void medirnivel(){
 
     FDC1004_Reset();
-    FDC1004_Init(FDC1004_100HZ, I2C_MASTER_SDA_IO, I2C_MASTER_SCL_IO);
+    //FDC1004_Init(FDC1004_100HZ, I2C_MASTER_SDA_IO, I2C_MASTER_SCL_IO);
     FDC1004_configureMeasurementSingle(FDC1004_MEAS2, FDC1004_CIN2, 0);
     FDC1004_triggerSingleMeasurement(FDC1004_MEAS2,FDC1004_100HZ);
     vTaskDelay(50/portTICK_PERIOD_MS);

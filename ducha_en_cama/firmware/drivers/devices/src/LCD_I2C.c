@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "driver/i2c.h"
+#include "driver/i2c_master.h"
 #include "LCD_I2C.h"
 
 #define I2C_MASTER_NUM I2C_NUM_0   /*!< I2C port number for master dev */
@@ -42,14 +43,14 @@ void i2c_master_init(gpio_num_t sda_pin, gpio_num_t scl_pin)
 }
 
 
-void LCDI2C_init(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows,uint8_t sda_pin, uint8_t scl_pin) //, uint8_t charsize) {
+void LCDI2C_init(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows) //, uint8_t charsize) {
 {
   lcdi2c.Addr = lcd_Addr;
   lcdi2c.cols = lcd_cols;
   lcdi2c.rows = lcd_rows;
   lcdi2c.backlightval = LCD_BACKLIGHT;
 
-  i2c_master_init(sda_pin,scl_pin);
+ // i2c_master_init(sda_pin,scl_pin);
   LCDI2C_begin();
 }
 

@@ -63,7 +63,7 @@ typedef struct
 } LiquidCrystal_I2C_Def;
 
 
-  void LCDI2C_init(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows,uint8_t sda_pin, uint8_t scl_pin);//, uint8_t charsize = LCD_5x8DOTS );
+  void LCDI2C_init(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows);//, uint8_t charsize = LCD_5x8DOTS );
   void LCDI2C_begin();
   void LCDI2C_clear();
   void LCDI2C_home();

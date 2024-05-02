@@ -6,6 +6,7 @@ set(srcs
     "microcontroller/src/gpio_fast_out_mcu.c"
     "microcontroller/src/delay_mcu.c"
     "microcontroller/src/timer_mcu.c"
+    "microcontroller/src/i2c_mcu.c"
     "microcontroller/src/general.c"
     "devices/src/KeyPad.c"
     "devices/src/LCD_I2C.c"

@@ -12,6 +12,7 @@
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "driver/i2c.h"
+#include "i2c_mcu.h"
 
 /*==================[macros]=================================================*/
 // Constants and limits for FDC1004

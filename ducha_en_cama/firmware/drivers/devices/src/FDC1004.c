@@ -10,6 +10,7 @@
 #include "esp_log.h"
 #include "driver/i2c.h"
 #include "FDC1004.h"
+#include "i2c_mcu.h"
 
 /*==================[internal data declaration]==============================*/
 uint8_t MEAS_CONFIG[] = {0x08, 0x09, 0x0A, 0x0B}; // Configuración de la medición 1, 2, 3 y 4
@@ -64,7 +65,7 @@ void FDC1004_write16(uint8_t reg, uint16_t data){
 	i2c_master_write_byte(cmd, (uint8_t)(data >> 8), true);
 	i2c_master_write_byte(cmd, (uint8_t)(data & 0xFF), true);
 	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS);
+	i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 
 }
@@ -77,7 +78,7 @@ uint16_t FDC1004_read16(uint8_t reg){
 	i2c_master_write_byte(cmd, (ADDR << 1) | I2C_MASTER_WRITE, true);
 	i2c_master_write_byte(cmd, reg, true);
 	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS);
+	i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 
 	cmd = i2c_cmd_link_create();
@@ -86,9 +87,10 @@ uint16_t FDC1004_read16(uint8_t reg){
 	i2c_master_read_byte(cmd, &msb_data, I2C_MASTER_ACK);
 	i2c_master_read_byte(cmd, &lsb_data, I2C_MASTER_NACK);
 	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS);
+	i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 	return ((msb_data << 8u) | lsb_data);
+	
 }
 
 /*
@@ -117,7 +119,7 @@ uint8_t FDC1004_configureMeasurementSingle(uint8_t measurement, uint8_t channel,
 	configuration_data |= ((uint16_t)capdac) << 5;	// CAPDAC value
 	FDC1004_capdac_values[measurement] = capdac;
 	FDC1004_write16(MEAS_CONFIG[measurement], configuration_data);
-  
+ 	printf("Valor de MEAS_CONFIG[%d]: %d\n", measurement, MEAS_CONFIG[measurement]);
 	return 0;
 }
 
@@ -170,6 +172,7 @@ uint8_t FDC1004_triggerSingleMeasurement(uint8_t measurement, uint8_t rate){
 	trigger_data |= 0 << 8;					  // repeat disabled
 	trigger_data |= (1 << (7 - measurement)); // 0 > bit 7, 1 > bit 6, etc
 	FDC1004_write16(FDC_REGISTER, trigger_data);
+	printf("Valor de FDC_REGISTER: %d\n", FDC_REGISTER);
 	return 0;
 }
 
@@ -182,6 +185,7 @@ uint8_t FDC1004_readMeasurement(uint8_t measurement, uint16_t *value) {
 
 	//check if measurement is complete
 	uint16_t fdc_register = FDC1004_read16(FDC_REGISTER);
+	printf("FDC Register Value: %x\n", fdc_register);
 	if (!(fdc_register & (1 << (3 - measurement)))) {
 		printf("measurement not completed");
 		return 2;
@@ -230,7 +234,7 @@ double FDC1004_getCapacitance(uint8_t measurement) {
 	int32_t value;
 	uint8_t result = FDC1004_getRawCapacitance(measurement, &value);
 	if (result) return 0x80000000;
-
+	printf("Valor de measurement: %d\n", measurement);
 	return (double)value / PICOFARAD_CONVERSION_CONSTANT; //picofarads
 }
 
@@ -248,7 +252,6 @@ void FDC_SetOffsetCalibration(uint8_t channel, float offset)
 }
 
 void FDC1004_Reset(){
-
 	uint16_t reset = 1 << 15;
 	FDC1004_write16(FDC_REGISTER, reset);
 }

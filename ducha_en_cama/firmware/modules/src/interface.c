@@ -292,7 +292,7 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
 }
 
 void menu_principal(){
-   
+  /* 
     LCDI2C_init(LCD_ADDR,20,4,I2C_MASTER_SDA_IO,I2C_MASTER_SCL_IO);
 	LCDI2C_backlight();
 
@@ -341,7 +341,7 @@ void menu_principal(){
         }
 
 }
-
+*/
 }
 
 /*==================[external functions definition]==========================*/
