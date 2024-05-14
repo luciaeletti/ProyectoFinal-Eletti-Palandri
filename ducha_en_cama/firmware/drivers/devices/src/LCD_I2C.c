@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "driver/i2c.h"
-#include "driver/i2c_master.h"
+//#include "driver/i2c_master.h"
 #include "LCD_I2C.h"
 
 #define I2C_MASTER_NUM I2C_NUM_0   /*!< I2C port number for master dev */

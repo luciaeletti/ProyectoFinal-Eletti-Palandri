@@ -29,8 +29,8 @@
 #define NUM_ROWS	1 /*Cantidad de filas del teclado*/
 #define NUM_COLS	3 /*Cantidad de columnas del teclado*/
 #define LCD_ADDR  0x3f  /*!< slave address for LCD */
-#define I2C_MASTER_SCL_IO   GPIO_NUM_7 /*!< gpio number for I2C master clock */
-#define I2C_MASTER_SDA_IO   GPIO_NUM_6/*!< gpio number for I2C master data  */
+#define I2C_MASTER_SCL_IO   GPIO_NUM_6 /*!< gpio number for I2C master clock */
+#define I2C_MASTER_SDA_IO   GPIO_NUM_7/*!< gpio number for I2C master data  */
 
 #define TEMP_BUS GPIO_NUM_1
 
@@ -52,6 +52,9 @@
 #define LEVEL_MIN 5
 #define LEVEL_MAX 20
 
+#define GANANCIA 0.689
+#define OFFSET -1.117
+
 DeviceAddress tempSensors[1]; 
 float temperature;
 char temperatura[10]; 
@@ -61,6 +64,7 @@ double valor_referencia_inicial;
 double valor_nivel;
 double valor_referencia;
 float level = 0;
+float level_ok=0;
 float level_litros = 0;
 char nivel[10]; 
 
@@ -177,14 +181,19 @@ void medirnivel(){
     vTaskDelay(50/portTICK_PERIOD_MS);
     valor_nivel = FDC1004_getCapacitance(FDC1004_MEAS1);
 
-    level = HEIGHT * (FACTOR * (valor_nivel - valor_nivel_inicial)/(valor_referencia - valor_referencia_inicial));
+    level = (FACTOR * (valor_nivel - valor_nivel_inicial)/(valor_referencia - valor_referencia_inicial));
+    printf("Valor de nivel: %f\n", level);
+    level_ok = (level*GANANCIA)+OFFSET;
+    printf("Valor de nivel ok: %f\n", level_ok);
+    level_litros = (level_ok*900)/1000;
+    printf("Valor de nivel ok litros: %f\n", level_litros);
     snprintf(nivel, 10, "%.2f", level); 
-    delayMs(3000);
+   // delayMs(5000);
 
 }
 
 void manejoBombaDucha(uint8_t state){
-    gpio_set_direction(PUMP_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PUMP_PIN, GPIO_MODE_INPUT);
     gpio_set_level(PUMP_PIN, state);
 }
 
@@ -213,16 +222,20 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     LCDI2C_clear();
                     LCDI2C_setCursor(0,0);
                     LCDI2C_print("Para comenzar:");
-                    LCDI2C_setCursor(0,1);
-                    LCDI2C_print("LLENE EL TANQUE DE ");
-                    LCDI2C_setCursor(0,2);
+                    LCDI2C_setCursor(1,1);
+                    LCDI2C_print("LLENE EL TANQUE DE");
+                    LCDI2C_setCursor(4,2);
                     LCDI2C_print("AGUA LIMPIA");
+                    LCDI2C_setCursor(0,3);
+                    LCDI2C_print("-------------------");
+                    medirnivel();
                     delayMs(10000);
                     LCDI2C_clear();
-                    //medirnivel();
                     //printf("Paso x medir nivel");
-                    LCDI2C_setCursor(0,1);
-                    LCDI2C_print("PUEDE COMENZAR!");
+                    LCDI2C_setCursor(7,1);
+                    LCDI2C_print("PUEDE");
+                    LCDI2C_setCursor(6,2);
+                    LCDI2C_print("COMENZAR");
                     delayMs(5000);
                     while(1){
                     LCDI2C_clear();
@@ -234,28 +247,25 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     medirtemperatura();
                     LCDI2C_print(temperatura);
                     temp = temperature;
-
-                    //if(temp>TEMP_MAX){
-			//	}
+                    if(temp>TEMP_MAX){ 
+                        GPIOOn(LED_TEMP);
+                    
+                    }
+                    medirnivel();
                     LCDI2C_setCursor(0,2);
                     LCDI2C_print("Nivel del agua:");
                     LCDI2C_setCursor(16,2);
                     LCDI2C_print(nivel);
                     LCDI2C_setCursor(0,3);
                     LCDI2C_print("FINALIZA CON ESC");
-                    delayMs(10000);
-				
-                 
+                    delayMs(8000);
+                    GPIOOff(LED_TEMP);
+                    
 				}
 				}
 
                     if (selected_shower == 1){
-                       GPIOInit(LED_TEMP,GPIO_MODE_OUTPUT);
-                       GPIOOn(LED_TEMP);
-                  /*  gpio_set_direction(LED_TEMP, GPIO_MODE_OUTPUT);
-  	                gpio_set_pull_mode(LED_TEMP, GPIO_PULLUP_ONLY);
-                    gpio_set_level(LED_TEMP,true);*/
-                      
+
 				}
                         
 					if (selected_shower == 2){
@@ -415,21 +425,15 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
 }
 
 void app_main(){
-    FDC1004_Reset();
-    I2C_initialize(FDC1004_400HZ);
-    while(1){
-    medirnivel();
-}
+   // FDC1004_Reset();
+    I2C_initialize(I2C_MASTER_FREQ_HZ);
 
-   // FDC1004_Init(FDC1004_100HZ, I2C_MASTER_SDA_IO, I2C_MASTER_SCL_IO);
-    
     LCDI2C_init(LCD_ADDR,20,4);
-    
 	LCDI2C_backlight();
-    GPIOInit(LED_TEMP,GPIO_MODE_OUTPUT);
-    printf("pala");
-    gpio_set_level(LED_TEMP, true);
+
+    GPIOInit(LED_TEMP, GPIO_MODE_INPUT);
    // GPIOOn(LED_TEMP);
+    //GPIOOff(LED_TEMP);
     ds18b20_init(TEMP_BUS);
     ds18b20_setResolution(tempSensors,2,10); 
 

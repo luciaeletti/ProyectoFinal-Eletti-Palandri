@@ -31,6 +31,8 @@
 #define HEIGHT	900
 #define FACTOR 3.76
 #define CONVERSION 1000
+#define GANANCIA 0.689
+#define OFFSET -1.117
 
 DeviceAddress tempSensors[1]; 
 

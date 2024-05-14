@@ -19,12 +19,12 @@ uint8_t MEAS_LSB[] = {0x01, 0x03, 0x05, 0x07};
 uint8_t FDC1004_capdac_values[]  = { 0, 0, 0, 0 };
 uint8_t SAMPLE_DELAY[] = {11, 11, 6, 3};
 double _base_cap;
-
+uint16_t prueba =0;
 
 static const char *TAG = "fdc1004";
 
 void FDC1004_Init(uint16_t rate, int sda_io, int scl_io){
-
+/*
 uint32_t i2c_clk;
 	if (rate == FDC1004_100HZ)
 	{
@@ -45,6 +45,7 @@ uint32_t i2c_clk;
 	conf.master.clk_speed = i2c_clk;
 	conf.clk_flags = I2C_SCLK_SRC_FLAG_FOR_NOMAL;
 	esp_err_t err = i2c_param_config(I2C_NUM_0, &conf);
+
 	if (err != ESP_OK)
 	{
 		ESP_LOGE(TAG, "fdc1004 begin error %s", esp_err_to_name(err));
@@ -54,6 +55,9 @@ uint32_t i2c_clk;
 	{
 		ESP_LOGE(TAG, "i2c_driver_install error %s", esp_err_to_name(err));
 	}
+	*/
+	
+
 }
 
 void FDC1004_write16(uint8_t reg, uint16_t data){
@@ -172,7 +176,7 @@ uint8_t FDC1004_triggerSingleMeasurement(uint8_t measurement, uint8_t rate){
 	trigger_data |= 0 << 8;					  // repeat disabled
 	trigger_data |= (1 << (7 - measurement)); // 0 > bit 7, 1 > bit 6, etc
 	FDC1004_write16(FDC_REGISTER, trigger_data);
-	printf("Valor de FDC_REGISTER: %d\n", FDC_REGISTER);
+	
 	return 0;
 }
 
@@ -185,7 +189,6 @@ uint8_t FDC1004_readMeasurement(uint8_t measurement, uint16_t *value) {
 
 	//check if measurement is complete
 	uint16_t fdc_register = FDC1004_read16(FDC_REGISTER);
-	printf("FDC Register Value: %x\n", fdc_register);
 	if (!(fdc_register & (1 << (3 - measurement)))) {
 		printf("measurement not completed");
 		return 2;

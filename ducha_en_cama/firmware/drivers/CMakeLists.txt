@@ -12,6 +12,7 @@ set(srcs
     "devices/src/LCD_I2C.c"
     "devices/src/ds18b20.c"
     "devices/src/FDC1004.c"
+    "devices/src/ds3231.c"
     )
 
 # Always included headers
