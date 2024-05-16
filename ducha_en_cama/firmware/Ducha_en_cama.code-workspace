@@ -3,7 +3,7 @@
         {
             "path": "./drivers"
         },
-		{
+        {
             "path": "data"
         },
         {
@@ -11,8 +11,10 @@
         },
         {
             "path": "projects/aplicacion"
+        },
+        {
+            "path": "../../../EProgramable_FIUNER/firmware/projects/0_blinking"
         }
-       
     ],
       "settings": {
         "idf.portWin": "COM14",
@@ -68,7 +70,16 @@
             "mpu6050.h": "c",
             "i2c_mcu.h": "c",
             "ets_sys.h": "c",
-            "i2c.h": "c"
+            "i2c.h": "c",
+            "sys.h": "c",
+            "acquire.h": "c",
+            "*.tcc": "c",
+            "memory": "c",
+            "istream": "c",
+            "functional": "c",
+            "tuple": "c",
+            "utility": "c",
+            "future": "c"
         },
     },
     "tasks": {

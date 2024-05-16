@@ -18,8 +18,11 @@
  */
 typedef struct{
 uint16_t temperature;
+char temperatura[3];
+char nivel[3];
 float level;
 }CONDIC_FUNC_T;
+
 
 void SetConditions(CONDIC_FUNC_T* pCondition);
 void GetConditions(CONDIC_FUNC_T* pCondition);

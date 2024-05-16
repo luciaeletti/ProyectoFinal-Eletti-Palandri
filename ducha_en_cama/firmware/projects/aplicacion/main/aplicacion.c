@@ -22,6 +22,7 @@
 #include "connection.h"
 #include "gpio_mcu.h"
 #include "i2c_mcu.h"
+#include "acquire.h"
 
 #define	FALSE		0
 #define	TRUE		1
@@ -32,19 +33,15 @@
 #define I2C_MASTER_SCL_IO   GPIO_NUM_6 /*!< gpio number for I2C master clock */
 #define I2C_MASTER_SDA_IO   GPIO_NUM_7/*!< gpio number for I2C master data  */
 
-#define TEMP_BUS GPIO_NUM_1
 
-#define UP_BUTTON_PIN 5
-#define DOWN_BUTTON_PIN 10
-#define SELECT_BUTTON_PIN 4
 #define PUMP_PIN 11
 #define PUMP_RECIRCUL_PIN 21
 #define ASP_PIN 3
 #define LED_TEMP GPIO_2
 #define HAB_I2C GPIO_19
-#define HEIGHT	900
-#define FACTOR 3.76
-#define CONVERSION 1000
+//#define HEIGHT	900
+//#define FACTOR 3.76
+//#define CONVERSION 1000
 
 #define TEMP_MIN 35
 #define TEMP_MAX 22
@@ -52,9 +49,9 @@
 #define LEVEL_MIN 5
 #define LEVEL_MAX 20
 
-#define GANANCIA 0.689
-#define OFFSET -1.117
-
+//#define GANANCIA 0.689
+//#define OFFSET -1.117
+/*
 DeviceAddress tempSensors[1]; 
 float temperature;
 char temperatura[10]; 
@@ -83,8 +80,8 @@ uint8_t selected = 0;
 DeviceAddress tempSensors[1]; 
 const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
 
-/*==================[internal functions declaration]==========================*/
-void button_timer_callback(TimerHandle_t xTimer);
+==================[internal functions declaration]==========================*/
+/*void button_timer_callback(TimerHandle_t xTimer);
 void delayMs(const TickType_t mSec);
 void print_menu(const char *menus[], int num_menus, int selected);
 void sub_menu(uint8_t select);
@@ -92,9 +89,11 @@ void sub_menu_ducha();
 void sub_menu_configuracion();
 void sub_menu_autolavado(); 
 void menu_principal();
-/*==================[external functions declaration]==========================*/
+==================[external functions declaration]==========================*/
 
 /*==================[internal functions definition]==========================*/
+
+/*
 void delayMs(const TickType_t mSec)
 {
 	vTaskDelay(mSec / portTICK_PERIOD_MS);
@@ -150,10 +149,10 @@ void medirtemperatura(){
     //while(estado){
     temperature = ds18b20_get_temp(); 
     snprintf(temperatura, 10, "%.2f", temperature); 
-   /* int temp = temperature;
+    int temp = temperature;
     if(temp>TEMP_MAX){
         GPIOOn(LED_TEMP);
-    }*/
+    }
     //}
 }
 
@@ -181,7 +180,7 @@ void medirnivel(){
     vTaskDelay(50/portTICK_PERIOD_MS);
     valor_nivel = FDC1004_getCapacitance(FDC1004_MEAS1);
 
-    level = (FACTOR * (valor_nivel - valor_nivel_inicial)/(valor_referencia - valor_referencia_inicial));
+    level = (FACTOR  (valor_nivel - valor_nivel_inicial)/(valor_referencia - valor_referencia_inicial));
     printf("Valor de nivel: %f\n", level);
     level_ok = (level*GANANCIA)+OFFSET;
     printf("Valor de nivel ok: %f\n", level_ok);
@@ -424,68 +423,19 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
     }
 }
 
+*/
+
+
 void app_main(){
-   // FDC1004_Reset();
+
     I2C_initialize(I2C_MASTER_FREQ_HZ);
+   // menu_principal();
+    printf("HOLaaa\n");
+  //  xTaskCreate(&vScreeningTask, "menu", 32768, NULL, 1,NULL);
+    xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, NULL);
 
-    LCDI2C_init(LCD_ADDR,20,4);
-	LCDI2C_backlight();
 
-    GPIOInit(LED_TEMP, GPIO_MODE_INPUT);
-   // GPIOOn(LED_TEMP);
-    //GPIOOff(LED_TEMP);
-    ds18b20_init(TEMP_BUS);
-    ds18b20_setResolution(tempSensors,2,10); 
 
- 	gpio_set_direction(UP_BUTTON_PIN, GPIO_MODE_INPUT);
-    gpio_set_direction(DOWN_BUTTON_PIN, GPIO_MODE_INPUT);
-    gpio_set_direction(SELECT_BUTTON_PIN, GPIO_MODE_INPUT);
-    gpio_set_direction(ASP_PIN, GPIO_MODE_INPUT);
-
-  	gpio_set_pull_mode(UP_BUTTON_PIN, GPIO_PULLUP_ONLY);
-  	gpio_set_pull_mode(DOWN_BUTTON_PIN, GPIO_PULLUP_ONLY);
-	gpio_set_pull_mode(SELECT_BUTTON_PIN, GPIO_PULLUP_ONLY);
-    gpio_set_pull_mode(ASP_PIN, GPIO_PULLUP_ONLY);
-
- 	button_queue = xQueueCreate(10, sizeof(button_event_t));
-  	button_timer = xTimerCreate("button_timer", pdMS_TO_TICKS(100), pdTRUE, (void *)0, button_timer_callback);
-    xTimerStart(button_timer, 0);
-
-	LCDI2C_setCursor(0,0);
-	LCDI2C_print("********************");
-	LCDI2C_setCursor(0,1);
-	LCDI2C_print("      SISTEMA ");
-	LCDI2C_setCursor(0,2);
-	LCDI2C_print("   DUCHA EN CAMA ");
-	LCDI2C_setCursor(0,3);
-	LCDI2C_print("********************");
-	delayMs(5000);
-	LCDI2C_clear();
-	LCDI2C_setCursor(0,0);
-	LCDI2C_print(" Elija una opcion: ");
- 	print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
-    printf("holaaaa");
-
-   while (1) {
-    printf("hola");
-        if (xQueueReceive(button_queue, &event, portMAX_DELAY)) {
-            switch (event) {
-                case BUTTON_UP:
-                    selected = (selected - 1 + sizeof(menus) / sizeof(menus[0])) % (sizeof(menus) / sizeof(menus[0]));
-					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
-                    break;
-                case BUTTON_DOWN:
-                    selected = (selected + 1) % (sizeof(menus) / sizeof(menus[0]));
-					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
-                    break;
-                case BUTTON_SELECT:
-                    sub_menu(selected);
-                    break;
-            }
-            
-        }
-
-}
 
 }
 

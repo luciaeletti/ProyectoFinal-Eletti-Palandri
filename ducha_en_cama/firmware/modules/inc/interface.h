@@ -33,7 +33,7 @@ static const char *TAG = "primerversion";
 /*==================[typedef]================================================*/
 
 /*==================[internal functions declaration]==========================*/
-
+void menu_principal();
 /*==================[external functions declaration]==========================*/
 void vScreeningTask(void *pvParameters);
 

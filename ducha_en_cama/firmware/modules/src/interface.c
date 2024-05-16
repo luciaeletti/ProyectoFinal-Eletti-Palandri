@@ -21,9 +21,15 @@
 #include "FDC1004.h"
 #include "ds18b20.h"
 #include "general.h"
+#include "conditions.h"
 #include "interface.h"
 
 /*==================[macros and typedef]================================================*/
+#define UP_BUTTON_PIN 5
+#define DOWN_BUTTON_PIN 10
+#define SELECT_BUTTON_PIN 4
+
+
 typedef enum {
     BUTTON_UP,
     BUTTON_DOWN,
@@ -36,7 +42,7 @@ TimerHandle_t button_timer;
 QueueHandle_t button_queue;
 uint8_t last_button_states[3]={1,1,1};
 uint8_t selected = 0;
-DeviceAddress tempSensors[1]; 
+//DeviceAddress tempSensors[1]; 
 const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
 
 /*==================[internal functions declaration]==========================*/
@@ -47,7 +53,6 @@ void sub_menu(uint8_t select);
 void sub_menu_ducha();
 void sub_menu_configuracion();
 void sub_menu_autolavado(); 
-void menu_principal();
 /*==================[external functions declaration]==========================*/
 
 /*==================[internal functions definition]==========================*/
@@ -105,6 +110,10 @@ const char *sub_menu_ducha[] = {"1.DUCHA NORMAL", "2.DUCHA CON DESINF", "3.MENU 
 int selected_shower = 0;
 button_event_t event_shower;
 
+CONDIC_FUNC_T my_condition;
+
+GetConditions(&my_condition);
+
 LCDI2C_setCursor(0,0);
 LCDI2C_print("Elija una opcion:");
 print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), selected_shower);
@@ -122,6 +131,11 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     break;
                 case BUTTON_SELECT:
                     if (selected_shower == 0) {
+                        LCDI2C_clear();
+                        LCDI2C_setCursor(0,0);
+                        LCDI2C_print("ESTAMOS EN DUCHA");
+                        LCDI2C_setCursor(0,1);
+                        LCDI2C_print(my_condition.temperatura);
                      
 				}
 
@@ -292,18 +306,16 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
 }
 
 void menu_principal(){
-  /* 
-    LCDI2C_init(LCD_ADDR,20,4,I2C_MASTER_SDA_IO,I2C_MASTER_SCL_IO);
+   
+    LCDI2C_init(LCD_ADDR,20,4);
 	LCDI2C_backlight();
-
- 	gpio_set_direction(UP_BUTTON_PIN, GPIO_MODE_INPUT);
+    gpio_set_direction(UP_BUTTON_PIN, GPIO_MODE_INPUT);
     gpio_set_direction(DOWN_BUTTON_PIN, GPIO_MODE_INPUT);
     gpio_set_direction(SELECT_BUTTON_PIN, GPIO_MODE_INPUT);
 
   	gpio_set_pull_mode(UP_BUTTON_PIN, GPIO_PULLUP_ONLY);
   	gpio_set_pull_mode(DOWN_BUTTON_PIN, GPIO_PULLUP_ONLY);
 	gpio_set_pull_mode(SELECT_BUTTON_PIN, GPIO_PULLUP_ONLY);
-
  	button_queue = xQueueCreate(10, sizeof(button_event_t));
   	button_timer = xTimerCreate("button_timer", pdMS_TO_TICKS(100), pdTRUE, (void *)0, button_timer_callback);
     xTimerStart(button_timer, 0);
@@ -341,7 +353,7 @@ void menu_principal(){
         }
 
 }
-*/
+
 }
 
 /*==================[external functions definition]==========================*/
@@ -358,7 +370,7 @@ void vScreeningTask(void *pvParameters) {
 	while(1){
 //		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
         menu_principal();
-	//	vTaskDelay(4000 /portTICK_PERIOD_MS);
+		vTaskDelay(4000 /portTICK_PERIOD_MS);
 	}
     
 }

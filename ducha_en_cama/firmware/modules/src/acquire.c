@@ -34,9 +34,13 @@
 #define GANANCIA 0.689
 #define OFFSET -1.117
 
+#define TEMP_BUS GPIO_NUM_1
+
+
 DeviceAddress tempSensors[1]; 
 
-CONDIC_FUNC_T *my_condition;
+
+
 /*==================[typedef]================================================*/
 
 /*==================[internal functions declaration]==========================*/
@@ -45,11 +49,12 @@ CONDIC_FUNC_T *my_condition;
 
 /*==================[internal functions definition]==========================*/
 void ReadSensorData(){
+ // CONDIC_FUNC_T *my_condition;
 	
 	//Medicion de nivel de liquido con FDC1004  
-	GetConditions(my_condition);
+	//GetConditions(&my_condition);
 
-	double valor_nivel_inicial;
+	/*double valor_nivel_inicial;
 	double valor_referencia_inicial;
 	double valor_nivel;
 	double valor_referencia;
@@ -78,14 +83,18 @@ void ReadSensorData(){
 
     level = HEIGHT * (FACTOR * (valor_nivel - valor_nivel_inicial)/(valor_referencia - valor_referencia_inicial));
    	my_condition->level = level/CONVERSION;
+    snprintf(my_condition->nivel, 10, "%.2f", my_condition->level); 
 
-/*------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------*/
 	//Medicion temperatura
 	ds18b20_init(TEMP_BUS);
     ds18b20_setResolution(tempSensors,2,10);
-	my_condition->temperature = ds18b20_get_temp();
+	//my_condition->temperature = ds18b20_get_temp();
+    //snprintf(my_condition->temperatura, 10, "%.2d", my_condition->temperature);
 
-	SetConditions(my_condition);
+	//SetConditions(&my_condition);
+ //   printf("El valor es %d.\n", my_condition->temperature);
+   printf("El valor es %d.\n",15);
 	
 }
 
@@ -97,12 +106,15 @@ void ReadSensorData(){
  */
 void vAcquiringTask(void *pvParameters) {
 
-	//xSemaphoreTake(xNewSessionSemaphore,0);
-//	NewSession=false;
-
 	while(1){
-//		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
-        ReadSensorData();
-		vTaskDelay(4000 /portTICK_PERIOD_MS);
+       // ReadSensorData();
+       float temp;
+      	ds18b20_init(TEMP_BUS);
+        ds18b20_setResolution(tempSensors,2,10);
+        temp = ds18b20_get_temp();
+        printf("El valor es %f.\n",temp);
+		vTaskDelay(5000 /portTICK_PERIOD_MS);
 	}
+
+
 }
