@@ -39,6 +39,11 @@
 
 DeviceAddress tempSensors[1]; 
 
+CONDIC_FUNC_T my_condition;
+
+TaskHandle_t receiverHandler = NULL;
+TaskHandle_t senderHandler = NULL;
+
 
 
 /*==================[typedef]================================================*/
@@ -49,20 +54,18 @@ DeviceAddress tempSensors[1];
 
 /*==================[internal functions definition]==========================*/
 void ReadSensorData(){
- // CONDIC_FUNC_T *my_condition;
+ // 
 	
 	//Medicion de nivel de liquido con FDC1004  
-	//GetConditions(&my_condition);
+	GetConditions(&my_condition);
 
-	/*double valor_nivel_inicial;
+	double valor_nivel_inicial;
 	double valor_referencia_inicial;
 	double valor_nivel;
 	double valor_referencia;
 	float level = 0;
 	float level_litros = 0;
 
-    FDC1004_Reset();
-    FDC1004_Init(FDC1004_100HZ, I2C_MASTER_SDA_IO, I2C_MASTER_SCL_IO);
     FDC1004_configureMeasurementSingle(FDC1004_MEAS2, FDC1004_CIN2, 0);
     FDC1004_triggerSingleMeasurement(FDC1004_MEAS2,FDC1004_100HZ);
     vTaskDelay(50/portTICK_PERIOD_MS);
@@ -82,19 +85,16 @@ void ReadSensorData(){
     valor_nivel = FDC1004_getCapacitance(FDC1004_MEAS1);
 
     level = HEIGHT * (FACTOR * (valor_nivel - valor_nivel_inicial)/(valor_referencia - valor_referencia_inicial));
-   	my_condition->level = level/CONVERSION;
-    snprintf(my_condition->nivel, 10, "%.2f", my_condition->level); 
+   	my_condition.level = level/CONVERSION;
+    snprintf(my_condition.nivel, 10, "%.2f", my_condition.level); 
 
-------------------------------------------------------------------------------*/
 	//Medicion temperatura
 	ds18b20_init(TEMP_BUS);
     ds18b20_setResolution(tempSensors,2,10);
-	//my_condition->temperature = ds18b20_get_temp();
-    //snprintf(my_condition->temperatura, 10, "%.2d", my_condition->temperature);
+	my_condition.temperature = ds18b20_get_temp();
+    snprintf(my_condition.temperatura, 10, "%.2d", my_condition.temperature);
 
-	//SetConditions(&my_condition);
- //   printf("El valor es %d.\n", my_condition->temperature);
-   printf("El valor es %d.\n",15);
+	SetConditions(&my_condition);
 	
 }
 
@@ -107,12 +107,10 @@ void ReadSensorData(){
 void vAcquiringTask(void *pvParameters) {
 
 	while(1){
-       // ReadSensorData();
-       float temp;
-      	ds18b20_init(TEMP_BUS);
-        ds18b20_setResolution(tempSensors,2,10);
-        temp = ds18b20_get_temp();
-        printf("El valor es %f.\n",temp);
+        printf("llego a la tarea\n");
+        ReadSensorData();
+        printf("El valor es %d.\n", my_condition.temperature);
+        xTaskNotifyGive(receiverHandler);
 		vTaskDelay(5000 /portTICK_PERIOD_MS);
 	}
 

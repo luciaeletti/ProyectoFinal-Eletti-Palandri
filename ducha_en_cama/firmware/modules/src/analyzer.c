@@ -30,28 +30,28 @@
 #include "alarms.h"
 
 /*==================[macros]=================================================*/
-CONDIC_FUNC_T *my_Data;
-ALARM_T *my_Alarm;
+CONDIC_FUNC_T my_Data;
+ALARM_T my_Alarm;
 /*==================[typedef]================================================*/
 
 /*==================[internal functions declaration]==========================*/
-void EvaluateRanges();
+
 /*==================[external functions declaration]==========================*/
 
 /*==================[internal functions definition]==========================*/
 void EvaluateRanges(){
 
-	GetConditions(my_Data);
+	GetConditions(&my_Data);
 
-	if(my_Data->temperature>TEMP_MAX || my_Data->temperature<TEMP_MIN){
-		my_Alarm->source=TEMPERATURE;
-		my_Alarm->state=ON;
+	if(my_Data.temperature>TEMP_MAX || my_Data.temperature<TEMP_MIN){
+		my_Alarm.source=TEMPERATURE;
+		my_Alarm.state=ON;
 		SetAlarms(&my_Alarm);
 	}
 
-	if(my_Data->level>LEVEL_MAX || my_Data->level<LEVEL_MIN){
-		my_Alarm->source=LEVEL;
-		my_Alarm->state=ON;
+	if(my_Data.level>LEVEL_MAX || my_Data.level<LEVEL_MIN){
+		my_Alarm.source=LEVEL;
+		my_Alarm.state=ON;
 		SetAlarms(&my_Alarm);
 	}
 
@@ -64,11 +64,9 @@ void EvaluateRanges(){
  */
 void vMonitoringTask(void *pvParameters){
 
-//	xSemaphoreTake(xNewSessionSemaphore,0);
-//	NewSession=false;
+	ulTaskNotifyTake(pdTRUE,portMAX_DELAY);
 
 	while(1){
-//		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
         EvaluateRanges();
 		vTaskDelay(4000 /portTICK_PERIOD_MS);
 	}

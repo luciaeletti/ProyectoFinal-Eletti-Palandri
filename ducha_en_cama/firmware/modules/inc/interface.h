@@ -16,24 +16,26 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 /*==================[macros]=================================================*/
-#define	FALSE		0
-#define	TRUE		1
-
 #define NUM_ROWS	1 /*Cantidad de filas del teclado*/
 #define NUM_COLS	3 /*Cantidad de columnas del teclado*/
 
-#define UP_BUTTON_PIN 26
-#define DOWN_BUTTON_PIN 27
-#define SELECT_BUTTON_PIN 25
-#define PUMP_PIN 33
-#define PUMP_RECIRCUL_PIN 21
-#define ASP_PIN 32
+#define UP_BUTTON_PIN 5
+#define DOWN_BUTTON_PIN 10
+#define SELECT_BUTTON_PIN 4
 
 static const char *TAG = "primerversion";
+
 /*==================[typedef]================================================*/
 
 /*==================[internal functions declaration]==========================*/
-void menu_principal();
+void menuInit();
+void sub_menu(uint8_t select);
+void sub_menu_ducha();
+void sub_menu_configuracion();
+void sub_menu_autolavado(); 
+void delayMs(const TickType_t mSec);
+void print_menu(const char *menus[], int num_menus, int selected);
+void button_timer_callback(TimerHandle_t xTimer);
 /*==================[external functions declaration]==========================*/
 void vScreeningTask(void *pvParameters);
 

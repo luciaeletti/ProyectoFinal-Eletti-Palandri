@@ -23,12 +23,9 @@
 #include "general.h"
 #include "conditions.h"
 #include "interface.h"
+#include "alarms.h"
 
 /*==================[macros and typedef]================================================*/
-#define UP_BUTTON_PIN 5
-#define DOWN_BUTTON_PIN 10
-#define SELECT_BUTTON_PIN 4
-
 
 typedef enum {
     BUTTON_UP,
@@ -42,19 +39,13 @@ TimerHandle_t button_timer;
 QueueHandle_t button_queue;
 uint8_t last_button_states[3]={1,1,1};
 uint8_t selected = 0;
-//DeviceAddress tempSensors[1]; 
 const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
 
-/*==================[internal functions declaration]==========================*/
-void button_timer_callback(TimerHandle_t xTimer);
-void delayMs(const TickType_t mSec);
-void print_menu(const char *menus[], int num_menus, int selected);
-void sub_menu(uint8_t select);
-void sub_menu_ducha();
-void sub_menu_configuracion();
-void sub_menu_autolavado(); 
-/*==================[external functions declaration]==========================*/
+CONDIC_FUNC_T data;
+ALARM_T my_alarm;
 
+/*==================[internal functions declaration]==========================*/
+/*==================[external functions declaration]==========================*/
 /*==================[internal functions definition]==========================*/
 void delayMs(const TickType_t mSec)
 {
@@ -110,10 +101,6 @@ const char *sub_menu_ducha[] = {"1.DUCHA NORMAL", "2.DUCHA CON DESINF", "3.MENU 
 int selected_shower = 0;
 button_event_t event_shower;
 
-CONDIC_FUNC_T my_condition;
-
-GetConditions(&my_condition);
-
 LCDI2C_setCursor(0,0);
 LCDI2C_print("Elija una opcion:");
 print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), selected_shower);
@@ -131,11 +118,20 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     break;
                 case BUTTON_SELECT:
                     if (selected_shower == 0) {
-                        LCDI2C_clear();
-                        LCDI2C_setCursor(0,0);
-                        LCDI2C_print("ESTAMOS EN DUCHA");
-                        LCDI2C_setCursor(0,1);
-                        LCDI2C_print(my_condition.temperatura);
+                    GetAlarms(&my_alarm);
+                    LCDI2C_clear();
+                    LCDI2C_setCursor(0,0);
+                    LCDI2C_print("ESTAMOS EN DUCHA");
+                    LCDI2C_setCursor(0,1);
+                    LCDI2C_print("La temp es: ");
+                    while(1){
+                    GetConditions(&data);
+                    LCDI2C_setCursor(13,1);
+                    LCDI2C_print(data.temperatura);
+                    vTaskDelay(1000 /portTICK_PERIOD_MS);
+
+
+				}
                      
 				}
 
@@ -197,8 +193,8 @@ print_menu(sub_menu_autolavado, sizeof(sub_menu_autolavado) / sizeof(sub_menu_au
                 case BUTTON_SELECT:
                     if (selected_autolav== 0) {
                     LCDI2C_clear();
-					gpio_set_direction(PUMP_PIN, GPIO_MODE_OUTPUT);
-                    gpio_set_level(PUMP_PIN, 1);
+				//	gpio_set_direction(PUMP_PIN, GPIO_MODE_OUTPUT);
+                //    gpio_set_level(PUMP_PIN, 1);
                     LCDI2C_setCursor(3,1);
 					LCDI2C_print("BOMBA DE DUCHA");
                     LCDI2C_setCursor(6,2);
@@ -206,8 +202,8 @@ print_menu(sub_menu_autolavado, sizeof(sub_menu_autolavado) / sizeof(sub_menu_au
 					}
                     if (selected_autolav== 1) {
                     LCDI2C_clear();
-					gpio_set_direction(PUMP_RECIRCUL_PIN, GPIO_MODE_OUTPUT);
-                    gpio_set_level(PUMP_RECIRCUL_PIN, 1);
+					//gpio_set_direction(PUMP_RECIRCUL_PIN, GPIO_MODE_OUTPUT);
+                   // gpio_set_level(PUMP_RECIRCUL_PIN, 1);
                     LCDI2C_setCursor(0,1);
 					LCDI2C_print("BOMBA RECIRCULACION");
                     LCDI2C_setCursor(6,2);
@@ -268,8 +264,8 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
                 case BUTTON_SELECT:
                     if (selected_config == 0) {
                     LCDI2C_clear();
-					gpio_set_direction(ASP_PIN, GPIO_MODE_OUTPUT);
-                    gpio_set_level(ASP_PIN, 1);
+				//	gpio_set_direction(ASP_PIN, GPIO_MODE_OUTPUT);
+                //    gpio_set_level(ASP_PIN, 1);
 					LCDI2C_setCursor(0,1);
 					LCDI2C_print("ASPIRADORA ACTIVADA");
 					}
@@ -305,7 +301,7 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
     }
 }
 
-void menu_principal(){
+void menuInit(){
    
     LCDI2C_init(LCD_ADDR,20,4);
 	LCDI2C_backlight();
@@ -362,7 +358,7 @@ void menu_principal(){
  * @param   	pvParameters is void pointer.
  * @return 		None
  */
-void vScreeningTask(void *pvParameters) {
+/*void vScreeningTask(void *pvParameters) {
 
 //	xSemaphoreTake(xNewSessionSemaphore,0);
 //	NewSession=false;
@@ -370,8 +366,9 @@ void vScreeningTask(void *pvParameters) {
 	while(1){
 //		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
         menu_principal();
+
 		vTaskDelay(4000 /portTICK_PERIOD_MS);
 	}
     
-}
+}*/
 

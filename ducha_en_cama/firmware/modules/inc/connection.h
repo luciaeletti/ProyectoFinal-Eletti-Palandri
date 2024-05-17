@@ -31,7 +31,8 @@ void connection_mqtt();
 
 /*==================[external functions declaration]=========================*/
 void vConnectionTask(void *pvParameters);
-
+void vConnectionWFTask(void *pvParameters);
+void vConnectionMQTTTask(void *pvParameters);
 
 
 

@@ -23,9 +23,7 @@
 #include "gpio_mcu.h"
 #include "i2c_mcu.h"
 #include "acquire.h"
-
-#define	FALSE		0
-#define	TRUE		1
+#include "analyzer.h"
 
 #define NUM_ROWS	1 /*Cantidad de filas del teclado*/
 #define NUM_COLS	3 /*Cantidad de columnas del teclado*/
@@ -42,15 +40,6 @@
 //#define HEIGHT	900
 //#define FACTOR 3.76
 //#define CONVERSION 1000
-
-#define TEMP_MIN 35
-#define TEMP_MAX 22
-
-#define LEVEL_MIN 5
-#define LEVEL_MAX 20
-
-//#define GANANCIA 0.689
-//#define OFFSET -1.117
 /*
 DeviceAddress tempSensors[1]; 
 float temperature;
@@ -424,15 +413,29 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
 }
 
 */
+extern TaskHandle_t receiverHandler;
+extern TaskHandle_t senderHandler;
+
+extern TaskHandle_t receiverHandler2;
+extern TaskHandle_t senderHandler2;
 
 
 void app_main(){
 
     I2C_initialize(I2C_MASTER_FREQ_HZ);
-   // menu_principal();
-    printf("HOLaaa\n");
-  //  xTaskCreate(&vScreeningTask, "menu", 32768, NULL, 1,NULL);
-    xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, NULL);
+    printf("inicio i2c \n");
+
+    xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
+
+    xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
+
+    xTaskCreate(&vConnectionWFTask, "Connection WIFI", 32768, NULL, 1, &senderHandler2);
+
+    xTaskCreate(&vConnectionMQTTTask, "Connection WIFI", 32768, NULL, 1, &receiverHandler2);
+
+    printf("inicio menu \n");
+
+    menuInit();
 
 
 

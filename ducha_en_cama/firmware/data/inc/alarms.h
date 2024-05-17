@@ -28,6 +28,8 @@ typedef struct{
 	ALARM_STATE_T state;
 }ALARM_T;
 
+
+
 void SetAlarms(ALARM_T* pCondition);
 void GetAlarms(ALARM_T* pCondition);
 void ResetAlarm(void);

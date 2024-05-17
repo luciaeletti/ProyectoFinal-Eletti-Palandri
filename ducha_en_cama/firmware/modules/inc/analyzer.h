@@ -22,7 +22,7 @@
 /*==================[typedef]================================================*/
 
 /*==================[internal data declaration]==============================*/
-
+void EvaluateRanges();
 /*==================[internal functions declaration]=========================*/
 void vMonitoringTask(void *pvParameters);
 /*==================[external functions declaration]=========================*/

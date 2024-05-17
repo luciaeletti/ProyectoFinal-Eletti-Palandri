@@ -34,6 +34,9 @@
 static const char *TAG = "WIFI + MQTT";
 
 EventGroupHandle_t s_wifi_event_group;
+TaskHandle_t senderHandler2 = NULL;
+TaskHandle_t receiverHandler2 = NULL;
+
 const int CONNECTED_BIT = BIT0; 
 const int ESPTOUCH_DONE_BIT = BIT1;
 
@@ -219,14 +222,19 @@ void initialise_wifi(void)
 }
 
 
-void connection_wifi(){
+void vConnectionWFTask(void *pvParameters)
+{
     ESP_ERROR_CHECK( nvs_flash_init() );
     initialise_wifi();
+    vTaskDelay(15000 /portTICK_PERIOD_MS);
+    xTaskNotifyGive(receiverHandler2); 
 
 }
 
-void connection_mqtt()
+void vConnectionMQTTTask(void *pvParameters)
 {
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %" PRIu32 " bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
@@ -244,11 +252,15 @@ void connection_mqtt()
    // ESP_ERROR_CHECK(esp_event_loop_create_default());
     mqtt_app_start();
 
+    while(1){
+    vTaskDelay(10 /portTICK_PERIOD_MS);
+
+    }
    
 }
 
 
-/*
+
 void vConnectionTask(void *pvParameters){
 	
 //	xSemaphoreTake(xNewSessionSemaphore,0);
@@ -256,9 +268,9 @@ void vConnectionTask(void *pvParameters){
 
 	while(1){
 //		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
-        connection_general();
+       // connection_general();
 		//vTaskDelay(4000 /portTICK_PERIOD_MS);
 	}
 	
 
-}*/
+}
