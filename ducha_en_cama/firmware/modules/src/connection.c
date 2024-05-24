@@ -7,6 +7,7 @@
  *  Laboratorio de prototipado Electronico &3D.\n
  *  All rights reserved. Copyright (C) 2024.
  */
+/*==================[inclusions]=============================================*/
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -14,6 +15,7 @@
 #include "esp_wifi.h"
 #include "esp_system.h"
 #include "nvs_flash.h"
+#include "nvs.h"
 #include "esp_event.h"
 #include "esp_wpa2.h"
 #include "esp_log.h"
@@ -31,11 +33,17 @@
 #include "mqtt_client.h"
 #include "connection.h"
 
+/*==================[macros]=================================================*/
+
 static const char *TAG = "WIFI + MQTT";
 
 EventGroupHandle_t s_wifi_event_group;
 TaskHandle_t senderHandler2 = NULL;
 TaskHandle_t receiverHandler2 = NULL;
+
+nvs_handle_t my_handle_ssid;
+nvs_handle_t my_handle_passw;
+
 
 const int CONNECTED_BIT = BIT0; 
 const int ESPTOUCH_DONE_BIT = BIT1;
@@ -127,7 +135,6 @@ void mqtt_app_start(void)
     esp_mqtt_client_start(client);
 }
 
-
 void smartconfig_example_task(void * parm)
 {
     EventBits_t uxBits;
@@ -146,7 +153,6 @@ void smartconfig_example_task(void * parm)
         }
     }
 }
-
 
 
 void event_handler(void* arg, esp_event_base_t event_base,
@@ -202,7 +208,7 @@ void event_handler(void* arg, esp_event_base_t event_base,
 }
 
 
-void initialise_wifi(void)
+void initialise_wifi_app(void)
 {
     ESP_ERROR_CHECK(esp_netif_init());
     s_wifi_event_group = xEventGroupCreate();
@@ -219,15 +225,20 @@ void initialise_wifi(void)
 
     ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
     ESP_ERROR_CHECK( esp_wifi_start() );
+    
 }
 
 
 void vConnectionWFTask(void *pvParameters)
 {
     ESP_ERROR_CHECK( nvs_flash_init() );
-    initialise_wifi();
+    initialise_wifi_app();
     vTaskDelay(15000 /portTICK_PERIOD_MS);
     xTaskNotifyGive(receiverHandler2); 
+    while(1){
+    vTaskDelay(10 /portTICK_PERIOD_MS);
+
+    }
 
 }
 
@@ -254,7 +265,6 @@ void vConnectionMQTTTask(void *pvParameters)
 
     while(1){
     vTaskDelay(10 /portTICK_PERIOD_MS);
-
     }
    
 }

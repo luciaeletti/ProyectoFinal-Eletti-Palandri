@@ -22,6 +22,8 @@
 #define UP_BUTTON_PIN 5
 #define DOWN_BUTTON_PIN 10
 #define SELECT_BUTTON_PIN 4
+#define PUMP_PIN 11
+#define ASP_PIN 3
 
 static const char *TAG = "primerversion";
 

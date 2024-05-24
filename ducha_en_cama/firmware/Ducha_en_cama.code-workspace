@@ -11,9 +11,6 @@
         },
         {
             "path": "projects/aplicacion"
-        },
-        {
-            "path": "../../../EProgramable_FIUNER/firmware/projects/0_blinking"
         }
     ],
       "settings": {
@@ -79,7 +76,10 @@
             "functional": "c",
             "tuple": "c",
             "utility": "c",
-            "future": "c"
+            "future": "c",
+            "timers.h": "c",
+            "connection.h": "c",
+            "stddef.h": "c"
         },
     },
     "tasks": {

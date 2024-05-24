@@ -92,7 +92,7 @@ void ReadSensorData(){
 	ds18b20_init(TEMP_BUS);
     ds18b20_setResolution(tempSensors,2,10);
 	my_condition.temperature = ds18b20_get_temp();
-    snprintf(my_condition.temperatura, 10, "%.2d", my_condition.temperature);
+    snprintf(my_condition.temperatura, 10, "%.2f", my_condition.temperature);
 
 	SetConditions(&my_condition);
 	
@@ -107,9 +107,9 @@ void ReadSensorData(){
 void vAcquiringTask(void *pvParameters) {
 
 	while(1){
-        printf("llego a la tarea\n");
+      //  printf("llego a la tarea\n");
         ReadSensorData();
-        printf("El valor es %d.\n", my_condition.temperature);
+       // printf("El valor es %d.\n", my_condition.temperature);
         xTaskNotifyGive(receiverHandler);
 		vTaskDelay(5000 /portTICK_PERIOD_MS);
 	}

@@ -13,6 +13,7 @@
 #include "lwip/sys.h"
 
 /*==================[macros]=================================================*/
+
 typedef enum{
 TEMPERATURE,
 LEVEL
@@ -27,7 +28,6 @@ typedef struct{
 	ALARM_SOURCE_T source;
 	ALARM_STATE_T state;
 }ALARM_T;
-
 
 
 void SetAlarms(ALARM_T* pCondition);

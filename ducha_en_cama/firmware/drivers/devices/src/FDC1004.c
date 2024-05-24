@@ -123,7 +123,7 @@ uint8_t FDC1004_configureMeasurementSingle(uint8_t measurement, uint8_t channel,
 	configuration_data |= ((uint16_t)capdac) << 5;	// CAPDAC value
 	FDC1004_capdac_values[measurement] = capdac;
 	FDC1004_write16(MEAS_CONFIG[measurement], configuration_data);
- 	printf("Valor de MEAS_CONFIG[%d]: %d\n", measurement, MEAS_CONFIG[measurement]);
+ //	printf("Valor de MEAS_CONFIG[%d]: %d\n", measurement, MEAS_CONFIG[measurement]);
 	return 0;
 }
 
@@ -237,7 +237,7 @@ double FDC1004_getCapacitance(uint8_t measurement) {
 	int32_t value;
 	uint8_t result = FDC1004_getRawCapacitance(measurement, &value);
 	if (result) return 0x80000000;
-	printf("Valor de measurement: %d\n", measurement);
+//	printf("Valor de measurement: %d\n", measurement);
 	return (double)value / PICOFARAD_CONVERSION_CONSTANT; //picofarads
 }
 

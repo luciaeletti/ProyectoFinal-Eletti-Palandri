@@ -17,7 +17,7 @@
  * @brief conditions definitions
  */
 typedef struct{
-uint16_t temperature;
+float temperature;
 char temperatura[3];
 char nivel[3];
 float level;
