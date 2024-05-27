@@ -190,6 +190,15 @@ void event_handler(void* arg, esp_event_base_t event_base,
         memcpy(password, evt->password, sizeof(evt->password));
         ESP_LOGI(TAG, "SSID:%s", ssid);
         ESP_LOGI(TAG, "PASSWORD:%s", password);
+        nvs_open("storage", NVS_READWRITE, &my_handle_ssid);
+        nvs_set_i32(my_handle_ssid, "RED", evt->ssid);
+        nvs_open("storage", NVS_READWRITE, &my_handle_passw);
+        nvs_set_i32(my_handle_passw, "CONTRASEÑA", evt->password);
+        nvs_commit(my_handle_ssid);
+        nvs_commit(my_handle_passw);
+        nvs_close(my_handle_ssid);
+        nvs_close(my_handle_passw);
+    
         if (evt->type == SC_TYPE_ESPTOUCH_V2) {
             ESP_ERROR_CHECK( esp_smartconfig_get_rvd_data(rvd_data, sizeof(rvd_data)) );
             ESP_LOGI(TAG, "RVD_DATA:");
@@ -235,6 +244,7 @@ void vConnectionWFTask(void *pvParameters)
     initialise_wifi_app();
     vTaskDelay(15000 /portTICK_PERIOD_MS);
     xTaskNotifyGive(receiverHandler2); 
+    
     while(1){
     vTaskDelay(10 /portTICK_PERIOD_MS);
 

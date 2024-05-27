@@ -13,6 +13,7 @@ set(srcs
     "devices/src/ds18b20.c"
     "devices/src/FDC1004.c"
     "devices/src/ds3231.c"
+    "devices/src/at24c.c"
     )
 
 # Always included headers

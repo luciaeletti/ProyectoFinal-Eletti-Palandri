@@ -63,18 +63,13 @@ void GPIOInit(gpio_t pin, io_t io){
 	} else if(io == GPIO_OUTPUT){
 		gpio_list[pin].mode = GPIO_MODE_OUTPUT;
 	}
-	printf("holaAAAAAaa");
 	gpio_reset_pin(gpio_list[pin].pin);
-	printf("1");
 	gpio_set_direction(gpio_list[pin].pin, gpio_list[pin].mode);
-	printf("2");
 	gpio_set_pull_mode(gpio_list[pin].pin, gpio_list[pin].pull);
 }
 
 void GPIOOn(gpio_t pin){
-	printf("holuuuuuu");
 	gpio_list[pin].state = true;
-	printf("holaaaa");
 	gpio_set_level(gpio_list[pin].pin, gpio_list[pin].state);
 	
 }

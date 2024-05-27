@@ -25,6 +25,7 @@
 #include "interface.h"
 #include "alarms.h"
 
+
 /*==================[macros and typedef]================================================*/
 
 typedef enum {
@@ -120,12 +121,14 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                 case BUTTON_SELECT:
                     if (selected_shower == 0) {
                     LCDI2C_clear();
-                    LCDI2C_setCursor(0,0);
-                    LCDI2C_print("PARA COMENZAR:");
+                    GetConditions(&data);
+                    while(data.level<LEVEL_MAX){
                     LCDI2C_setCursor(0,1);
                     LCDI2C_print(" Llene el tanque de ");
                     LCDI2C_setCursor(0,2);
                     LCDI2C_print("     agua limpia ");
+                    vTaskDelay(1000 /portTICK_PERIOD_MS);
+                    }
                     //se debe quedar aca mientras el nivel de agua este por debajo de x litros
                     GetAlarms(&my_alarm);
                     LCDI2C_clear();

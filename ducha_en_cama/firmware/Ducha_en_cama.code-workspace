@@ -79,7 +79,9 @@
             "future": "c",
             "timers.h": "c",
             "connection.h": "c",
-            "stddef.h": "c"
+            "stddef.h": "c",
+            "conditions.h": "c",
+            "esp_err.h": "c"
         },
     },
     "tasks": {

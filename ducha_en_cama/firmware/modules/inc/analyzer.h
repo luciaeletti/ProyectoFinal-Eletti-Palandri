@@ -12,11 +12,6 @@
 #include <stdio.h>
 #include "conditions.h"
 /*==================[macros]=================================================*/
-#define TEMP_MIN 35
-#define TEMP_MAX 40
-
-#define LEVEL_MIN 5
-#define LEVEL_MAX 20
 
 
 /*==================[typedef]================================================*/
