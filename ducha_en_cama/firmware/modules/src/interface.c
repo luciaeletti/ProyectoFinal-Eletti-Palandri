@@ -38,12 +38,12 @@ typedef enum {
 button_event_t event;
 TimerHandle_t button_timer;
 QueueHandle_t button_queue;
+TaskHandle_t receiverHandler3 = NULL;
+TaskHandle_t senderHandler3 = NULL;
 uint8_t last_button_states[3]={1,1,1};
 uint8_t selected = 0;
 const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
-
-CONDIC_FUNC_T data;
-ALARM_T my_alarm;
+INFO_SHOWER_T info;
 
 /*==================[internal functions declaration]==========================*/
 /*==================[external functions declaration]==========================*/
@@ -53,7 +53,6 @@ void delayMs(const TickType_t mSec)
 	vTaskDelay(mSec / portTICK_PERIOD_MS);
 }
 
-//
 void button_timer_callback(TimerHandle_t xTimer) {
     uint8_t button_states[] = {
         gpio_get_level(UP_BUTTON_PIN),
@@ -120,32 +119,12 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     break;
                 case BUTTON_SELECT:
                     if (selected_shower == 0) {
+                    xTaskNotifyGive(receiverHandler3);
                     LCDI2C_clear();
-                    GetConditions(&data);
-                    while(data.level<LEVEL_MAX){
-                    LCDI2C_setCursor(0,1);
-                    LCDI2C_print(" Llene el tanque de ");
-                    LCDI2C_setCursor(0,2);
-                    LCDI2C_print("     agua limpia ");
-                    vTaskDelay(1000 /portTICK_PERIOD_MS);
-                    }
-                    //se debe quedar aca mientras el nivel de agua este por debajo de x litros
-                    GetAlarms(&my_alarm);
-                    LCDI2C_clear();
-                    LCDI2C_setCursor(0,1);
-                    LCDI2C_print("DUCHANDO...");
-                    LCDI2C_setCursor(0,2);
-                    LCDI2C_print("Temperatura: ");
-                    while(1){
-                    GetConditions(&data);
-                    LCDI2C_setCursor(14,2);
-                    LCDI2C_print(data.temperatura);
-                    vTaskDelay(1000 /portTICK_PERIOD_MS);
-
-
-				}
+                    
+                                        				}
                      
-				}
+				
 
                     if (selected_shower == 1){
                       
@@ -179,7 +158,7 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
             }
             
         }
-    }
+}
 }
 
 void sub_menu_autolavado(){

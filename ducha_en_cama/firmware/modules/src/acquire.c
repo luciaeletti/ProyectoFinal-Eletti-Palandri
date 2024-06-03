@@ -86,13 +86,13 @@ void ReadSensorData(){
 
     level = HEIGHT * (FACTOR * (valor_nivel - valor_nivel_inicial)/(valor_referencia - valor_referencia_inicial));
    	my_condition.level = level/CONVERSION;
-    snprintf(my_condition.nivel, 10, "%.2f", my_condition.level); 
+    snprintf(my_condition.lev, 10, "%.2f", my_condition.level); 
 
 	//Medicion temperatura
 	ds18b20_init(TEMP_BUS);
     ds18b20_setResolution(tempSensors,2,10);
 	my_condition.temperature = ds18b20_get_temp();
-    snprintf(my_condition.temperatura, 10, "%.2f", my_condition.temperature);
+    snprintf(my_condition.temp, 10, "%.2f", my_condition.temperature);
 
 	SetConditions(&my_condition);
 	

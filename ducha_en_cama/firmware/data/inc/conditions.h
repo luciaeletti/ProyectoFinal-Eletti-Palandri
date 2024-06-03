@@ -18,14 +18,21 @@
  */
 typedef struct{
 float temperature;
-char temperatura[3];
-char nivel[3];
+char temp[3];
+char lev[3];
 float level;
 }CONDIC_FUNC_T;
 
+typedef struct{
+char filling[20];
+char heating[20];
+char showering[20];
+}INFO_SHOWER_T;
 
 void SetConditions(CONDIC_FUNC_T* pCondition);
 void GetConditions(CONDIC_FUNC_T* pCondition);
+void SetInfoShower(INFO_SHOWER_T* pInfo);
+void GetInfoShower(INFO_SHOWER_T* pInfo);
 
 
 

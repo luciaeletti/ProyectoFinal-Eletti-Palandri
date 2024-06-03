@@ -6,6 +6,7 @@ set(srcs
     "src/acquire.c"
     "src/analyzer.c"
     "src/connection.c"
+    "src/control.c"
     )
 
 # Always included headers

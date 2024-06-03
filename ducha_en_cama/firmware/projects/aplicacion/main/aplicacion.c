@@ -24,6 +24,7 @@
 #include "i2c_mcu.h"
 #include "acquire.h"
 #include "analyzer.h"
+#include "control.h"
 
 /*==================[macros]=======================================*/
 #define NUM_ROWS	1 /*Cantidad de filas del teclado*/
@@ -416,6 +417,9 @@ extern TaskHandle_t senderHandler;
 extern TaskHandle_t receiverHandler2;
 extern TaskHandle_t senderHandler2;
 
+extern TaskHandle_t receiverHandler3;
+extern TaskHandle_t senderHandler3;
+
 
 void app_main(){
 
@@ -428,6 +432,8 @@ void app_main(){
     xTaskCreate(&vConnectionWFTask, "Connection WIFI", 32768, NULL, 1, &senderHandler2);
     
     xTaskCreate(&vConnectionMQTTTask, "Connection WIFI", 32768, NULL, 1, &receiverHandler2);
+
+    xTaskCreate(&vControlDuchaTask, "CONTROL", 32768, NULL, 1, &receiverHandler3);
 
     printf("inicio menu \n");
 

@@ -12,6 +12,8 @@
 
 /*==================[macros]=================================================*/
 CONDIC_FUNC_T Current;
+INFO_SHOWER_T Shower;
+
 /*==================[internal functions declaration]==========================*/
 
 /*==================[external functions declaration]==========================*/
@@ -26,4 +28,12 @@ void SetConditions(CONDIC_FUNC_T* pCondition){
 
 void GetConditions(CONDIC_FUNC_T* pCondition){
 	*pCondition=Current;
+}
+
+void SetInfoShower(INFO_SHOWER_T* pInfo){
+	Shower=*pInfo;
+}
+
+void GetInfoShower(INFO_SHOWER_T* pInfo){
+	*pInfo=Shower;
 }
