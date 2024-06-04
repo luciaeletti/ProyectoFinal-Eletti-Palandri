@@ -32,22 +32,26 @@
 #include "general.h"
 #include "mqtt_client.h"
 #include "connection.h"
+#include "conditions.h"
 
 /*==================[macros]=================================================*/
 
 static const char *TAG = "WIFI + MQTT";
 
+uint8_t value = DISCONNECTION;
+
+INFO_CONNECTION_T my_connection; 
+
 EventGroupHandle_t s_wifi_event_group;
+
 TaskHandle_t senderHandler2 = NULL;
 TaskHandle_t receiverHandler2 = NULL;
 
 nvs_handle_t my_handle_ssid;
 nvs_handle_t my_handle_passw;
 
-
 const int CONNECTED_BIT = BIT0; 
 const int ESPTOUCH_DONE_BIT = BIT1;
-
 
 void log_error_if_nonzero(const char *message, int error_code)
 {
@@ -237,25 +241,14 @@ void initialise_wifi_app(void)
     
 }
 
-
-void vConnectionWFTask(void *pvParameters)
+void ConnectionWF()
 {
-    ESP_ERROR_CHECK( nvs_flash_init() );
-    initialise_wifi_app();
-    vTaskDelay(15000 /portTICK_PERIOD_MS);
-    xTaskNotifyGive(receiverHandler2); 
-    
-    while(1){
-    vTaskDelay(10 /portTICK_PERIOD_MS);
-
-    }
-
+    ESP_ERROR_CHECK(nvs_flash_init());
+    initialise_wifi_app(); 
 }
 
-void vConnectionMQTTTask(void *pvParameters)
+void ConnectionMQTT()
 {
-    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %" PRIu32 " bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
@@ -273,24 +266,39 @@ void vConnectionMQTTTask(void *pvParameters)
    // ESP_ERROR_CHECK(esp_event_loop_create_default());
     mqtt_app_start();
 
-    while(1){
-    vTaskDelay(10 /portTICK_PERIOD_MS);
-    }
-   
 }
 
 
 
 void vConnectionTask(void *pvParameters){
 	
-//	xSemaphoreTake(xNewSessionSemaphore,0);
-//	NewSession=false;
-
 	while(1){
-//		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
-       // connection_general();
-		//vTaskDelay(4000 /portTICK_PERIOD_MS);
+		switch (value)
+		{
+		case CONNECTION_WIFI_SMARTCONFIG:
+		initialise_wifi_app();
+    
+			break;
+		case CONNECTION_WIFI_STA:
+		
+			break;
+		case COMUNICATION_MQTT:
+		
+			break;
+        case DISCONNECTION:
+		GetInfoConnection(&my_connection);
+        if(my_connection.mode == CONNECTION_WIFI_SMARTCONFIG){
+            value = CONNECTION_WIFI_SMARTCONFIG;
+        }
+        if(my_connection.mode == CONNECTION_WIFI_STA){
+            value = CONNECTION_WIFI_STA;
+        }
+        //value = DISCONNECTION;
+			break;
+		}
+
+		vTaskDelay(2000 /portTICK_PERIOD_MS);
 	}
-	
+
 
 }

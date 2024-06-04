@@ -24,29 +24,28 @@
 #include "conditions.h"
 #include "interface.h"
 #include "alarms.h"
-
-
 /*==================[macros and typedef]================================================*/
-
 typedef enum {
     BUTTON_UP,
     BUTTON_DOWN,
     BUTTON_SELECT,
-
 } button_event_t;
 
 button_event_t event;
+
 TimerHandle_t button_timer;
 QueueHandle_t button_queue;
-TaskHandle_t receiverHandler3 = NULL;
-TaskHandle_t senderHandler3 = NULL;
-uint8_t last_button_states[3]={1,1,1};
-uint8_t selected = 0;
-const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
-INFO_SHOWER_T info;
 
-/*==================[internal functions declaration]==========================*/
-/*==================[external functions declaration]==========================*/
+uint8_t last_button_states[3]={1,1,1};
+
+uint8_t selected = 0;
+
+const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
+
+uint8_t flag = 0; 
+
+INFO_SHOWER_T info;
+INFO_CONNECTION_T connection;
 /*==================[internal functions definition]==========================*/
 void delayMs(const TickType_t mSec)
 {
@@ -96,7 +95,7 @@ void sub_menu(uint8_t select){
     }
 }
 
-void  sub_menu_ducha(){
+void sub_menu_ducha(){
 
 const char *sub_menu_ducha[] = {"1.DUCHA NORMAL", "2.DUCHA CON DESINF", "3.MENU ANTERIOR"};
 int selected_shower = 0;
@@ -119,16 +118,22 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     break;
                 case BUTTON_SELECT:
                     if (selected_shower == 0) {
-                    xTaskNotifyGive(receiverHandler3);
+                    GetInfoShower(&info);
+                    info.condition=TRUE;
+                    SetInfoShower(&info); 
+                    while(1){
                     LCDI2C_clear();
-                    
-                                        				}
-                     
-				
-
+					LCDI2C_setCursor(5,1);
+                    GetInfoShower(&info); 
+                    LCDI2C_print(info.state); 
+                    vTaskDelay(1000 /portTICK_PERIOD_MS);
+                    }
+                             
+                	}
+                     				
                     if (selected_shower == 1){
                       
-				}
+				    }
                         
 					if (selected_shower == 2){
 					LCDI2C_clear();
@@ -255,10 +260,18 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
                 case BUTTON_SELECT:
                     if (selected_config == 0) {
                     LCDI2C_clear();
-				//	gpio_set_direction(ASP_PIN, GPIO_MODE_OUTPUT);
-                //    gpio_set_level(ASP_PIN, 1);
-					LCDI2C_setCursor(0,1);
-					LCDI2C_print("ASPIRADORA ACTIVADA");
+                    if(flag == 0){
+                    LCDI2C_clear();
+					LCDI2C_setCursor(0,0);
+                    LCDI2C_print("hola");
+                    GetInfoConnection(&connection);
+                    connection.mode=CONNECTION_WIFI_SMARTCONFIG;
+                    SetInfoConnection(&connection);
+                        flag=1;
+
+                    }
+
+
 					}
                     
 					if (selected_config == 1){
@@ -349,22 +362,3 @@ void menuInit(){
 }
 
 /*==================[external functions definition]==========================*/
-/**
- * @brief 		Scre thread
- * @param   	pvParameters is void pointer.
- * @return 		None
- */
-/*void vScreeningTask(void *pvParameters) {
-
-//	xSemaphoreTake(xNewSessionSemaphore,0);
-//	NewSession=false;
-
-	while(1){
-//		if(!NewSession)	xSemaphoreTake(xNewSessionSemaphore,portMAX_DELAY);
-        menu_principal();
-
-		vTaskDelay(4000 /portTICK_PERIOD_MS);
-	}
-    
-}*/
-

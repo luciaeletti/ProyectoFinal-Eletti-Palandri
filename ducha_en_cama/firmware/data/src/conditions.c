@@ -13,6 +13,7 @@
 /*==================[macros]=================================================*/
 CONDIC_FUNC_T Current;
 INFO_SHOWER_T Shower;
+INFO_CONNECTION_T Connection;
 
 /*==================[internal functions declaration]==========================*/
 
@@ -36,4 +37,12 @@ void SetInfoShower(INFO_SHOWER_T* pInfo){
 
 void GetInfoShower(INFO_SHOWER_T* pInfo){
 	*pInfo=Shower;
+}
+
+void SetInfoConnection(INFO_CONNECTION_T* pConnection){
+	Connection=*pConnection;
+}
+
+void GetInfoConnection(INFO_CONNECTION_T* pConnection){
+	*pConnection=Connection;
 }

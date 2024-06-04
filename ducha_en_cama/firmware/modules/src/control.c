@@ -31,17 +31,19 @@
 
 
 /*==================[macros]=================================================*/
-enum estados
+typedef enum
 {
     LLENANDO,
     CALENTANDO,
-    DUCHANDO
-}estado;
+    DUCHANDO,
+	REPOSO
+}ESTADOS_T;
 
 /*==================[typedef]================================================*/
 CONDIC_FUNC_T data;
 ALARM_T my_alarm;
 INFO_SHOWER_T my_info;
+ESTADOS_T estado = REPOSO;
 /*==================[internal functions declaration]==========================*/
 
 /*==================[external functions declaration]==========================*/
@@ -56,23 +58,20 @@ INFO_SHOWER_T my_info;
  */
 void vControlDuchaTask(void *pvParameters) {
 
-	ulTaskNotifyTake(pdTRUE,portMAX_DELAY);
 	while(1){
 		switch (estado)
 		{
 		case LLENANDO:
 		GetConditions(&data);
 		GetInfoShower(&my_info);
-		strcpy(my_info.filling, "LLENANDO");
+		strcpy(my_info.state, "LLENANDO");
 		SetInfoShower(&my_info);
-		if(data.level>LEVEL_MAX){
-			estado=CALENTANDO;
-		}
+		estado=CALENTANDO;
 			break;
 		case CALENTANDO:
 		GetConditions(&data);
 		GetInfoShower(&my_info);
-		strcpy(my_info.heating, "CALENTANDO");
+		strcpy(my_info.state, "CALENTANDO");
 		SetInfoShower(&my_info);
 		if(data.temperature>TEMP_MAX){
 			estado=DUCHANDO;
@@ -81,12 +80,16 @@ void vControlDuchaTask(void *pvParameters) {
 		case DUCHANDO:
 		GetConditions(&data);
 		GetInfoShower(&my_info);
-		strcpy(my_info.showering, "DUCHANDO");
+		strcpy(my_info.state, "DUCHANDO");
 		SetInfoShower(&my_info);
-
+			break;
+		case REPOSO:
+		GetInfoShower(&my_info);
+		if(my_info.condition==TRUE){
+			estado = LLENANDO;
+		}
 			break;
 		}
-
 		vTaskDelay(2000 /portTICK_PERIOD_MS);
 	}
 
