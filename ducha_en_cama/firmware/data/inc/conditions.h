@@ -42,6 +42,7 @@ typedef enum{
 }CONNECTION_T;
 
 typedef struct{
+bool flag;
 uint8_t mode;
 char msg[20];
 }INFO_CONNECTION_T;

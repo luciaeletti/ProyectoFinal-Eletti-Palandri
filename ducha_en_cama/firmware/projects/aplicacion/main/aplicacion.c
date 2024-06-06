@@ -52,13 +52,13 @@ void app_main(){
 
     I2C_initialize(I2C_MASTER_FREQ_HZ);
 
-    xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
+   // xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
 
-    xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
+  //  xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
 
-    //xTaskCreate(&vConnectionTask, "Connection", 32768, NULL, 1, NULL);
-    
-    xTaskCreate(&vControlDuchaTask, "CONTROL", 32768, NULL, 1, NULL);
+//      xTaskCreate(&vConnectionApp, "CONTROL", 32768, NULL, 1, NULL);
+
+ //   xTaskCreate(&vControlDuchaTask, "CONTROL", 32768, NULL, 1, NULL);
 
     printf("inicio menu \n");
 

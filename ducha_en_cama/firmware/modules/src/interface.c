@@ -22,6 +22,7 @@
 #include "ds18b20.h"
 #include "general.h"
 #include "conditions.h"
+#include "connection.h"
 #include "interface.h"
 #include "alarms.h"
 /*==================[macros and typedef]================================================*/
@@ -259,21 +260,50 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
                     break;
                 case BUTTON_SELECT:
                     if (selected_config == 0) {
+                    uint8_t aux=0;
                     LCDI2C_clear();
-                    if(flag == 0){
+                    xTaskCreate(&vConnectionApp, "Connection", 32768, NULL, 1, NULL);
+                    while(aux==0){
+                    LCDI2C_setCursor(5,1);
+					LCDI2C_print("CONECTANDO");
+                    LCDI2C_setCursor(5,2);
+					LCDI2C_print("A WIFI... ");
+                    GetInfoConnection(&connection);
+                    if(connection.flag==true){
+                        aux=1;
+                    LCDI2C_clear();
+                    LCDI2C_setCursor(6,1);
+					LCDI2C_print("CONEXION");
+                    LCDI2C_setCursor(6,2);
+					LCDI2C_print("EXITOSA!");
+                    vTaskDelay(1000 /portTICK_PERIOD_MS);
+                    }
+                    vTaskDelay(1000 /portTICK_PERIOD_MS);
+                    }
                     LCDI2C_clear();
 					LCDI2C_setCursor(0,0);
-                    LCDI2C_print("hola");
-                    GetInfoConnection(&connection);
-                    connection.mode=CONNECTION_WIFI_SMARTCONFIG;
-                    SetInfoConnection(&connection);
-                        flag=1;
-
-                    }
-
-
-					}
-                    
+					LCDI2C_print(" Elija una opcion: ");
+ 					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
+		 while (1) {
+       		if (xQueueReceive(button_queue, &event, portMAX_DELAY)) {
+            switch (event) {
+                case BUTTON_UP:
+                    selected = (selected - 1 + sizeof(menus) / sizeof(menus[0])) % (sizeof(menus) / sizeof(menus[0]));
+					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
+                    break;
+                case BUTTON_DOWN:
+                    selected = (selected + 1) % (sizeof(menus) / sizeof(menus[0]));
+					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
+                    break;
+                case BUTTON_SELECT:
+                    sub_menu(selected);
+                    break;
+            }
+            
+        }
+    }
+}                    
+                
 					if (selected_config == 1){
 					LCDI2C_clear();
 					LCDI2C_setCursor(0,0);

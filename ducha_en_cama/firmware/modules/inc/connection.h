@@ -27,8 +27,9 @@ void log_error_if_nonzero(const char *message, int error_code);
 void smartconfig_example_task(void * parm);
 /*==================[external functions declaration]=========================*/
 void vConnectionTask(void *pvParameters);
-void ConnectionWF();
+void vConnectionApp(void *pvParameters);
 void ConnectionMQTT();
+void vConnectionWIFI(void *pvParameters);
 
 
 

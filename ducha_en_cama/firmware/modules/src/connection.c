@@ -29,20 +29,23 @@
 #include "lwip/sockets.h"
 #include "lwip/dns.h"
 #include "lwip/netdb.h"
+#include "gpio_mcu.h"
 #include "general.h"
 #include "mqtt_client.h"
 #include "connection.h"
 #include "conditions.h"
 
 /*==================[macros]=================================================*/
-
-static const char *TAG = "WIFI + MQTT";
+#define WIFI_OK GPIO_20
+static const char *TAG = "WIFI";
 
 uint8_t value = DISCONNECTION;
 
-INFO_CONNECTION_T my_connection; 
+INFO_CONNECTION_T my_connection;
 
 EventGroupHandle_t s_wifi_event_group;
+
+wifi_config_t wifi_config;
 
 TaskHandle_t senderHandler2 = NULL;
 TaskHandle_t receiverHandler2 = NULL;
@@ -50,12 +53,13 @@ TaskHandle_t receiverHandler2 = NULL;
 nvs_handle_t my_handle_ssid;
 nvs_handle_t my_handle_passw;
 
-const int CONNECTED_BIT = BIT0; 
+const int CONNECTED_BIT = BIT0;
 const int ESPTOUCH_DONE_BIT = BIT1;
 
 void log_error_if_nonzero(const char *message, int error_code)
 {
-    if (error_code != 0) {
+    if (error_code != 0)
+    {
         ESP_LOGE(TAG, "Last error %s: 0x%x", message, error_code);
     }
 }
@@ -76,7 +80,8 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
     esp_mqtt_event_handle_t event = event_data;
     esp_mqtt_client_handle_t client = event->client;
     int msg_id;
-    switch ((esp_mqtt_event_id_t)event_id) {
+    switch ((esp_mqtt_event_id_t)event_id)
+    {
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
         msg_id = esp_mqtt_client_publish(client, "/topic/qos1", "data_3", 0, 1, 0);
@@ -109,16 +114,16 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
         ESP_LOGI(TAG, "MQTT_EVENT_DATA");
         printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
         printf("DATA=%.*s\r\n", event->data_len, event->data);
-        
+
         break;
     case MQTT_EVENT_ERROR:
         ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
-        if (event->error_handle->error_type == MQTT_ERROR_TYPE_TCP_TRANSPORT) {
+        if (event->error_handle->error_type == MQTT_ERROR_TYPE_TCP_TRANSPORT)
+        {
             log_error_if_nonzero("reported from esp-tls", event->error_handle->esp_tls_last_esp_err);
             log_error_if_nonzero("reported from tls stack", event->error_handle->esp_tls_stack_err);
-            log_error_if_nonzero("captured as transport's socket errno",  event->error_handle->esp_transport_sock_errno);
+            log_error_if_nonzero("captured as transport's socket errno", event->error_handle->esp_transport_sock_errno);
             ESP_LOGI(TAG, "Last errno string (%s)", strerror(event->error_handle->esp_transport_sock_errno));
-
         }
         break;
     default:
@@ -139,54 +144,74 @@ void mqtt_app_start(void)
     esp_mqtt_client_start(client);
 }
 
-void smartconfig_example_task(void * parm)
+void smartconfig_example_task(void *parm)
 {
     EventBits_t uxBits;
-    ESP_ERROR_CHECK( esp_smartconfig_set_type(SC_TYPE_ESPTOUCH) );
+    ESP_ERROR_CHECK(esp_smartconfig_set_type(SC_TYPE_ESPTOUCH));
     smartconfig_start_config_t cfg = SMARTCONFIG_START_CONFIG_DEFAULT();
-    ESP_ERROR_CHECK( esp_smartconfig_start(&cfg) );
-    while (1) {
+    ESP_ERROR_CHECK(esp_smartconfig_start(&cfg));
+    while (1)
+    {
         uxBits = xEventGroupWaitBits(s_wifi_event_group, CONNECTED_BIT | ESPTOUCH_DONE_BIT, true, false, portMAX_DELAY);
-        if(uxBits & CONNECTED_BIT) {
+        if (uxBits & CONNECTED_BIT)
+        {
             ESP_LOGI(TAG, "WiFi Connected to ap");
         }
-        if(uxBits & ESPTOUCH_DONE_BIT) {
+        if (uxBits & ESPTOUCH_DONE_BIT)
+        {
             ESP_LOGI(TAG, "smartconfig over");
+            my_connection.flag = true;
+            SetInfoConnection(&my_connection);
+            GPIOInit(WIFI_OK, GPIO_OUTPUT);
+            GPIOOn(WIFI_OK);
+            vTaskDelay(3000 / portTICK_PERIOD_MS);
+            GPIOOff(WIFI_OK);
             esp_smartconfig_stop();
             vTaskDelete(NULL);
         }
     }
 }
 
-
-void event_handler(void* arg, esp_event_base_t event_base,
-                                int32_t event_id, void* event_data)
+void event_handler(void *arg, esp_event_base_t event_base,
+                   int32_t event_id, void *event_data)
 {
-    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
+
+    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START)
+    {
         xTaskCreate(smartconfig_example_task, "smartconfig_example_task", 4096, NULL, 3, NULL);
-    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
+    }
+    else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED)
+    {
         esp_wifi_connect();
         xEventGroupClearBits(s_wifi_event_group, CONNECTED_BIT);
-    } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+    }
+    else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
+    {
         xEventGroupSetBits(s_wifi_event_group, CONNECTED_BIT);
-    } else if (event_base == SC_EVENT && event_id == SC_EVENT_SCAN_DONE) {
+    }
+    else if (event_base == SC_EVENT && event_id == SC_EVENT_SCAN_DONE)
+    {
         ESP_LOGI(TAG, "Scan done");
-    } else if (event_base == SC_EVENT && event_id == SC_EVENT_FOUND_CHANNEL) {
+    }
+    else if (event_base == SC_EVENT && event_id == SC_EVENT_FOUND_CHANNEL)
+    {
         ESP_LOGI(TAG, "Found channel");
-    } else if (event_base == SC_EVENT && event_id == SC_EVENT_GOT_SSID_PSWD) {
+    }
+    else if (event_base == SC_EVENT && event_id == SC_EVENT_GOT_SSID_PSWD)
+    {
         ESP_LOGI(TAG, "Got SSID and password");
 
         smartconfig_event_got_ssid_pswd_t *evt = (smartconfig_event_got_ssid_pswd_t *)event_data;
-        wifi_config_t wifi_config;
-        uint8_t ssid[33] = { 0 };
-        uint8_t password[65] = { 0 };
-        uint8_t rvd_data[33] = { 0 };
+        uint8_t ssid[33] = {0};
+        uint8_t password[65] = {0};
+        uint8_t rvd_data[33] = {0};
 
         bzero(&wifi_config, sizeof(wifi_config_t));
         memcpy(wifi_config.sta.ssid, evt->ssid, sizeof(wifi_config.sta.ssid));
         memcpy(wifi_config.sta.password, evt->password, sizeof(wifi_config.sta.password));
         wifi_config.sta.bssid_set = evt->bssid_set;
-        if (wifi_config.sta.bssid_set == true) {
+        if (wifi_config.sta.bssid_set == true)
+        {
             memcpy(wifi_config.sta.bssid, evt->bssid, sizeof(wifi_config.sta.bssid));
         }
 
@@ -202,27 +227,19 @@ void event_handler(void* arg, esp_event_base_t event_base,
         nvs_commit(my_handle_passw);
         nvs_close(my_handle_ssid);
         nvs_close(my_handle_passw);
-    
-        if (evt->type == SC_TYPE_ESPTOUCH_V2) {
-            ESP_ERROR_CHECK( esp_smartconfig_get_rvd_data(rvd_data, sizeof(rvd_data)) );
-            ESP_LOGI(TAG, "RVD_DATA:");
-            for (int i=0; i<33; i++) {
-                printf("%02x ", rvd_data[i]);
-            }
-            printf("\n");
-        }
-
-        ESP_ERROR_CHECK( esp_wifi_disconnect() );
-        ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_STA, &wifi_config) );
+        ESP_ERROR_CHECK(esp_wifi_disconnect());
+        ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
         esp_wifi_connect();
-    } else if (event_base == SC_EVENT && event_id == SC_EVENT_SEND_ACK_DONE) {
+    }
+    else if (event_base == SC_EVENT && event_id == SC_EVENT_SEND_ACK_DONE)
+    {
         xEventGroupSetBits(s_wifi_event_group, ESPTOUCH_DONE_BIT);
     }
 }
 
-
 void initialise_wifi_app(void)
 {
+
     ESP_ERROR_CHECK(esp_netif_init());
     s_wifi_event_group = xEventGroupCreate();
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -230,22 +247,39 @@ void initialise_wifi_app(void)
     assert(sta_netif);
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-    ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
+    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    // Eventos de smartconfig
+    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL));
+    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &event_handler, NULL));
+    ESP_ERROR_CHECK(esp_event_handler_register(SC_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL));
 
-    ESP_ERROR_CHECK( esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL) );
-    ESP_ERROR_CHECK( esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &event_handler, NULL) );
-    ESP_ERROR_CHECK( esp_event_handler_register(SC_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL) );
-
-    ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
-    ESP_ERROR_CHECK( esp_wifi_start() );
-    
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_start());
 }
 
-void ConnectionWF()
+void vConnectionApp(void *pvParameters)
 {
     ESP_ERROR_CHECK(nvs_flash_init());
-    initialise_wifi_app(); 
+    initialise_wifi_app();
+    while (1)
+    {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
 }
+
+void vConnectionWIFI(void *pvParameters){
+     
+    while (1)
+    {
+         
+
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+
+}
+
+
+
 
 void ConnectionMQTT()
 {
@@ -262,43 +296,42 @@ void ConnectionMQTT()
     esp_log_level_set("OUTBOX", ESP_LOG_VERBOSE);
 
     ESP_ERROR_CHECK(nvs_flash_init());
-    //ESP_ERROR_CHECK(esp_netif_init());
-   // ESP_ERROR_CHECK(esp_event_loop_create_default());
+    // ESP_ERROR_CHECK(esp_netif_init());
+    // ESP_ERROR_CHECK(esp_event_loop_create_default());
     mqtt_app_start();
-
 }
 
+void vConnectionTask(void *pvParameters)
+{
 
+    while (1)
+    {
+        switch (value)
+        {
+        case CONNECTION_WIFI_SMARTCONFIG:
+            initialise_wifi_app();
 
-void vConnectionTask(void *pvParameters){
-	
-	while(1){
-		switch (value)
-		{
-		case CONNECTION_WIFI_SMARTCONFIG:
-		initialise_wifi_app();
-    
-			break;
-		case CONNECTION_WIFI_STA:
-		
-			break;
-		case COMUNICATION_MQTT:
-		
-			break;
+            break;
+        case CONNECTION_WIFI_STA:
+
+            break;
+        case COMUNICATION_MQTT:
+
+            break;
         case DISCONNECTION:
-		GetInfoConnection(&my_connection);
-        if(my_connection.mode == CONNECTION_WIFI_SMARTCONFIG){
-            value = CONNECTION_WIFI_SMARTCONFIG;
+            GetInfoConnection(&my_connection);
+            if (my_connection.mode == CONNECTION_WIFI_SMARTCONFIG)
+            {
+                value = CONNECTION_WIFI_SMARTCONFIG;
+            }
+            if (my_connection.mode == CONNECTION_WIFI_STA)
+            {
+                value = CONNECTION_WIFI_STA;
+            }
+            // value = DISCONNECTION;
+            break;
         }
-        if(my_connection.mode == CONNECTION_WIFI_STA){
-            value = CONNECTION_WIFI_STA;
-        }
-        //value = DISCONNECTION;
-			break;
-		}
 
-		vTaskDelay(2000 /portTICK_PERIOD_MS);
-	}
-
-
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+    }
 }
