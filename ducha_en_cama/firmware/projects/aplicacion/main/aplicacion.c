@@ -56,7 +56,7 @@ void app_main(){
 
   //  xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
 
-//      xTaskCreate(&vConnectionApp, "CONTROL", 32768, NULL, 1, NULL);
+   // xTaskCreate(&vConnectionWIFI, "WIFI", 32768, NULL, 1, NULL);
 
  //   xTaskCreate(&vControlDuchaTask, "CONTROL", 32768, NULL, 1, NULL);
 
