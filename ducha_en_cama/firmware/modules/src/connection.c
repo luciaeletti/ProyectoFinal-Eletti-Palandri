@@ -221,6 +221,7 @@ void event_handler_smartconfig(void* arg_sc, esp_event_base_t event_base_sc, int
         nvs_set_i32(my_handle, "CONTRASEÑA", evt->password);
         nvs_commit(my_handle);
         nvs_close(my_handle);
+
         ESP_ERROR_CHECK(esp_wifi_disconnect());
         ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config_sc));
         esp_wifi_connect();
@@ -284,29 +285,29 @@ void event_handler(void* arg, esp_event_base_t event_base,
 */
 
 void initialise_wifi(void){
-
+   
 
 }
 
-
+/*
 void vConnectionWIFI(void *pvParameters){
 
-    //ESP_ERROR_CHECK(nvs_flash_init());
+    ESP_ERROR_CHECK(nvs_flash_init());
 
     while (1)
     {
-   // nvs_open("storage", NVS_READWRITE, &my_handle);
-    //nvs_get_i32(my_handle, "RED", my_wifi->SSID);
-   // nvs_open("storage", NVS_READWRITE, &my_handle);
+    nvs_open("storage", NVS_READONLY, &my_handle);
+    nvs_get_i32(my_handle, "RED", my_wifi->SSID);
+    //nvs_open("storage", NVS_READONLY, &my_handle);
    // nvs_get_i32(my_handle, "CONTRASEÑA", my_wifi->PASSWORD);
-   // nvs_commit(my_handle);
-   // nvs_close(my_handle);
+    nvs_commit(my_handle);
+    nvs_close(my_handle);
     printf("LA SSID ES:  %ld.\n\r", my_wifi->SSID);
-    printf("EL PASSWORD ES:  %ld.\n\r", my_wifi->PASSWORD);
+ //   printf("EL PASSWORD ES:  %ld.\n\r", my_wifi->PASSWORD);
     vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
 
-}
+}*/
 
 
 

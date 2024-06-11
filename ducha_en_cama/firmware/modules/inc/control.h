@@ -11,6 +11,8 @@
 #include <string.h>
 #include <stdio.h>
 #include "conditions.h"
+#include "ds3231.h"
+
 /*==================[macros]=================================================*/
 
 /*==================[typedef]================================================*/
@@ -21,6 +23,8 @@
 
 /*==================[external functions declaration]=========================*/
 void vControlDuchaTask(void *pvParameters);
+void vControlTiempoTask(void *pvParameters);
+
 
 
 

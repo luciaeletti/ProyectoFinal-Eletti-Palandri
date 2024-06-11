@@ -46,6 +46,7 @@
 
 #include <esp_err.h>
 #include <driver/i2c.h>
+#include "i2c_mcu.h"
 #include <time.h>
 
 #ifdef __cplusplus
@@ -65,6 +66,8 @@ extern "C" {
 #define DS3231_PM_FLAG            0x20
 #define DS3231_MONTH_MASK         0x1f
 
+
+
 enum {
     DS3231_SET = 0,
     DS3231_CLEAR,
@@ -73,20 +76,13 @@ enum {
 
 typedef struct {
     i2c_port_t port;
-    i2c_config_t cfg;
-    uint8_t addr;
+   // i2c_config_t cfg;
+    uint8_t addr_rtc;
     uint32_t timeoutMs;
 } DS3231_Info;
 
-/**
- * @brief Initialize device descriptor
- * @param ds3231 DS3231 device descriptor
- * @param port I2C port - I2C_NUM_0 or I2C_NUM_1
- * @param sda_gpio SDA GPIO
- * @param scl_gpio SCL GPIO
- * @param timeoutMS timeout for message transmissions
- */
-void ds3231_init_info(DS3231_Info *ds3231, i2c_port_t port, gpio_num_t sda_gpio, gpio_num_t scl_gpio, uint32_t timeoutMs);
+
+void ds3231_init_info(DS3231_Info *ds3231);
 
 /**
  * @brief Set the time on the RTC
@@ -106,27 +102,9 @@ esp_err_t ds3231_set_time(DS3231_Info *ds3231, struct tm *time);
  */
 esp_err_t ds3231_get_time(DS3231_Info *ds3231, struct tm *time);
 
-/**
- * @brief Check if oscillator has previously stopped
- *
- * E.g. no power/battery or disabled
- * sets flag to true if there has been a stop
- *
- * @param dev Device descriptor
- * @param[out] flag Stop flag
- * @return ESP_OK to indicate success
- */
-esp_err_t ds3231_get_oscillator_stop_flag(DS3231_Info *ds3231, bool *flag);
-
-/**
- * @brief Clear the oscillator stopped flag
- * @param dev Device descriptor
- * @return ESP_OK to indicate success
- */
-esp_err_t ds3231_clear_oscillator_stop_flag(DS3231_Info *ds3231);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // DS3231_H
+#endif //  DS3231_H

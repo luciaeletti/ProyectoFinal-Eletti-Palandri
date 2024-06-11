@@ -45,17 +45,17 @@
 #include <string.h>
 #include <esp_log.h>
 
-static const char *TAG = "DS3231";
-
 #define DS3231_I2C_ADDR 0x68
 #define MAX_APB_TIMEOUT 1048575
+
+static const char *TAG = "DS3231";
 
 typedef struct {
     i2c_config_t config;
     bool installed;
 } i2c_port_state_t;
 
-static i2c_port_state_t states[I2C_NUM_MAX];
+//static i2c_port_state_t states[I2C_NUM_MAX];
 
 static uint8_t bcd2dec(uint8_t val)
 {
@@ -66,7 +66,7 @@ static uint8_t dec2bcd(uint8_t val)
 {
     return ((val / 10) << 4) + (val % 10);
 }
-
+/*
 inline static bool cfg_equal(const i2c_config_t *a, const i2c_config_t *b)
 {
     return a->scl_io_num == b->scl_io_num
@@ -75,8 +75,9 @@ inline static bool cfg_equal(const i2c_config_t *a, const i2c_config_t *b)
         && a->scl_pullup_en == b->scl_pullup_en
         && a->sda_pullup_en == b->sda_pullup_en;
 }
+*/
 
-static esp_err_t i2c_setup_port(i2c_port_t port, const i2c_config_t *cfg)
+/*static esp_err_t i2c_setup_port(i2c_port_t port, const i2c_config_t *cfg)
 {
     esp_err_t res;
     if (!cfg_equal(cfg, &states[port].config))
@@ -109,59 +110,62 @@ static esp_err_t i2c_setup_port(i2c_port_t port, const i2c_config_t *cfg)
 
     return ESP_OK;
 }
+*/
 
 esp_err_t i2c_read_reg(const DS3231_Info *ds3231, uint8_t reg, const void *in_data, size_t in_size)
 {
-    esp_err_t res = i2c_setup_port(ds3231->port, &ds3231->cfg);
-    if (res == ESP_OK)
-    {
+  //  esp_err_t res = i2c_setup_port(ds3231->port, &ds3231->cfg);
+   // if (res == ESP_OK)
+    //{
         i2c_cmd_handle_t cmd = i2c_cmd_link_create();
         i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, ds3231->addr << 1, true);
+        i2c_master_write_byte(cmd, ds3231->addr_rtc << 1, true);
         i2c_master_write(cmd, (void *)&reg, 1, true);
         i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (ds3231->addr << 1) | 1, true);
+        i2c_master_write_byte(cmd, (ds3231->addr_rtc << 1) | 1, true);
         i2c_master_read(cmd, (void *)in_data, in_size, I2C_MASTER_LAST_NACK);
         i2c_master_stop(cmd);
 
-        res = i2c_master_cmd_begin(ds3231->port, cmd, ds3231->timeoutMs / portTICK_PERIOD_MS);
-        if (res != ESP_OK)
-            ESP_LOGE(TAG, "Could not read from device [0x%02x at %d]: %d", ds3231->addr, ds3231->port, res);
-
+        //res = 
+        i2c_master_cmd_begin(ds3231->port, cmd, ds3231->timeoutMs / portTICK_PERIOD_MS);
+    /*    if (res != ESP_OK)
+            ESP_LOGE(TAG, "Could not read from device [0x%02x at %d]: %d", ds3231->addr_rtc, ds3231->port, res);
+*/
         i2c_cmd_link_delete(cmd);
-    }
-    return res;
+    
+    return 0;
 }
 
 esp_err_t i2c_write_reg(const DS3231_Info *ds3231, uint8_t reg, const void *data, size_t size)
 {
-    esp_err_t res = i2c_setup_port(ds3231->port, &ds3231->cfg);
-    if (res == ESP_OK)
-    {
+  //  esp_err_t res = i2c_setup_port(ds3231->port, &ds3231->cfg);
+  //  if (res == ESP_OK)
+  //  {
         i2c_cmd_handle_t cmd = i2c_cmd_link_create();
         i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, ds3231->addr << 1, true);
+        i2c_master_write_byte(cmd, ds3231->addr_rtc << 1, true);
         i2c_master_write(cmd, (void *)&reg, 1, true);
         i2c_master_write(cmd, (void *)data, size, true);
         i2c_master_stop(cmd);
-        res = i2c_master_cmd_begin(ds3231->port, cmd, ds3231->timeoutMs / portTICK_PERIOD_MS);
-        if (res != ESP_OK)
-            ESP_LOGE(TAG, "Could not write to device [0x%02x at %d]: %d", ds3231->addr, ds3231->port, res);
+     //   res = 
+        i2c_master_cmd_begin(ds3231->port, cmd, ds3231->timeoutMs / portTICK_PERIOD_MS);
+     /*   if (res != ESP_OK)
+            ESP_LOGE(TAG, "Could not write to device [0x%02x at %d]: %d", ds3231->addr_rtc, ds3231->port, res);*/
         i2c_cmd_link_delete(cmd);
-    }
-    return res;
+    //}
+    return 0;
 }
 
-void ds3231_init_info(DS3231_Info *ds3231, i2c_port_t port, gpio_num_t sda_gpio, gpio_num_t scl_gpio, uint32_t timeoutMs)
+void ds3231_init_info(DS3231_Info *ds3231)
 {
-    ds3231->port = port;
-    ds3231->addr = DS3231_I2C_ADDR;
-    ds3231->timeoutMs = timeoutMs;
-    ds3231->cfg.sda_io_num = sda_gpio;
-    ds3231->cfg.scl_io_num = scl_gpio;
-    ds3231->cfg.sda_pullup_en = GPIO_PULLUP_DISABLE;
-    ds3231->cfg.scl_pullup_en = GPIO_PULLUP_DISABLE;
-    ds3231->cfg.master.clk_speed = I2C_FREQ_HZ;
+    ds3231->port = I2C_MASTER_NUM;
+    ds3231->addr_rtc = DS3231_I2C_ADDR;
+   // ds3231->timeoutMs = timeoutMs;
+   // ds3231->cfg.sda_io_num = sda_gpio;
+   // ds3231->cfg.scl_io_num = scl_gpio;
+   // ds3231->cfg.sda_pullup_en = GPIO_PULLUP_DISABLE;
+  //  ds3231->cfg.scl_pullup_en = GPIO_PULLUP_DISABLE;
+    //ds3231->cfg.master.clk_speed = I2C_FREQ_HZ;
 }
 
 esp_err_t ds3231_set_time(DS3231_Info *ds3231, struct tm *time)
@@ -181,66 +185,6 @@ esp_err_t ds3231_set_time(DS3231_Info *ds3231, struct tm *time)
 
     i2c_write_reg(ds3231, DS3231_ADDR_TIME, data, 7);
 
-    return ESP_OK;
-}
-
-/* Get a byte containing just the requested bits
- * pass the register address to read, a mask to apply to the register and
- * an uint* for the output
- * you can test this value directly as true/false for specific bit mask
- * of use a mask of 0xff to just return the whole register byte
- * returns true to indicate success
- */
-static esp_err_t ds3231_get_flag(DS3231_Info *ds3231, uint8_t addr, uint8_t mask, uint8_t *flag)
-{
-    uint8_t data=0;
-
-    /* get register */
-    esp_err_t res = i2c_read_reg(ds3231, addr, &data, 1);
-    if (res != ESP_OK)
-        return res;
-
-    /* return only requested flag */
-    *flag = (data & mask);
-    return ESP_OK;
-}
-
-/* Set/clear bits in a byte register, or replace the byte altogether
- * pass the register address to modify, a byte to replace the existing
- * value with or containing the bits to set/clear and one of
- * DS3231_SET/DS3231_CLEAR/DS3231_REPLACE
- * returns true to indicate success
- */
-static esp_err_t ds3231_set_flag(DS3231_Info *ds3231, uint8_t addr, uint8_t bits, uint8_t mode)
-{
-    uint8_t data=0;
-
-    /* get status register */
-    esp_err_t res = i2c_read_reg(ds3231, addr, &data, 1);
-    if (res != ESP_OK)
-        return res;
-    /* clear the flag */
-    if (mode == DS3231_REPLACE)
-        data = bits;
-    else if (mode == DS3231_SET)
-        data |= bits;
-    else
-        data &= ~bits;
-
-    return i2c_write_reg(ds3231, addr, &data, 1);
-}
-
-esp_err_t ds3231_get_oscillator_stop_flag(DS3231_Info *ds3231, bool *flag)
-{
-    uint8_t f;
-    ds3231_get_flag(ds3231, DS3231_ADDR_STATUS, DS3231_STAT_OSCILLATOR, &f);
-    *flag = (f ? true : false);
-    return ESP_OK;
-}
-
-esp_err_t ds3231_clear_oscillator_stop_flag(DS3231_Info *ds3231)
-{
-    ds3231_set_flag(ds3231, DS3231_ADDR_STATUS, DS3231_STAT_OSCILLATOR, DS3231_CLEAR);
     return ESP_OK;
 }
 

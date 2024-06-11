@@ -20,10 +20,8 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 #include "driver/gpio.h"
-#include "LCD_I2C.h"
 #include "driver/i2c.h"
-#include "FDC1004.h"
-#include "ds18b20.h"
+#include "ds3231.h"
 #include "control.h"
 #include "general.h"
 #include "conditions.h"
@@ -44,8 +42,10 @@ CONDIC_FUNC_T data;
 ALARM_T my_alarm;
 INFO_SHOWER_T my_info;
 ESTADOS_T estado = REPOSO;
-/*==================[internal functions declaration]==========================*/
 
+//DS3231_Info my_rtc;
+//ds3231_init_info(my_rtc);
+/*==================[internal functions declaration]==========================*/
 /*==================[external functions declaration]==========================*/
 
 /*==================[internal functions definition]==========================*/

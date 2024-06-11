@@ -27,14 +27,6 @@
 #include "control.h"
 
 /*==================[macros]=======================================*/
-#define NUM_ROWS	1 /*Cantidad de filas del teclado*/
-#define NUM_COLS	3 /*Cantidad de columnas del teclado*/
-#define LCD_ADDR  0x3f  /*!< slave address for LCD */
-#define I2C_MASTER_SCL_IO   GPIO_NUM_6 /*!< gpio number for I2C master clock */
-#define I2C_MASTER_SDA_IO   GPIO_NUM_7/*!< gpio number for I2C master data  */
-
-#define LED_TEMP GPIO_2
-#define HAB_I2C GPIO_19
 
 /*==================[internal functions declaration]==========================*/
 
@@ -52,13 +44,16 @@ void app_main(){
 
     I2C_initialize(I2C_MASTER_FREQ_HZ);
 
-   // xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
+    xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
 
-  //  xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
+    xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
 
    // xTaskCreate(&vConnectionWIFI, "WIFI", 32768, NULL, 1, NULL);
+   
+   //  xTaskCreate(&vConnectionApp, "Connection", 32768, NULL, 1, NULL);
 
  //   xTaskCreate(&vControlDuchaTask, "CONTROL", 32768, NULL, 1, NULL);
+
 
     printf("inicio menu \n");
 

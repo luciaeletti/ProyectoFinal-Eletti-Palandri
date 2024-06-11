@@ -81,7 +81,9 @@
             "connection.h": "c",
             "stddef.h": "c",
             "conditions.h": "c",
-            "esp_err.h": "c"
+            "esp_err.h": "c",
+            "esp_partition.h": "c",
+            "nvs.h": "c"
         },
     },
     "tasks": {
