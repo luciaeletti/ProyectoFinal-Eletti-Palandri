@@ -15,15 +15,11 @@
 #include "freertos/timers.h"
 #include "lwip/err.h"
 #include "lwip/sys.h"
+#include "definitions.h"
 /*==================[macros]=================================================*/
 #define NUM_ROWS	1 /*Cantidad de filas del teclado*/
 #define NUM_COLS	3 /*Cantidad de columnas del teclado*/
 
-#define UP_BUTTON_PIN 5
-#define DOWN_BUTTON_PIN 10
-#define SELECT_BUTTON_PIN 4
-#define PUMP_PIN 11
-#define ASP_PIN 3
 
 static const char *TAG = "primerversion";
 

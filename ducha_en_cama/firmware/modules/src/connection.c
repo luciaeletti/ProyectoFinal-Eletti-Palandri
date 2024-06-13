@@ -30,13 +30,12 @@
 #include "lwip/dns.h"
 #include "lwip/netdb.h"
 #include "gpio_mcu.h"
-#include "general.h"
+#include "at24c.h"
 #include "mqtt_client.h"
 #include "connection.h"
 #include "conditions.h"
-
+#include "definitions.h"
 /*==================[macros]=================================================*/
-#define WIFI_OK GPIO_20
 static const char *TAG = "WIFI";
 
 uint8_t value = DISCONNECTION;
@@ -51,7 +50,7 @@ const int CONNECTED_BIT = BIT0;
 const int ESPTOUCH_DONE_BIT = BIT1;
 
 INFO_CONNECTION_T my_connection;
-DATA_CONNECTION_T *my_wifi = {0};
+DATA_CONNECTION_T my_wifi = {0};
 
 
 void log_error_if_nonzero(const char *message, int error_code)
@@ -213,14 +212,19 @@ void event_handler_smartconfig(void* arg_sc, esp_event_base_t event_base_sc, int
 
         memcpy(ssid, evt->ssid, sizeof(evt->ssid));
         memcpy(password, evt->password, sizeof(evt->password));
+        my_wifi.SSID = ssid;
+        my_wifi.PASSWORD = password;
+     //   memcpy(my_wifi->SSID, evt->ssid, sizeof(evt->ssid));
+     //   memcpy(my_wifi->PASSWORD, evt->password, sizeof(evt->password));
+
+      /*  InitRom(&my_memory);
+        WriteRom(&my_memory,0x100,my_wifi->SSID);
+        WriteRom(&my_memory,0x101,my_wifi->PASSWORD);*/
+
+        
         ESP_LOGI(TAG, "SSID:%s", ssid);
         ESP_LOGI(TAG, "PASSWORD:%s", password);
-        nvs_open("storage", NVS_READWRITE, &my_handle);
-        nvs_set_i32(my_handle, "RED", evt->ssid);
-        nvs_open("storage", NVS_READWRITE, &my_handle);
-        nvs_set_i32(my_handle, "CONTRASEÑA", evt->password);
-        nvs_commit(my_handle);
-        nvs_close(my_handle);
+        
 
         ESP_ERROR_CHECK(esp_wifi_disconnect());
         ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config_sc));
@@ -306,7 +310,13 @@ void vConnectionWIFI(void *pvParameters){
  //   printf("EL PASSWORD ES:  %ld.\n\r", my_wifi->PASSWORD);
     vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
-
+    //guardarrrr
+nvs_open("storage", NVS_READWRITE, &my_handle);
+        nvs_set_i32(my_handle, "RED", evt->ssid);
+        nvs_open("storage", NVS_READWRITE, &my_handle);
+        nvs_set_i32(my_handle, "CONTRASEÑA", evt->password);
+        nvs_commit(my_handle);
+        nvs_close(my_handle);
 }*/
 
 

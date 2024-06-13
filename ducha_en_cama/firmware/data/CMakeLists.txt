@@ -4,6 +4,8 @@ idf_build_get_property(target IDF_TARGET)
 set(srcs
     "src/conditions.c"
     "src/alarms.c"
+    "src/definitions.c"
+
     )
 
 # Always included headers

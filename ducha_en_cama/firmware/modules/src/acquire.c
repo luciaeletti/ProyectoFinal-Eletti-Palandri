@@ -25,7 +25,7 @@
 #include "FDC1004.h"
 #include "ds18b20.h"
 #include "acquire.h"
-#include "general.h"
+#include "definitions.h"
 
 /*==================[macros]=================================================*/
 #define HEIGHT	900
@@ -33,8 +33,6 @@
 #define CONVERSION 1000
 #define GANANCIA 0.689
 #define OFFSET -1.117
-
-#define TEMP_BUS GPIO_NUM_1
 
 
 DeviceAddress tempSensors[1]; 

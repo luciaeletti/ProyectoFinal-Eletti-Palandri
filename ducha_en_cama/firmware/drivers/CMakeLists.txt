@@ -7,13 +7,14 @@ set(srcs
     "microcontroller/src/delay_mcu.c"
     "microcontroller/src/timer_mcu.c"
     "microcontroller/src/i2c_mcu.c"
-    "microcontroller/src/general.c"
     "devices/src/KeyPad.c"
     "devices/src/LCD_I2C.c"
     "devices/src/ds18b20.c"
     "devices/src/FDC1004.c"
     "devices/src/ds3231.c"
     "devices/src/at24c.c"
+    "devices/src/switch.c"
+
     )
 
 # Always included headers

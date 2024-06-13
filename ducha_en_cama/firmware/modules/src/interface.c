@@ -20,7 +20,6 @@
 #include "driver/i2c.h"
 #include "FDC1004.h"
 #include "ds18b20.h"
-#include "general.h"
 #include "conditions.h"
 #include "connection.h"
 #include "interface.h"
@@ -342,14 +341,14 @@ void menuInit(){
     gpio_set_direction(UP_BUTTON_PIN, GPIO_MODE_INPUT);
     gpio_set_direction(DOWN_BUTTON_PIN, GPIO_MODE_INPUT);
     gpio_set_direction(SELECT_BUTTON_PIN, GPIO_MODE_INPUT);
-    gpio_set_direction(ASP_PIN, GPIO_MODE_INPUT);
-    gpio_set_direction(PUMP_PIN, GPIO_MODE_INPUT);
+    gpio_set_direction(BUTTON_ASP_PIN, GPIO_MODE_INPUT);
+    gpio_set_direction(BUTTON_PUMP_PIN, GPIO_MODE_INPUT);
 
   	gpio_set_pull_mode(UP_BUTTON_PIN, GPIO_PULLUP_ONLY);
   	gpio_set_pull_mode(DOWN_BUTTON_PIN, GPIO_PULLUP_ONLY);
 	gpio_set_pull_mode(SELECT_BUTTON_PIN, GPIO_PULLUP_ONLY);
-	gpio_set_pull_mode(ASP_PIN, GPIO_PULLUP_ONLY);
-	gpio_set_pull_mode(PUMP_PIN, GPIO_PULLUP_ONLY);
+	gpio_set_pull_mode(BUTTON_ASP_PIN, GPIO_PULLUP_ONLY);
+	gpio_set_pull_mode(BUTTON_PUMP_PIN, GPIO_PULLUP_ONLY);
 
  	button_queue = xQueueCreate(10, sizeof(button_event_t));
   	button_timer = xTimerCreate("button_timer", pdMS_TO_TICKS(100), pdTRUE, (void *)0, button_timer_callback);

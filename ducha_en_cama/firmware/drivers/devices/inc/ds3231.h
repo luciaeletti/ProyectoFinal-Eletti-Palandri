@@ -66,8 +66,6 @@ extern "C" {
 #define DS3231_PM_FLAG            0x20
 #define DS3231_MONTH_MASK         0x1f
 
-
-
 enum {
     DS3231_SET = 0,
     DS3231_CLEAR,
@@ -81,8 +79,7 @@ typedef struct {
     uint32_t timeoutMs;
 } DS3231_Info;
 
-
-void ds3231_init_info(DS3231_Info *ds3231);
+uint8_t ds3231_init_info(DS3231_Info *ds3231);
 
 /**
  * @brief Set the time on the RTC

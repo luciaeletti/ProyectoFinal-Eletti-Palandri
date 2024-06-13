@@ -26,7 +26,6 @@
 #include "ds18b20.h"
 #include "analyzer.h"
 #include "conditions.h"
-#include "general.h"
 #include "alarms.h"
 
 /*==================[macros]=================================================*/

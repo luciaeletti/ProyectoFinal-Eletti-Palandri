@@ -83,7 +83,8 @@
             "conditions.h": "c",
             "esp_err.h": "c",
             "esp_partition.h": "c",
-            "nvs.h": "c"
+            "nvs.h": "c",
+            "time.h": "c"
         },
     },
     "tasks": {

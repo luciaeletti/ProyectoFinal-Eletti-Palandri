@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "conditions.h"
 #include "ds3231.h"
+#include "definitions.h"
 
 /*==================[macros]=================================================*/
 
@@ -23,9 +24,12 @@
 
 /*==================[external functions declaration]=========================*/
 void vControlDuchaTask(void *pvParameters);
+void vControlAutolavadoTask(void *pvParameters);
 void vControlTiempoTask(void *pvParameters);
-
-
+void vControlBombaTask(void *pvParameters);
+void BombaDucha();
+void ContarTiempo();
+void GuardarDatosWF();
 
 
 

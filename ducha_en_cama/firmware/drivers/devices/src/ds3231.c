@@ -76,8 +76,8 @@ inline static bool cfg_equal(const i2c_config_t *a, const i2c_config_t *b)
         && a->sda_pullup_en == b->sda_pullup_en;
 }
 */
-
-/*static esp_err_t i2c_setup_port(i2c_port_t port, const i2c_config_t *cfg)
+/*
+static esp_err_t i2c_setup_port(i2c_port_t port, const i2c_config_t *cfg)
 {
     esp_err_t res;
     if (!cfg_equal(cfg, &states[port].config))
@@ -111,7 +111,6 @@ inline static bool cfg_equal(const i2c_config_t *a, const i2c_config_t *b)
     return ESP_OK;
 }
 */
-
 esp_err_t i2c_read_reg(const DS3231_Info *ds3231, uint8_t reg, const void *in_data, size_t in_size)
 {
   //  esp_err_t res = i2c_setup_port(ds3231->port, &ds3231->cfg);
@@ -128,9 +127,9 @@ esp_err_t i2c_read_reg(const DS3231_Info *ds3231, uint8_t reg, const void *in_da
 
         //res = 
         i2c_master_cmd_begin(ds3231->port, cmd, ds3231->timeoutMs / portTICK_PERIOD_MS);
-    /*    if (res != ESP_OK)
-            ESP_LOGE(TAG, "Could not read from device [0x%02x at %d]: %d", ds3231->addr_rtc, ds3231->port, res);
-*/
+     /*  if (res != ESP_OK)
+            ESP_LOGE(TAG, "Could not read from device [0x%02x at %d]: %d", ds3231->addr_rtc, ds3231->port, res);*/
+
         i2c_cmd_link_delete(cmd);
     
     return 0;
@@ -156,9 +155,10 @@ esp_err_t i2c_write_reg(const DS3231_Info *ds3231, uint8_t reg, const void *data
     return 0;
 }
 
-void ds3231_init_info(DS3231_Info *ds3231)
+
+uint8_t ds3231_init_info(DS3231_Info *ds3231)
 {
-    ds3231->port = I2C_MASTER_NUM;
+   // ds3231->port = I2C_MASTER_NUM;
     ds3231->addr_rtc = DS3231_I2C_ADDR;
    // ds3231->timeoutMs = timeoutMs;
    // ds3231->cfg.sda_io_num = sda_gpio;
@@ -166,6 +166,7 @@ void ds3231_init_info(DS3231_Info *ds3231)
    // ds3231->cfg.sda_pullup_en = GPIO_PULLUP_DISABLE;
   //  ds3231->cfg.scl_pullup_en = GPIO_PULLUP_DISABLE;
     //ds3231->cfg.master.clk_speed = I2C_FREQ_HZ;
+    return 0;
 }
 
 esp_err_t ds3231_set_time(DS3231_Info *ds3231, struct tm *time)
@@ -183,6 +184,7 @@ esp_err_t ds3231_set_time(DS3231_Info *ds3231, struct tm *time)
     data[5] = dec2bcd(time->tm_mon + 1);
     data[6] = dec2bcd(time->tm_year - 100);
 
+   // I2C_writeBytes(DS3231_I2C_ADDR,DS3231_ADDR_TIME, 7, data);
     i2c_write_reg(ds3231, DS3231_ADDR_TIME, data, 7);
 
     return ESP_OK;
@@ -191,10 +193,9 @@ esp_err_t ds3231_set_time(DS3231_Info *ds3231, struct tm *time)
 esp_err_t ds3231_get_time(DS3231_Info *ds3231, struct tm *time)
 {
     uint8_t data[7]={0};
-
     /* read time */
     i2c_read_reg(ds3231, DS3231_ADDR_TIME, data, 7);
-
+    //I2C_readBytes(DS3231_I2C_ADDR,DS3231_ADDR_TIME, 7, data,0);
     /* convert to unix time structure */
     time->tm_sec = bcd2dec(data[0]);
     time->tm_min = bcd2dec(data[1]);

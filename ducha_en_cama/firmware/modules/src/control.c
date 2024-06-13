@@ -14,19 +14,13 @@
  */
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/semphr.h"
-#include "freertos/timers.h"
-#include "esp_log.h"
 #include "lwip/err.h"
 #include "lwip/sys.h"
-#include "driver/gpio.h"
-#include "driver/i2c.h"
+#include "gpio_mcu.h"
 #include "ds3231.h"
 #include "control.h"
-#include "general.h"
 #include "conditions.h"
 #include "alarms.h"
-
 
 /*==================[macros]=================================================*/
 typedef enum
@@ -43,8 +37,9 @@ ALARM_T my_alarm;
 INFO_SHOWER_T my_info;
 ESTADOS_T estado = REPOSO;
 
-//DS3231_Info my_rtc;
-//ds3231_init_info(my_rtc);
+DS3231_Info *my_rtc = {0};
+
+
 /*==================[internal functions declaration]==========================*/
 /*==================[external functions declaration]==========================*/
 
@@ -93,4 +88,53 @@ void vControlDuchaTask(void *pvParameters) {
 		vTaskDelay(2000 /portTICK_PERIOD_MS);
 	}
 
+}
+
+void BombaDucha(){
+
+    printf("llegooo \n");
+	if(GPIORead(BOMBA_DUCHA)==false){
+	GPIOOn(BOMBA_DUCHA);
+    printf("bomba prendida \n");
+	}
+	if(GPIORead(BOMBA_DUCHA)==true){
+	GPIOOff(BOMBA_DUCHA);
+    printf("bomba apagada \n");
+	}
+
+	
+}
+
+void vControlBombaTask(void *pvParameters){
+
+	while(1){
+	GPIOActivInt(BUTTON_PUMP_PIN, &BombaDucha, false, NULL);
+	vTaskDelay(2000 /portTICK_PERIOD_MS);
+	}
+}
+void ContarTiempo() {
+
+	DS3231_Info my_rtc;
+    ds3231_init_info(&my_rtc);
+    printf("entro contar tiempo \n");
+	
+ 	struct tm start_time, end_time;
+    printf("1 \n");
+
+    // Obtener la hora inicial del evento
+ 	ds3231_get_time(&my_rtc, &start_time);
+
+    printf("2 \n");
+
+    ESP_LOGI("EVENT", "Evento iniciado a las %02d:%02d:%02d", start_time.tm_hour, start_time.tm_min, start_time.tm_sec);
+    printf("3 \n");
+
+    // Simular la duración del evento
+    vTaskDelay(5000 / portTICK_PERIOD_MS);
+    printf("4 \n");
+
+    // Obtener la hora final del evento
+ 	ds3231_get_time(&my_rtc, &end_time);
+    
+    ESP_LOGI("EVENT", "Evento finalizado a las %02d:%02d:%02d", end_time.tm_hour, end_time.tm_min, end_time.tm_sec);
 }

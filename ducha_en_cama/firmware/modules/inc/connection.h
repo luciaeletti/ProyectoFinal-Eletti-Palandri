@@ -11,12 +11,16 @@
 #include <stdio.h>
 #include "esp_event.h"
 #include "conditions.h"
-#include "general.h"
+#include "at24c.h"
 /*==================[macros]=================================================*/
+#define DIR_SSID 0x100
+#define DIR_PASS 0x101
+
 /*==================[typedef]================================================*/
 typedef struct{
-uint32_t SSID;
-uint32_t PASSWORD;
+bool data_ok;
+uint8_t SSID;
+uint8_t PASSWORD;
 }DATA_CONNECTION_T;
 
 /*==================[internal data declaration]==============================*/
