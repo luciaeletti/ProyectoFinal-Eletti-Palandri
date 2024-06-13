@@ -121,7 +121,6 @@ void ContarTiempo() {
  	struct tm start_time, end_time;
     printf("1 \n");
 
-    // Obtener la hora inicial del evento
  	ds3231_get_time(&my_rtc, &start_time);
 
     printf("2 \n");
@@ -129,12 +128,10 @@ void ContarTiempo() {
     ESP_LOGI("EVENT", "Evento iniciado a las %02d:%02d:%02d", start_time.tm_hour, start_time.tm_min, start_time.tm_sec);
     printf("3 \n");
 
-    // Simular la duración del evento
     vTaskDelay(5000 / portTICK_PERIOD_MS);
     printf("4 \n");
 
-    // Obtener la hora final del evento
- 	ds3231_get_time(&my_rtc, &end_time);
+    ds3231_get_time(&my_rtc, &end_time);
     
     ESP_LOGI("EVENT", "Evento finalizado a las %02d:%02d:%02d", end_time.tm_hour, end_time.tm_min, end_time.tm_sec);
 }

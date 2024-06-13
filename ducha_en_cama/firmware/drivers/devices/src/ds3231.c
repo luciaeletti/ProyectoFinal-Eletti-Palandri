@@ -158,7 +158,7 @@ esp_err_t i2c_write_reg(const DS3231_Info *ds3231, uint8_t reg, const void *data
 
 uint8_t ds3231_init_info(DS3231_Info *ds3231)
 {
-   // ds3231->port = I2C_MASTER_NUM;
+    ds3231->port = I2C_MASTER_NUM;
     ds3231->addr_rtc = DS3231_I2C_ADDR;
    // ds3231->timeoutMs = timeoutMs;
    // ds3231->cfg.sda_io_num = sda_gpio;

@@ -95,7 +95,6 @@ bool GPIORead(gpio_t pin){
 
 void GPIOActivInt(gpio_t pin, void *ptr_int_func, bool edge, void *args){
     printf("bomba ??? \n");
-
 	static bool isr_service_installed = false;
 	if(edge){
 		gpio_set_intr_type(gpio_list[pin].pin, GPIO_INTR_POSEDGE);

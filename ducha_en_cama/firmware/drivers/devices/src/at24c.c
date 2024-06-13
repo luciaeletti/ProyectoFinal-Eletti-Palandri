@@ -61,7 +61,7 @@ static esp_err_t ReadReg8(EEPROM_t * dev, int chip_addr, uint8_t data_addr, uint
 	i2c_master_write_byte(cmd, chip_addr << 1 | I2C_MASTER_READ, ACK_CHECK_EN);
 	i2c_master_read_byte(cmd, data, NACK_VAL);
 	i2c_master_stop(cmd);
-	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
+	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 2000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 	return ret;
 }
@@ -74,7 +74,7 @@ static esp_err_t WriteReg8(EEPROM_t * dev, int chip_addr, uint8_t data_addr, uin
 	i2c_master_write_byte(cmd, data_addr, ACK_CHECK_EN);
 	i2c_master_write_byte(cmd, data, ACK_CHECK_EN);
 	i2c_master_stop(cmd);
-	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
+	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 2000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 	usleep(1000*2);
 	return ret;
@@ -91,11 +91,9 @@ static esp_err_t ReadReg16(EEPROM_t * dev, int chip_addr, uint16_t data_addr, ui
 	i2c_master_write_byte(cmd, low_addr, ACK_CHECK_EN);
 	i2c_master_start(cmd);
 	i2c_master_write_byte(cmd, chip_addr << 1 | I2C_MASTER_READ, ACK_CHECK_EN);
-       printf("hola33 \n");
-
-	i2c_master_read_byte(cmd, &data, ACK_VAL);
+	i2c_master_read_byte(cmd, &data, NACK_VAL);
 	i2c_master_stop(cmd);
-	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
+	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 2000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 	return ret;
 }
@@ -111,7 +109,7 @@ static esp_err_t WriteReg16(EEPROM_t * dev,  int chip_addr, uint16_t data_addr, 
 	i2c_master_write_byte(cmd, low_addr, ACK_CHECK_EN);
 	i2c_master_write_byte(cmd, data, ACK_CHECK_EN);
 	i2c_master_stop(cmd);
-	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
+	esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 2000 / portTICK_PERIOD_MS);
 	i2c_cmd_link_delete(cmd);
 	usleep(1000*2);
 	return ret;
@@ -122,19 +120,19 @@ esp_err_t ReadRom(EEPROM_t * dev, uint16_t data_addr, uint8_t * data)
 	if (data_addr > dev->_address) return 0;
        printf("hola \n");
 
-	/*if (dev->_kbits < 32) {
+	if (dev->_kbits < 32) {
 		int blockNumber = data_addr / 256;
 		uint16_t _data_addr = data_addr - (blockNumber * 256);
 		int _chip_addr = dev->_chip_addr + blockNumber;
 		ESP_LOGD(TAG, "ReadRom _chip_addr=%x _data_addr=%d", _chip_addr, _data_addr);
-       printf("hola 2\n");
+       printf("menor a 32\n");
 
 		return ReadReg8(dev, _chip_addr, _data_addr, data);
 
-	} else {*/
+	} else {
 		int _chip_addr = dev->_chip_addr;
-		return ReadReg16(dev, _chip_addr, data_addr, &data);
-	//}
+		return ReadReg16(dev, _chip_addr, data_addr, data);
+	}
 }
 
 esp_err_t WriteRom(EEPROM_t * dev, uint16_t data_addr, uint8_t data)
