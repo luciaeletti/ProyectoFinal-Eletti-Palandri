@@ -11,8 +11,14 @@
 #include "esp_log.h"
 #include "lwip/err.h"
 #include "lwip/sys.h"
+#include "ds3231.h"
 
 /*==================[macros]=================================================*/
+typedef struct{
+DS3231_Info my_rtc;
+struct tm current_time;
+}TIME_T;
+
 /**
  * @brief conditions definitions
  */
@@ -52,8 +58,9 @@ void SetConditions(CONDIC_FUNC_T* pCondition);
 void GetConditions(CONDIC_FUNC_T* pCondition);
 void SetInfoShower(INFO_SHOWER_T* pInfo);
 void GetInfoShower(INFO_SHOWER_T* pInfo);
-void GetInfoConnection(INFO_CONNECTION_T* pConnection);
 void SetInfoConnection(INFO_CONNECTION_T* pConnection);
-
+void GetInfoConnection(INFO_CONNECTION_T* pConnection);
+void SetTime(TIME_T* pTime);
+void GetTime(TIME_T* pTime);
 
 #endif   #ifndef CONDITIONS_H

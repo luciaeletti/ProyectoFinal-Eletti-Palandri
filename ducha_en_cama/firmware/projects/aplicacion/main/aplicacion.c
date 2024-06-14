@@ -15,7 +15,6 @@
 #include "driver/gpio.h"
 #include "LCD_I2C.h"
 #include "driver/i2c.h"
-#include "KeyPad.h"
 #include "FDC1004.h"
 #include "ds18b20.h"
 #include "ds3231.h"
@@ -26,14 +25,16 @@
 #include "i2c_mcu.h"
 #include "acquire.h"
 #include "analyzer.h"
+#include "store.h"
 #include "control.h"
 #include "definitions.h"
+#include "conditions.h"
 
 /*==================[macros]=======================================*/
 extern TaskHandle_t receiverHandler;
 extern TaskHandle_t senderHandler;
-
 EEPROM_t *my_memory;
+TIME_T tiempo_actual;
 
 /*==================[internal functions declaration]==========================*/
 
@@ -42,23 +43,28 @@ EEPROM_t *my_memory;
 /*==================[internal functions definition]==========================*/
 
 void app_main(){
-
     I2C_initialize(I2C_MASTER_FREQ_HZ);
     GPIOInit(BUTTON_PUMP_PIN, GPIO_INPUT);
     GPIOInit(BOMBA_DUCHA, GPIO_OUTPUT);
     InitRom(&my_memory);
+    GetTime(&tiempo_actual);
+    ds3231_init_info(&tiempo_actual.my_rtc);
+    tiempo_actual.current_time.tm_sec = 0;
+	tiempo_actual.current_time.tm_min = 38;
+	tiempo_actual.current_time.tm_hour = 11;
+    SetTime(&tiempo_actual);
+    ds3231_set_time(&tiempo_actual.my_rtc, &tiempo_actual.current_time);
+    xTaskCreate(&vControlTiempoTask, "TIEMPO", 32768, NULL, 1, NULL);
+    xTaskCreate(&vControlBombaTask, "BOMBA DUCHA", 32768, NULL, 1, NULL);
+    printf("inicio menu \n");
+    menuInit();
+
   //  xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
     //xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
    // xTaskCreate(&vConnectionWIFI, "WIFI", 32768, NULL, 1, NULL);
    // xTaskCreate(&vConnectionApp, "Connection", 32768, NULL, 1, NULL);
  //   xTaskCreate(&vControlDuchaTask, "CONTROL", 32768, NULL, 1, NULL);
-    ContarTiempo();
-   // xTaskCreate(&vControlBombaTask, "BOMBA DUCHA", 32768, NULL, 1, NULL);
-
-    printf("inicio menu \n");
-
-    menuInit();
-
+   // ContarTiempo();
 
 }
 

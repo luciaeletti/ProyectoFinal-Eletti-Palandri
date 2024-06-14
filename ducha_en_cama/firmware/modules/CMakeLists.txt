@@ -7,6 +7,7 @@ set(srcs
     "src/analyzer.c"
     "src/connection.c"
     "src/control.c"
+    "src/store.c"
     )
 
 # Always included headers

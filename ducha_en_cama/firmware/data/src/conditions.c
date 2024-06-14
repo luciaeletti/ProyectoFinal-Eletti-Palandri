@@ -14,6 +14,7 @@
 CONDIC_FUNC_T Current;
 INFO_SHOWER_T Shower;
 INFO_CONNECTION_T Connection;
+TIME_T my_time;
 
 /*==================[internal functions declaration]==========================*/
 
@@ -45,4 +46,12 @@ void SetInfoConnection(INFO_CONNECTION_T* pConnection){
 
 void GetInfoConnection(INFO_CONNECTION_T* pConnection){
 	*pConnection=Connection;
+}
+
+void SetTime(TIME_T* pTime){
+	my_time=*pTime;
+}
+
+void GetTime(TIME_T* pTime){
+	*pTime=my_time;
 }

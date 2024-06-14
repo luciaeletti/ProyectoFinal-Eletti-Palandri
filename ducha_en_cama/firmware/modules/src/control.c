@@ -43,8 +43,7 @@ ALARM_T my_alarm;
 INFO_SHOWER_T my_info;
 ESTADOS_T estado = REPOSO;
 ESTADOS_BOMBA_T estado_bomba = APAGADA;
-DS3231_Info *my_rtc = {0};
-
+TIME_T tiempo_uso;
 
 /*==================[internal functions declaration]==========================*/
 /*==================[external functions declaration]==========================*/
@@ -98,55 +97,24 @@ void vControlDuchaTask(void *pvParameters) {
 
 void vControlBombaTask(void *pvParameters){
     bool estado_pin;
-	bool estado_pump;
-    int aux;
-    while(1){ 
+	bool estado_pump = false;
+ 	struct tm start_time,  end_time;
+	while(1){
 	estado_pin = GPIORead(BUTTON_PUMP_PIN);
-	if(estado_pin==false){
-	estado_pump = GPIORead(BOMBA_DUCHA);
-	if(estado_pump==false){
-		GPIOOn(BOMBA_DUCHA);
-		printf("BOMBA PRENDIDA\n");
-	}
-	if(estado_pump==true){
-		GPIOOff(BOMBA_DUCHA);
-		printf("BOMBA APAGADA\n");
+	if(estado_pin == false){
+		estado_pump = !estado_pump;
 	}
 	printf("El valor es %d.\n", estado_pump);
+    vTaskDelay(500 / portTICK_PERIOD_MS);
 	}
-	printf("Control de bomba \n");
-  	vTaskDelay(500 /portTICK_PERIOD_MS);
-    }
 }
-void ContarTiempo() {
 
-	DS3231_Info my_rtc;
-    ds3231_init_info(&my_rtc);
-    printf("entro contar tiempo \n");
-	
- 	struct tm start_time, current_time, end_time;
-	current_time.tm_sec = 0;
-	current_time.tm_min = 29;
-	current_time.tm_hour = 19;
- 	ds3231_set_time(&my_rtc, &current_time);
+void vControlTiempoTask(void *pvParameters) {
 	while(1){
-ESP_LOGI("EVENT", "hora actual %02d:%02d:%02d", current_time.tm_hour, current_time.tm_min, current_time.tm_sec);
-
-/*
-    printf("1 \n");
-
- 	ds3231_get_time(&my_rtc, &start_time);
-
-    printf("2 \n");
-
-    ESP_LOGI("EVENT", "Evento iniciado a las %02d:%02d:%02d", start_time.tm_hour, start_time.tm_min, start_time.tm_sec);
-    printf("3 \n");
-*/
+	GetTime(&tiempo_uso);
+ 	ds3231_get_time(&tiempo_uso.my_rtc, &tiempo_uso.current_time);
+	ESP_LOGI("EVENT", "hora actual %02d:%02d:%02d", tiempo_uso.current_time.tm_hour, tiempo_uso.current_time.tm_min, tiempo_uso.current_time.tm_sec);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
 	}
-   // printf("4 \n");
-
-   // ds3231_get_time(&my_rtc, &end_time);
-    
-   // ESP_LOGI("EVENT", "Evento finalizado a las %02d:%02d:%02d", end_time.tm_hour, end_time.tm_min, end_time.tm_sec);
 }
+

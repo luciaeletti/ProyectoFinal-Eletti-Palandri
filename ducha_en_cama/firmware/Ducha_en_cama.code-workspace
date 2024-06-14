@@ -86,7 +86,11 @@
             "nvs.h": "c",
             "time.h": "c",
             "*.inc": "c",
-            "types.h": "c"
+            "types.h": "c",
+            "string.h": "c",
+            "definitions.h": "c",
+            "ds3231.h": "c",
+            "esp_log.h": "c"
         },
     },
     "tasks": {
