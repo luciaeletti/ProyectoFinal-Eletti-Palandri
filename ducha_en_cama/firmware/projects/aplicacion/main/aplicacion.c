@@ -28,7 +28,12 @@
 #include "analyzer.h"
 #include "control.h"
 #include "definitions.h"
+
 /*==================[macros]=======================================*/
+extern TaskHandle_t receiverHandler;
+extern TaskHandle_t senderHandler;
+
+EEPROM_t *my_memory;
 
 /*==================[internal functions declaration]==========================*/
 
@@ -36,42 +41,19 @@
 
 /*==================[internal functions definition]==========================*/
 
-extern TaskHandle_t receiverHandler;
-extern TaskHandle_t senderHandler;
-
-EEPROM_t *my_memory;
-
 void app_main(){
 
     I2C_initialize(I2C_MASTER_FREQ_HZ);
+    GPIOInit(BUTTON_PUMP_PIN, GPIO_INPUT);
+    GPIOInit(BOMBA_DUCHA, GPIO_OUTPUT);
     InitRom(&my_memory);
-
   //  xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
     //xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);
    // xTaskCreate(&vConnectionWIFI, "WIFI", 32768, NULL, 1, NULL);
    // xTaskCreate(&vConnectionApp, "Connection", 32768, NULL, 1, NULL);
  //   xTaskCreate(&vControlDuchaTask, "CONTROL", 32768, NULL, 1, NULL);
-  //  ContarTiempo();
-    xTaskCreate(&vControlBombaTask, "BOMBA DUCHA", 32768, NULL, 1, NULL);
-
-    GPIOInit(BOMBA_DUCHA, GPIO_OUTPUT);
-    GPIOInit(BUTTON_PUMP_PIN, GPIO_INPUT);
-    bool estado_pin;
-    int aux;
-    while(1){ 
-    estado_pin = GPIORead(BUTTON_PUMP_PIN);
-        if(estado_pin == false){ 
-            aux=0;
-}
-   if(estado_pin == true){ 
-            aux=1;
-}
-       printf("%d.\n", aux);
-		vTaskDelay(500 /portTICK_PERIOD_MS);
-
-
-    }
-
+    ContarTiempo();
+   // xTaskCreate(&vControlBombaTask, "BOMBA DUCHA", 32768, NULL, 1, NULL);
 
     printf("inicio menu \n");
 
