@@ -17,14 +17,22 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 #include "gpio_mcu.h"
-#include "ds3231.h"
 #include "store.h"
-#include "conditions.h"
-#include "alarms.h"
 #include "definitions.h"
+#include "at24c.h"
+#include "store.h"
+
 /*==================[macros]=================================================*/
 /*==================[typedef]================================================*/
 /*==================[internal functions declaration]==========================*/
 /*==================[external functions declaration]==========================*/
 /*==================[internal functions definition]==========================*/
 /*==================[external functions definition]==========================*/
+void Read_Data(){
+
+    for (uint8_t i = 0; i <256; i++)
+    {
+        
+    }
+    
+}
