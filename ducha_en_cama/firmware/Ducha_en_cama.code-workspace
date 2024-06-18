@@ -90,7 +90,8 @@
             "string.h": "c",
             "definitions.h": "c",
             "ds3231.h": "c",
-            "esp_log.h": "c"
+            "esp_log.h": "c",
+            "cdefs.h": "c"
         },
     },
     "tasks": {

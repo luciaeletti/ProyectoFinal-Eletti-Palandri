@@ -43,6 +43,7 @@ TIME_T tiempo_actual;
 /*==================[internal functions definition]==========================*/
 
 void app_main(){
+    
     I2C_initialize(I2C_MASTER_FREQ_HZ);
     GPIOInit(BUTTON_PUMP_PIN, GPIO_INPUT);
     GPIOInit(BOMBA_DUCHA, GPIO_OUTPUT);

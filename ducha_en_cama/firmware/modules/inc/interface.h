@@ -17,8 +17,7 @@
 #include "lwip/sys.h"
 #include "definitions.h"
 /*==================[macros]=================================================*/
-#define NUM_ROWS	1 /*Cantidad de filas del teclado*/
-#define NUM_COLS	3 /*Cantidad de columnas del teclado*/
+
 
 
 static const char *TAG = "primerversion";
