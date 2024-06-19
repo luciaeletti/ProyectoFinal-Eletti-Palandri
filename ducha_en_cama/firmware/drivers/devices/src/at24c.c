@@ -118,9 +118,8 @@ static esp_err_t WriteReg16(EEPROM_t * dev,  int chip_addr, uint16_t data_addr, 
 esp_err_t ReadRom(EEPROM_t * dev, uint16_t data_addr, uint8_t * data)
 {
 	if (data_addr > dev->_address) return 0;
-       printf("hola \n");
 
-	if (dev->_kbits < 32) {
+	/*if (dev->_kbits < 32) {
 		int blockNumber = data_addr / 256;
 		uint16_t _data_addr = data_addr - (blockNumber * 256);
 		int _chip_addr = dev->_chip_addr + blockNumber;
@@ -129,10 +128,10 @@ esp_err_t ReadRom(EEPROM_t * dev, uint16_t data_addr, uint8_t * data)
 
 		return ReadReg8(dev, _chip_addr, _data_addr, data);
 
-	} else {
+	} else {*/
 		int _chip_addr = dev->_chip_addr;
 		return ReadReg16(dev, _chip_addr, data_addr, data);
-	}
+	//}
 }
 
 esp_err_t WriteRom(EEPROM_t * dev, uint16_t data_addr, uint8_t data)
