@@ -47,19 +47,22 @@ typedef enum{
     DISCONNECTION,
 }CONNECTION_T;
 
+
 typedef struct{
-bool flag;
-uint8_t mode;
-char msg[20];
-}INFO_CONNECTION_T;
+bool data_ok;
+bool info_ok;
+bool read_ok;
+uint8_t SSID[33];
+uint8_t PASSWORD[65];
+}DATA_CONNECTION_T;
 
 
 void SetConditions(CONDIC_FUNC_T* pCondition);
 void GetConditions(CONDIC_FUNC_T* pCondition);
 void SetInfoShower(INFO_SHOWER_T* pInfo);
 void GetInfoShower(INFO_SHOWER_T* pInfo);
-void SetInfoConnection(INFO_CONNECTION_T* pConnection);
-void GetInfoConnection(INFO_CONNECTION_T* pConnection);
+void SetInfoConnection(DATA_CONNECTION_T* pConnection);
+void GetInfoConnection(DATA_CONNECTION_T* pConnection);
 void SetTime(TIME_T* pTime);
 void GetTime(TIME_T* pTime);
 

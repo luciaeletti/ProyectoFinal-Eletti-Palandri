@@ -105,7 +105,7 @@ void vControlBombaTask(void *pvParameters){
 		estado_pump = !estado_pump;
 	}
 	printf("El valor es %d.\n", estado_pump);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    vTaskDelay(5000 / portTICK_PERIOD_MS);
 	}
 }
 

@@ -18,17 +18,19 @@
 #define MAX_ADRESS 4095
 /*==================[typedef]================================================*/
 /*==================[internal data declaration]==============================*/
-EEPROM_t *my_store;
+
 /*==================[internal functions declaration]=========================*/
 /*==================[external functions declaration]=========================*/
 void MemoryInit();
 void ReadString(char *buffer, uint16_t sadrress);
+void ReadInt8(uint8_t *data, uint16_t sadrress);
 uint16_t ReadInt16(uint16_t saddres);
 uint32_t ReadInt32(uint16_t saddres);
 void WriteString(char *data, uint16_t saddress);
+void WriteInt8(uint8_t *data, uint16_t saddress);
 void WriteInt16(uint16_t data, uint16_t saddress);
 void WriteInt32(uint32_t data, uint16_t saddress);
-
+void vStoreDataConnectionTask(void *pvParameters);
 
 
 

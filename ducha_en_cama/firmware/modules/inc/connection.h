@@ -12,17 +12,9 @@
 #include "esp_event.h"
 #include "conditions.h"
 #include "at24c.h"
+#include "store.h"
 /*==================[macros]=================================================*/
-#define DIR_SSID 0x100
-#define DIR_PASS 0x101
-
 /*==================[typedef]================================================*/
-typedef struct{
-bool data_ok;
-uint8_t SSID;
-uint8_t PASSWORD;
-}DATA_CONNECTION_T;
-
 /*==================[internal data declaration]==============================*/
 /*==================[internal functions declaration]=========================*/
 void event_handler_smartconfig(void* arg_sc, esp_event_base_t event_base_sc, int32_t event_id_sc, void* event_data_sc);

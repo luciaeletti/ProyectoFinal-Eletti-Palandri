@@ -44,14 +44,10 @@ EventGroupHandle_t s_wifi_event_group_sc;
 
 wifi_config_t wifi_config_sc;
 
-nvs_handle_t my_handle;
-
 const int CONNECTED_BIT = BIT0;
 const int ESPTOUCH_DONE_BIT = BIT1;
 
-INFO_CONNECTION_T my_connection;
-DATA_CONNECTION_T my_wifi = {0};
-
+DATA_CONNECTION_T my_connection;
 
 void log_error_if_nonzero(const char *message, int error_code)
 {
@@ -157,7 +153,7 @@ void smartconfig_example_task(void *parm)
         if (uxBits & ESPTOUCH_DONE_BIT)
         {
             ESP_LOGI(TAG, "smartconfig over");
-            my_connection.flag = true;
+            my_connection.data_ok = true;
             SetInfoConnection(&my_connection);
             GPIOInit(WIFI_OK, GPIO_OUTPUT);
             GPIOOn(WIFI_OK);
@@ -209,26 +205,19 @@ void event_handler_smartconfig(void* arg_sc, esp_event_base_t event_base_sc, int
         {
             memcpy(wifi_config_sc.sta.bssid, evt->bssid, sizeof(wifi_config_sc.sta.bssid));
         }
-
         memcpy(ssid, evt->ssid, sizeof(evt->ssid));
-        memcpy(password, evt->password, sizeof(evt->password));
-        my_wifi.SSID = ssid;
-        my_wifi.PASSWORD = password;
-     //   memcpy(my_wifi->SSID, evt->ssid, sizeof(evt->ssid));
-     //   memcpy(my_wifi->PASSWORD, evt->password, sizeof(evt->password));
-
-      /*  InitRom(&my_memory);
-        WriteRom(&my_memory,0x100,my_wifi->SSID);
-        WriteRom(&my_memory,0x101,my_wifi->PASSWORD);*/
-
-        
+        memcpy(password, evt->password, sizeof(evt->password));        
         ESP_LOGI(TAG, "SSID:%s", ssid);
         ESP_LOGI(TAG, "PASSWORD:%s", password);
-        
-
         ESP_ERROR_CHECK(esp_wifi_disconnect());
         ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config_sc));
         esp_wifi_connect();
+
+        GetInfoConnection(&my_connection);
+        memcpy(my_connection.SSID, ssid, sizeof(ssid));
+        memcpy(my_connection.PASSWORD, password, sizeof(password));
+        my_connection.info_ok = true;
+        SetInfoConnection(&my_connection);
     }
     else if (event_base_sc == SC_EVENT && event_id_sc == SC_EVENT_SEND_ACK_DONE)
     {
@@ -293,34 +282,6 @@ void initialise_wifi(void){
 
 }
 
-/*
-void vConnectionWIFI(void *pvParameters){
-
-    ESP_ERROR_CHECK(nvs_flash_init());
-
-    while (1)
-    {
-    nvs_open("storage", NVS_READONLY, &my_handle);
-    nvs_get_i32(my_handle, "RED", my_wifi->SSID);
-    //nvs_open("storage", NVS_READONLY, &my_handle);
-   // nvs_get_i32(my_handle, "CONTRASEÑA", my_wifi->PASSWORD);
-    nvs_commit(my_handle);
-    nvs_close(my_handle);
-    printf("LA SSID ES:  %ld.\n\r", my_wifi->SSID);
- //   printf("EL PASSWORD ES:  %ld.\n\r", my_wifi->PASSWORD);
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
-    }
-    //guardarrrr
-nvs_open("storage", NVS_READWRITE, &my_handle);
-        nvs_set_i32(my_handle, "RED", evt->ssid);
-        nvs_open("storage", NVS_READWRITE, &my_handle);
-        nvs_set_i32(my_handle, "CONTRASEÑA", evt->password);
-        nvs_commit(my_handle);
-        nvs_close(my_handle);
-}*/
-
-
-
 
 void ConnectionMQTT()
 {
@@ -343,7 +304,7 @@ void ConnectionMQTT()
 }
 
 void vConnectionTask(void *pvParameters)
-{
+{/*
 
     while (1)
     {
@@ -374,5 +335,5 @@ void vConnectionTask(void *pvParameters)
         }
 
         vTaskDelay(2000 / portTICK_PERIOD_MS);
-    }
+    }*/
 }

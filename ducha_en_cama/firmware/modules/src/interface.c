@@ -45,7 +45,7 @@ const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
 uint8_t flag = 0; 
 
 INFO_SHOWER_T info;
-INFO_CONNECTION_T connection;
+DATA_CONNECTION_T connection;
 /*==================[internal functions definition]==========================*/
 void delayMs(const TickType_t mSec)
 {
@@ -268,7 +268,7 @@ print_menu(sub_menu_configuracion, sizeof(sub_menu_configuracion) / sizeof(sub_m
                     LCDI2C_setCursor(5,2);
 					LCDI2C_print("A WIFI... ");
                     GetInfoConnection(&connection);
-                    if(connection.flag==true){
+                    if(connection.data_ok==true){
                         aux=1;
                     LCDI2C_clear();
                     LCDI2C_setCursor(6,1);
