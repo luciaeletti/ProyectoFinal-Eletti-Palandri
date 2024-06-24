@@ -26,6 +26,8 @@
 
 EEPROM_t my_store;
 DATA_CONNECTION_T my_wifi;
+DATA_CONNECTION_T my_wifi_r;
+
 
 uint8_t *ssid_r;
 uint8_t *pass_r;
@@ -136,6 +138,11 @@ void vStoreDataConnectionTask(void *pvParameters){
         SetInfoConnection(&my_wifi);
         printf("guardado \n");
         vTaskDelay(1000 /portTICK_PERIOD_MS);
+    //    ReadInt8(ssid_r, DIR_SSID_START);
+    //    ReadInt8(pass_r, DIR_PASS_START);
+    //    printf("SSID: %hhn.\n",ssid_r);
+        printf("leido \n");
+
         }
         else printf("guardando en memoria \n");
         vTaskDelay(5000 /portTICK_PERIOD_MS);
@@ -144,12 +151,12 @@ void vStoreDataConnectionTask(void *pvParameters){
 
 void vReadDataConnectionTask(void *pvParameters){
     while(1){
-        GetInfoConnection(&my_wifi);
-        if(my_wifi.read_ok == true){
+        GetInfoConnection(&my_wifi_r);
+        if(my_wifi_r.read_ok == true){
         ReadInt8(ssid_r, DIR_SSID_START);
         ReadInt8(pass_r, DIR_PASS_START);
-        SetInfoConnection(&my_wifi);
-       printf("SSID: %hhn.\n",ssid_r);
+        SetInfoConnection(&my_wifi_r);
+      //  printf("SSID: %d.\n",ssid_r);
         printf("leido \n");
         }
         else printf("leyendo \n");

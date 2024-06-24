@@ -57,8 +57,10 @@ void app_main(){
     SetTime(&tiempo_actual);
     ds3231_set_time(&tiempo_actual.my_rtc, &tiempo_actual.current_time);*/
    // xTaskCreate(&vControlTiempoTask, "TIEMPO", 32768, NULL, 1, NULL);
-    xTaskCreate(&vControlBombaTask, "BOMBA DUCHA", 32768, NULL, 1, NULL);
+  //  xTaskCreate(&vControlBombaTask, "BOMBA DUCHA", 32768, NULL, 1, NULL);
     xTaskCreate(&vStoreDataConnectionTask, "GUARDA DATA WIFI", 65536, NULL, 1, NULL);
+  //  xTaskCreate(&vReadDataConnectionTask, "GUARDA DATA WIFI", 65536, NULL, 1, NULL);
+
     printf("inicio menu \n");
     menuInit();
 

@@ -31,6 +31,8 @@ void WriteInt8(uint8_t *data, uint16_t saddress);
 void WriteInt16(uint16_t data, uint16_t saddress);
 void WriteInt32(uint32_t data, uint16_t saddress);
 void vStoreDataConnectionTask(void *pvParameters);
+void vReadDataConnectionTask(void *pvParameters);
+
 
 
 
