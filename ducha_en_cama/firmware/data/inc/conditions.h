@@ -30,14 +30,25 @@ float level;
 }CONDIC_FUNC_T;
 
 typedef struct{
+int shower;
 uint8_t condition;
 char state[20];
+uint8_t state_pump_shower;
+bool state_shower;
 }INFO_SHOWER_T;
 
 typedef enum{
 	FALSE,
 	TRUE
-}STATE_SHOWER_T;
+}STATE_T;
+
+typedef struct{
+int shower;
+uint8_t condition;
+char state[20];
+uint8_t state_pump_shower;
+bool state_shower;
+}INFO_AUTOLAVADO_T;
 
 typedef enum{
 	CONNECTION_WIFI_SMARTCONFIG,
@@ -61,6 +72,8 @@ void SetConditions(CONDIC_FUNC_T* pCondition);
 void GetConditions(CONDIC_FUNC_T* pCondition);
 void SetInfoShower(INFO_SHOWER_T* pInfo);
 void GetInfoShower(INFO_SHOWER_T* pInfo);
+void SetInfoAutolavado(INFO_AUTOLAVADO_T* pInfoAutolav);
+void GetInfoAutolavado(INFO_AUTOLAVADO_T* pInfoAutolav);
 void SetInfoConnection(DATA_CONNECTION_T* pConnection);
 void GetInfoConnection(DATA_CONNECTION_T* pConnection);
 void SetTime(TIME_T* pTime);

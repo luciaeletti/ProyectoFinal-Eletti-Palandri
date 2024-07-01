@@ -24,9 +24,12 @@
 
 /*==================[external functions declaration]=========================*/
 void vControlDuchaTask(void *pvParameters);
-void vControlAutolavadoTask(void *pvParameters);
-void vControlTiempoTask(void *pvParameters);
 void vControlBombaTask(void *pvParameters);
+void ManejoBombaDucha(bool state);
+void vControlAutolavadoTask(void *pvParameters);
+void vControlAspiradoraTask(void *pvParameters);
+void ManejoAspiradora(bool state);
+void vControlTiempoTask(void *pvParameters);
 void ContarTiempo();
 void GuardarDatosWF();
 

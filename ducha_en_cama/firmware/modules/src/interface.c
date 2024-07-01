@@ -118,17 +118,32 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     break;
                 case BUTTON_SELECT:
                     if (selected_shower == 0) {
+                    int aux=1;
+                    LCDI2C_clear();
+					LCDI2C_setCursor(2,1);
+                    LCDI2C_print("Llene el tanque"); 
+                    LCDI2C_setCursor(2,2);
+                    LCDI2C_print("con agua limpia"); 
+                    vTaskDelay(20000 /portTICK_PERIOD_MS);
                     GetInfoShower(&info);
                     info.condition=TRUE;
                     SetInfoShower(&info); 
-                    while(1){
+                    while(aux==1){
                     LCDI2C_clear();
 					LCDI2C_setCursor(5,1);
                     GetInfoShower(&info); 
-                    LCDI2C_print(info.state); 
-                    vTaskDelay(1000 /portTICK_PERIOD_MS);
+                    if(info.shower==1){
+                    aux=0;
                     }
-                             
+                    LCDI2C_print(info.state); 
+                    vTaskDelay(2000 /portTICK_PERIOD_MS);      
+                    }
+                    LCDI2C_clear();
+                    LCDI2C_setCursor(3,1);
+                    LCDI2C_print("PRESIONE DUCHA"); 
+                    LCDI2C_setCursor(3,2);
+                    LCDI2C_print("PARA COMENZAR"); 
+                    vTaskDelay(10000 /portTICK_PERIOD_MS);
                 	}
                      				
                     if (selected_shower == 1){
@@ -188,22 +203,10 @@ print_menu(sub_menu_autolavado, sizeof(sub_menu_autolavado) / sizeof(sub_menu_au
                     break;
                 case BUTTON_SELECT:
                     if (selected_autolav== 0) {
-                    LCDI2C_clear();
-				//	gpio_set_direction(PUMP_PIN, GPIO_MODE_OUTPUT);
-                //    gpio_set_level(PUMP_PIN, 1);
-                    LCDI2C_setCursor(3,1);
-					LCDI2C_print("BOMBA DE DUCHA");
-                    LCDI2C_setCursor(6,2);
-					LCDI2C_print("ACTIVADA");
+
 					}
                     if (selected_autolav== 1) {
-                    LCDI2C_clear();
-					//gpio_set_direction(PUMP_RECIRCUL_PIN, GPIO_MODE_OUTPUT);
-                   // gpio_set_level(PUMP_RECIRCUL_PIN, 1);
-                    LCDI2C_setCursor(0,1);
-					LCDI2C_print("BOMBA RECIRCULACION");
-                    LCDI2C_setCursor(6,2);
-					LCDI2C_print("ACTIVADA");
+   
 					}
 					if (selected_autolav == 2){
 					LCDI2C_clear();

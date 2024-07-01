@@ -13,6 +13,7 @@
 /*==================[macros]=================================================*/
 CONDIC_FUNC_T Current;
 INFO_SHOWER_T Shower;
+INFO_AUTOLAVADO_T Autolav;
 DATA_CONNECTION_T Connection;
 TIME_T my_time;
 
@@ -38,6 +39,14 @@ void SetInfoShower(INFO_SHOWER_T* pInfo){
 
 void GetInfoShower(INFO_SHOWER_T* pInfo){
 	*pInfo=Shower;
+}
+
+void SetInfoAutolavado(INFO_AUTOLAVADO_T* pInfoAutolav){
+	Autolav=*pInfoAutolav;
+}
+
+void GetInfoAutolavado(INFO_AUTOLAVADO_T* pInfoAutolav){
+	*pInfoAutolav=Autolav;
 }
 
 void SetInfoConnection(DATA_CONNECTION_T* pConnection){
