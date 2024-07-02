@@ -26,10 +26,12 @@ static const char *TAG = "primerversion";
 
 /*==================[internal functions declaration]==========================*/
 void menuInit();
+void menuPrincipal();
 void sub_menu(uint8_t select);
 void sub_menu_ducha();
 void sub_menu_configuracion();
 void sub_menu_autolavado(); 
+void eventos_ducha_normal();
 void delayMs(const TickType_t mSec);
 void print_menu(const char *menus[], int num_menus, int selected);
 void button_timer_callback(TimerHandle_t xTimer);

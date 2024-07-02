@@ -31,6 +31,7 @@ float level;
 
 typedef struct{
 int shower;
+uint8_t process;
 uint8_t condition;
 char state[20];
 char msg1[20];

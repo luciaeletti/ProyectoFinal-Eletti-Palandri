@@ -66,44 +66,49 @@ TIME_T tiempo_uso;
  * @return 		None
  */
 void vControlDuchaTask(void *pvParameters) {
+	
+	my_info.state_shower=false;
 
 	while(1){
 		switch (estado_baño)
 		{
 		case LLENANDO:
 		GetConditions(&data);
+		//if(data.level>LEVEL_MAX){
+		vTaskDelay(2000 /portTICK_PERIOD_MS);
 		GetInfoShower(&my_info);
-		strcpy(my_info.msg1,"LLENANDO");
-		strcpy(my_info.msg2,"TANQUE...");
+		my_info.process=1;
 		SetInfoShower(&my_info);
-	//	if(data.level>LEVEL_MAX){
 		estado_baño=CALENTANDO;
-
-	//	}
+		//}
 			break;
 		case CALENTANDO:
-		GetConditions(&data);
-		GetInfoShower(&my_info);
 		//activar resistencia 
-		strcpy(my_info.msg1,"CALENTANDO");
-		strcpy(my_info.msg2,"AGUA...");
-		my_info.shower=0;
+		GetConditions(&data);
+		//if(data.temperature>TEMP_MAX){
+		vTaskDelay(2000 /portTICK_PERIOD_MS);
+		GetInfoShower(&my_info);
+		my_info.process=2;
 		SetInfoShower(&my_info);
-	//	if(data.temperature>TEMP_MAX){
 		estado_baño=DUCHANDO;
-	//	}
+		//}
 			break;
 		case DUCHANDO:
 		GetConditions(&data);
 		GetInfoShower(&my_info);
-		my_info.shower=1;
-		//vTaskDelay(2000 /portTICK_PERIOD_MS);
-		strcpy(my_info.msg1,"PRESIONE DUCHA");
-		strcpy(my_info.msg2,"PARA COMENZAR");
-		SetInfoShower(&my_info);
+		//my_info.process=3;
+		vTaskDelay(2000 /portTICK_PERIOD_MS);
+		if(my_info.state_shower==false){
 		estado_baño = REPOSO;
+		}
 			break;
 		case REPOSO:
+		//if(data.level>LEVEL_MIN){
+		vTaskDelay(3000 /portTICK_PERIOD_MS);
+		GetInfoShower(&my_info);
+		my_info.process=0;
+		SetInfoShower(&my_info);
+	//	}
 		GetInfoShower(&my_info);
 		if(my_info.condition==TRUE){
 		estado_baño = LLENANDO;
@@ -144,6 +149,7 @@ void ManejoBombaDucha(bool state){
 	GPIOOn(BOMBA_DUCHA);
     printf("bomba prendida \n");
 	GetInfoShower(&my_info);
+	my_info.state_shower=true;
 	my_info.state_pump_shower=1;
 	SetInfoShower(&my_info);
 		break;
