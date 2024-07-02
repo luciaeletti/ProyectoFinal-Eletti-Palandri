@@ -47,7 +47,9 @@ void app_main(){
     I2C_initialize(I2C_MASTER_FREQ_HZ);
     MemoryInit();
     GPIOInit(BUTTON_PUMP_PIN, GPIO_INPUT);
+    GPIOInit(BUTTON_ASP_PIN, GPIO_INPUT);
     GPIOInit(BOMBA_DUCHA, GPIO_OUTPUT);
+    GPIOInit(ASPIRADORA, GPIO_OUTPUT);
    // InitRom(&my_memory);
    /* GetTime(&tiempo_actual);
     ds3231_init_info(&tiempo_actual.my_rtc);

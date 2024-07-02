@@ -33,6 +33,8 @@ typedef struct{
 int shower;
 uint8_t condition;
 char state[20];
+char msg1[20];
+char msg2[20];
 uint8_t state_pump_shower;
 bool state_shower;
 }INFO_SHOWER_T;
@@ -43,11 +45,12 @@ typedef enum{
 }STATE_T;
 
 typedef struct{
-int shower;
+int autolav;
 uint8_t condition;
 char state[20];
-uint8_t state_pump_shower;
-bool state_shower;
+char msg1[20];
+char msg2[20];
+uint8_t state_autolav;
 }INFO_AUTOLAVADO_T;
 
 typedef enum{

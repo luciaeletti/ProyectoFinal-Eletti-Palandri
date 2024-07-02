@@ -73,28 +73,33 @@ void vControlDuchaTask(void *pvParameters) {
 		case LLENANDO:
 		GetConditions(&data);
 		GetInfoShower(&my_info);
-		//aca se deberia usar el sensor de nivel, y cuando el nivel de agua este x encima de un valor pasar al otro estado
-		strcpy(my_info.state, "LLENANDO");
-		my_info.shower=0;
+		strcpy(my_info.msg1,"LLENANDO");
+		strcpy(my_info.msg2,"TANQUE...");
 		SetInfoShower(&my_info);
+	//	if(data.level>LEVEL_MAX){
 		estado_baño=CALENTANDO;
+
+	//	}
 			break;
 		case CALENTANDO:
 		GetConditions(&data);
 		GetInfoShower(&my_info);
 		//activar resistencia 
-		strcpy(my_info.state, "CALENTANDO");
+		strcpy(my_info.msg1,"CALENTANDO");
+		strcpy(my_info.msg2,"AGUA...");
 		my_info.shower=0;
 		SetInfoShower(&my_info);
+	//	if(data.temperature>TEMP_MAX){
 		estado_baño=DUCHANDO;
-		/*if(data.temperature>TEMP_MAX){
-		}*/
+	//	}
 			break;
 		case DUCHANDO:
 		GetConditions(&data);
 		GetInfoShower(&my_info);
-		strcpy(my_info.state, "DUCHANDO");
 		my_info.shower=1;
+		//vTaskDelay(2000 /portTICK_PERIOD_MS);
+		strcpy(my_info.msg1,"PRESIONE DUCHA");
+		strcpy(my_info.msg2,"PARA COMENZAR");
 		SetInfoShower(&my_info);
 		estado_baño = REPOSO;
 			break;
@@ -105,7 +110,7 @@ void vControlDuchaTask(void *pvParameters) {
 		}
 			break;
 		}
-		vTaskDelay(2000 /portTICK_PERIOD_MS);
+		vTaskDelay(1000 /portTICK_PERIOD_MS);
 	}
 
 }
