@@ -33,8 +33,6 @@ typedef enum
 
 typedef enum
 {
-    PREPARANDO,
-	ASPIRANDO,
     ENJUAGUE,
 	DESAGOTE,
 	INACTIVO
@@ -50,6 +48,7 @@ typedef enum
 CONDIC_FUNC_T data;
 ALARM_T my_alarm;
 INFO_SHOWER_T my_info;
+INFO_AUTOLAVADO_T my_autolav;
 ESTADOS_BAÑO_T estado_baño = REPOSO;
 ESTADOS_AUTOLAVADO_T estado_autolav = INACTIVO;
 TIME_T tiempo_uso;
@@ -65,7 +64,7 @@ TIME_T tiempo_uso;
  * @param   	pvParameters is void pointer.
  * @return 		None
  */
-void vControlDuchaTask(void *pvParameters) {
+void vControlDuchaTask(void *pvParameters) { 
 	
 	my_info.state_shower=false;
 
@@ -115,7 +114,7 @@ void vControlDuchaTask(void *pvParameters) {
 		}
 			break;
 		}
-		vTaskDelay(1000 /portTICK_PERIOD_MS);
+		vTaskDelay(2000 /portTICK_PERIOD_MS);
 	}
 
 }
@@ -159,16 +158,10 @@ void ManejoBombaDucha(bool state){
 }
 
 void vControlAutolavadoTask(void *pvParameters) {
-
 	while(1){
 		switch (estado_autolav)
 		{
-		case PREPARANDO:
 
-			break;
-		case ASPIRANDO:
-
-			break;
 		case ENJUAGUE:
 
 			break;
@@ -176,10 +169,9 @@ void vControlAutolavadoTask(void *pvParameters) {
 
 			break;
 		case INACTIVO:
-
 			break;
 		}
-		vTaskDelay(2000 /portTICK_PERIOD_MS);
+		vTaskDelay(1000 /portTICK_PERIOD_MS);
 	}
 }
 
@@ -191,7 +183,7 @@ void vControlAspiradoraTask(void *pvParameters){
 	state_pin = GPIORead(BUTTON_ASP_PIN);
 	if(state_pin == false){
 		estado_asp = !estado_asp;
-		//ManejoAspiradora(estado_asp);
+		ManejoAspiradora(estado_asp);
 	}
 	printf("El valor es asp %d.\n", estado_asp);
     vTaskDelay(500 / portTICK_PERIOD_MS);
@@ -203,17 +195,23 @@ void ManejoAspiradora(bool state){
 	{
 	case APAGADA:
 	GPIOOff(ASPIRADORA);
+	GetInfoAutolavado(&my_autolav);
+	my_autolav.autolav=1;
+	my_autolav.state_autolav = false;
+	SetInfoAutolavado(&my_autolav);
     printf("ASPIRADORA apagada \n");
 		break;
 	case PRENDIDA:
 	GPIOOn(ASPIRADORA);
+	GetInfoAutolavado(&my_autolav);
+	my_autolav.state_autolav = true;
+	SetInfoAutolavado(&my_autolav);
     printf("ASPIRADORA prendida \n");
 		break;
 	default:
 		break;
 	}
 }
-
 
 void vControlTiempoTask(void *pvParameters) {
 	while(1){

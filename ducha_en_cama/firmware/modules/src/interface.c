@@ -41,9 +41,11 @@ typedef enum
 
 typedef enum
 {
-    AREPOSO,
-    ASPIRANDO,
+    PREPARADO,
+    ASPIRACION,
+    AUTOLAVADO,
     DESAGOTE,
+    INACTIVO
 }EVENTOS_AUTOLAVADO_T;
 
 button_event_t event;
@@ -57,12 +59,15 @@ uint8_t last_button_states[3]={1,1,1};
 uint8_t selected = 0;
 uint8_t salir_ducha=0;
 uint8_t mostrar=0;
+uint8_t salir_autolavado=0;
+
 const char *menus[] = {"1.DUCHA", "2.AUTOLAVADO", "3.CONFIGURACION"};
 
 uint8_t flag = 0; 
 
 CONDIC_FUNC_T my_cond_func;
 INFO_SHOWER_T info;
+INFO_AUTOLAVADO_T autolav;
 DATA_CONNECTION_T connection;
 /*==================[internal functions definition]==========================*/
 void delayMs(const TickType_t mSec)
@@ -135,7 +140,7 @@ void eventos_ducha_normal(){
                      //   LCDI2C_print("my_cond_func.level"); 
                         }
                     if(info.state_pump_shower==0 && info.state_shower==true){
-                        const char *sub_menu_ducha_salir[] = {"1.RENAUDAR DUCHA", "2.FINALIZAR DUCHA"};
+                        const char *sub_menu_ducha_salir[] = {"1.REANUDAR DUCHA", "2.FINALIZAR DUCHA"};
                         int selected_shower_salir = 0;
                         button_event_t event_shower_salir;
                         LCDI2C_clear();
@@ -166,7 +171,13 @@ void eventos_ducha_normal(){
                     GetInfoShower(&info); 
                     info.state_shower=false;
                     SetInfoShower(&info); 
-                    salir_ducha = 1; 
+                    salir_ducha = 1;
+                    LCDI2C_setCursor(2,1);
+                    LCDI2C_print("DUCHA FINALIZADA");
+                    LCDI2C_setCursor(5,2);
+                    LCDI2C_print("CON EXITO!");
+            vTaskDelay(3000 /portTICK_PERIOD_MS);
+                    LCDI2C_clear();
                     menuPrincipal();}
                         }
                     }
@@ -174,6 +185,70 @@ void eventos_ducha_normal(){
             vTaskDelay(3000 /portTICK_PERIOD_MS);
             }
         }
+    }
+}
+
+void eventos_autolavado(){
+    switch (evento_autolavado)
+    {
+            case PREPARADO:
+                LCDI2C_clear();
+                LCDI2C_setCursor(5,0);
+                LCDI2C_print("PREPARE EL"); 
+                LCDI2C_setCursor(6,1);
+                LCDI2C_print("PRODUCTO");
+                LCDI2C_setCursor(0,2);
+                LCDI2C_print("Al finalizar oprima: ");
+                LCDI2C_setCursor(5,3);
+                LCDI2C_print("ASPIRACION");
+	        GetInfoAutolavado(&autolav);
+                if(autolav.state_autolav==true){
+                evento_autolavado = ASPIRACION;
+            }     
+                break;
+            case ASPIRACION:
+                LCDI2C_clear();
+                LCDI2C_setCursor(4,0);
+                LCDI2C_print("ASPIRANDO..."); 
+                LCDI2C_setCursor(3,1);
+                LCDI2C_print("Para finalizar");
+                LCDI2C_setCursor(5,2);
+                LCDI2C_print("presione: ");
+                LCDI2C_setCursor(5,3);
+                LCDI2C_print("ASPIRACION");
+                GetInfoAutolavado(&autolav);
+                if(autolav.state_autolav==false && autolav.autolav==1){
+                evento_autolavado = AUTOLAVADO;
+                }     
+                break;
+            case AUTOLAVADO:
+                LCDI2C_clear();
+                LCDI2C_setCursor(5,1);
+                LCDI2C_print("AUTOLAVADO"); 
+                LCDI2C_setCursor(3,2);
+                LCDI2C_print("EN PROCESO...");
+                vTaskDelay(10000 /portTICK_PERIOD_MS);
+                evento_autolavado = DESAGOTE;
+                break;
+            case DESAGOTE:
+                LCDI2C_clear();
+                LCDI2C_setCursor(3,1);
+                LCDI2C_print("DESAGOTANDO..."); 
+//aca desagota hasta que el nivel de agua llega al minimo establecido... y se apaga automaticamente la bomba de desagote
+                vTaskDelay(10000 /portTICK_PERIOD_MS);
+                LCDI2C_clear();
+                LCDI2C_setCursor(5,1);
+                LCDI2C_print("AUTOLAVADO"); 
+                 LCDI2C_setCursor(6,2);
+                LCDI2C_print("EXITOSO!"); 
+                vTaskDelay(3000 /portTICK_PERIOD_MS);
+                evento_autolavado = INACTIVO;
+                break;
+            case INACTIVO:
+            LCDI2C_clear();
+            salir_autolavado=1;
+            menuPrincipal();
+                break;
     }
 }
 
@@ -221,7 +296,6 @@ void sub_menu(uint8_t select){
 }
 
 void sub_menu_ducha(){
-
 const char *sub_menu_ducha[] = {"1.DUCHA NORMAL", "2.DUCHA CON DESINF", "3.MENU ANTERIOR"};
 int selected_shower = 0;
 button_event_t event_shower;
@@ -308,12 +382,13 @@ print_menu(sub_menu_autolavado, sizeof(sub_menu_autolavado) / sizeof(sub_menu_au
                     break;
                 case BUTTON_SELECT:
                     if (selected_autolav== 0) {
-
+                    evento_autolavado = PREPARADO;   
+                while(salir_autolavado==0){
+                    eventos_autolavado();
+                    vTaskDelay(1000 /portTICK_PERIOD_MS);
+                   }
 					}
-                    if (selected_autolav== 1) {
-   
-					}
-					if (selected_autolav == 2){
+					if (selected_autolav == 1){
 					LCDI2C_clear();
 					LCDI2C_setCursor(0,0);
 					LCDI2C_print(" Elija una opcion: ");

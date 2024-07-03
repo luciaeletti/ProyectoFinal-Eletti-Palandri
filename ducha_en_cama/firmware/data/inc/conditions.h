@@ -48,10 +48,7 @@ typedef enum{
 typedef struct{
 int autolav;
 uint8_t condition;
-char state[20];
-char msg1[20];
-char msg2[20];
-uint8_t state_autolav;
+bool state_autolav;
 }INFO_AUTOLAVADO_T;
 
 typedef enum{
