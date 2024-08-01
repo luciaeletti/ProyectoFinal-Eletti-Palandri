@@ -52,7 +52,8 @@ INFO_AUTOLAVADO_T my_autolav;
 ESTADOS_BAÑO_T estado_baño = REPOSO;
 ESTADOS_AUTOLAVADO_T estado_autolav = INACTIVO;
 TIME_T tiempo_uso;
-
+bool estado_pin;
+bool estado_pump = false;
 /*==================[internal functions declaration]==========================*/
 /*==================[external functions declaration]==========================*/
 
@@ -66,71 +67,80 @@ TIME_T tiempo_uso;
  */
 void vControlDuchaTask(void *pvParameters) { 
 	
-	my_info.state_shower=false;
+my_info.state_shower=false;
+my_info.ducha_init = false;
 
 	while(1){
+    	GetInfoShower(&my_info);
+		if(my_info.ducha_init == true){
 		switch (estado_baño)
 		{
 		case LLENANDO:
 		GetConditions(&data);
-		//if(data.level>LEVEL_MAX){
-		vTaskDelay(2000 /portTICK_PERIOD_MS);
-		GetInfoShower(&my_info);
-		my_info.process=1;
-		SetInfoShower(&my_info);
-		estado_baño=CALENTANDO;
-		//}
+	    printf("Estado llenando - Proceso: %d - Nivel actual: %f.\n",my_info.process, data.level);
+		if(data.level>LEVEL_MAX){
+			GetInfoShower(&my_info);
+			my_info.process=1;
+			SetInfoShower(&my_info);
+		//vTaskDelay(2000 /portTICK_PERIOD_MS);
+			estado_baño=CALENTANDO;
+		}
 			break;
 		case CALENTANDO:
 		//activar resistencia 
 		GetConditions(&data);
-		//if(data.temperature>TEMP_MAX){
-		vTaskDelay(2000 /portTICK_PERIOD_MS);
-		GetInfoShower(&my_info);
-		my_info.process=2;
-		SetInfoShower(&my_info);
-		estado_baño=DUCHANDO;
-		//}
+	    printf("Estado calentando - Proceso: %d - Temperatura actual: %f.\n",my_info.process, data.temperature);
+		if(data.temperature>TEMP_MAX){
+			GetInfoShower(&my_info);
+			my_info.process=2;
+			SetInfoShower(&my_info);
+			estado_baño=DUCHANDO;
+		}
 			break;
 		case DUCHANDO:
-		GetConditions(&data);
 		GetInfoShower(&my_info);
-		//my_info.process=3;
-		vTaskDelay(2000 /portTICK_PERIOD_MS);
-		if(my_info.state_shower==false){
-		estado_baño = REPOSO;
+	    printf("Estado duchando  %d.\n",my_info.state_pump_shower);
+		if(my_info.state_pump_shower==2){
+	    printf("ENTRO AL IF PARA PASAR A REPOSO \n");
+			estado_baño = REPOSO;
 		}
 			break;
 		case REPOSO:
-		//if(data.level>LEVEL_MIN){
-		vTaskDelay(3000 /portTICK_PERIOD_MS);
-		GetInfoShower(&my_info);
-		my_info.process=0;
-		SetInfoShower(&my_info);
-	//	}
-		GetInfoShower(&my_info);
-		if(my_info.condition==TRUE){
-		estado_baño = LLENANDO;
+		GetConditions(&data);
+	    printf("Estado reposo  %d - Nivel actual  %f.\n",my_info.condition,data.level);
+		if(data.level>LEVEL_MIN){
+			GetInfoShower(&my_info);
+			my_info.condition=TRUE;
+			SetInfoShower(&my_info);
+			estado_baño = LLENANDO;
 		}
 			break;
 		}
-		vTaskDelay(2000 /portTICK_PERIOD_MS);
+		}
+		vTaskDelay(1000 /portTICK_PERIOD_MS);
 	}
 
 }
 
 void vControlBombaTask(void *pvParameters){
-    bool estado_pin;
-	bool estado_pump = false;
- 	struct tm start_time,  end_time;
+
 	while(1){
 	estado_pin = GPIORead(BUTTON_PUMP_PIN);
 	if(estado_pin == false){
-		estado_pump = !estado_pump;
-		ManejoBombaDucha(estado_pump);
+	GetConditions(&data);
+	if(data.level<LEVEL_MIN){
+   // printf("No hay suficiente agua para duchar \n");
+	GetInfoShower(&my_info);
+	my_info.shower=1;
+	SetInfoShower(&my_info);
+	estado_pump = 0;
 	}
-	printf("El valor es %d.\n", estado_pump);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+	else {
+		estado_pump = !estado_pump;}
+	}
+	ManejoBombaDucha(estado_pump);
+//	printf("El valor es %d.\n", estado_pump);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
 	}
 }
 
@@ -138,15 +148,21 @@ void ManejoBombaDucha(bool state){
 	switch (state)
 	{
 	case APAGADA:
-	GPIOOff(BOMBA_DUCHA);
-    printf("bomba apagada \n");
+	//GPIOOff(BOMBA_DUCHA);
+	GPIOOn(BOMBA_DUCHA);
+  //  printf("bomba apagada \n");
 	GetInfoShower(&my_info);
 	my_info.state_pump_shower=0;
 	SetInfoShower(&my_info);
 		break;
 	case PRENDIDA:
-	GPIOOn(BOMBA_DUCHA);
-    printf("bomba prendida \n");
+	GetConditions(&data);
+	if(data.level<LEVEL_MIN){
+		GPIOOn(BOMBA_DUCHA);
+	}
+	else{
+	GPIOOff(BOMBA_DUCHA);}
+  //  printf("bomba prendida \n");
 	GetInfoShower(&my_info);
 	my_info.state_shower=true;
 	my_info.state_pump_shower=1;
@@ -178,15 +194,14 @@ void vControlAutolavadoTask(void *pvParameters) {
 void vControlAspiradoraTask(void *pvParameters){
     bool state_pin;
 	bool estado_asp=false;
- 	struct tm start_time,  end_time;
 	while(1){
 	state_pin = GPIORead(BUTTON_ASP_PIN);
 	if(state_pin == false){
 		estado_asp = !estado_asp;
-		ManejoAspiradora(estado_asp);
 	}
-	printf("El valor es asp %d.\n", estado_asp);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+	ManejoAspiradora(estado_asp);
+//	printf("El valor es asp %d.\n", estado_asp);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
 	}
 }
 
@@ -194,19 +209,21 @@ void ManejoAspiradora(bool state){
 	switch (state)
 	{
 	case APAGADA:
-	GPIOOff(ASPIRADORA);
+	//GPIOOff(ASPIRADORA);
+	GPIOOn(ASPIRADORA);
 	GetInfoAutolavado(&my_autolav);
 	my_autolav.autolav=1;
 	my_autolav.state_autolav = false;
 	SetInfoAutolavado(&my_autolav);
-    printf("ASPIRADORA apagada \n");
+ //   printf("ASPIRADORA apagada \n");
 		break;
 	case PRENDIDA:
-	GPIOOn(ASPIRADORA);
+	GPIOOff(ASPIRADORA);
+	//GPIOOn(ASPIRADORA);
 	GetInfoAutolavado(&my_autolav);
 	my_autolav.state_autolav = true;
 	SetInfoAutolavado(&my_autolav);
-    printf("ASPIRADORA prendida \n");
+//    printf("ASPIRADORA prendida \n");
 		break;
 	default:
 		break;

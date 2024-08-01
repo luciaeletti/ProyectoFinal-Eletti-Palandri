@@ -12,11 +12,7 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 
-#define TEMP_MIN 35
-#define TEMP_MAX 40
 
-#define LEVEL_MIN 5
-#define LEVEL_MAX 20
 
 /*==================[macros]=================================================*/
 

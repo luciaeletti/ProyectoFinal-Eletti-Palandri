@@ -93,7 +93,8 @@
             "esp_log.h": "c",
             "cdefs.h": "c",
             "compare": "c",
-            "regex": "c"
+            "regex": "c",
+            "esp_rom_gpio.h": "c"
         },
     },
     "tasks": {

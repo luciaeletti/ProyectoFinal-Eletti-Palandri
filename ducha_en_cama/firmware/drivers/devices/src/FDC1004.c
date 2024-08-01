@@ -115,7 +115,6 @@ uint8_t FDC1004_configureMeasurementSingle(uint8_t measurement, uint8_t channel,
 		ESP_LOGE(TAG, "bad configuration");
 		return 1;
 	}
-
 	// build 16 bit configuration
 	uint16_t configuration_data;
 	configuration_data = ((uint16_t)channel) << 13; // CHA

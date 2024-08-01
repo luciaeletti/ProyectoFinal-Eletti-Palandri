@@ -26,4 +26,11 @@
 
 #define LCD_ADDR 0x3f
 
+#define LEVEL_MIN 7
+#define LEVEL_MAX 20
+
+#define TEMP_MIN 15
+#define TEMP_MAX 35
+
+
 #endif   #ifndef DEFINITIONS_H

@@ -77,6 +77,9 @@ void delayMs(const TickType_t mSec)
 
 void eventos_ducha_normal(){
 
+char cadena_temp[3];
+char cadena_level[4];
+
     switch (evento_ducha)
     {
                 case REPOSO:
@@ -85,11 +88,9 @@ void eventos_ducha_normal(){
                         LCDI2C_print("LLENE EL TANQUE"); 
                         LCDI2C_setCursor(2,2);
                         LCDI2C_print("CON AGUA LIMPIA");
-                    vTaskDelay(3000 /portTICK_PERIOD_MS);
                         GetInfoShower(&info);
-                        if(info.process==0){ 
-                        info.condition=TRUE;
-                        SetInfoShower(&info);
+	                    printf("ESTADO PANTALLA EN REPOSO \n");
+                        if(info.condition==TRUE){ 
                         evento_ducha = LLENANDO;
                         }  
                             break;
@@ -100,47 +101,69 @@ void eventos_ducha_normal(){
                         LCDI2C_setCursor(5,2);
                         LCDI2C_print("TANQUE...");
                         GetInfoShower(&info);
+	                    printf("ESTADO PANTALLA EN LLENANDO \n");
+	                    printf("Process en llenando es: %d.\n", info.process);
                         if(info.process==1){
+                            LCDI2C_clear();
+                            LCDI2C_setCursor(7,1);
+                            LCDI2C_print("TANQUE");
+                            LCDI2C_setCursor(7,2);
+                            LCDI2C_print("LLENO");
                             evento_ducha=CALENTANDO;
                         } 
                             break;
                 case CALENTANDO:
+                        vTaskDelay(3000 /portTICK_PERIOD_MS);
                         LCDI2C_clear();
                         LCDI2C_setCursor(5,1);
                         LCDI2C_print("CALENTANDO");
                         LCDI2C_setCursor(6,2);
                         LCDI2C_print("AGUA...");
                         GetInfoShower(&info); 
+	                    printf("ESTADO PANTALLA EN CALENTANDO \n");
+	                    printf("Process en calentando es: %d.\n", info.process);
                          if(info.process==2){
                             evento_ducha=DUCHANDO;
                         }   
                             break;
                 case DUCHANDO:
                     GetInfoShower(&info); 
+	                printf("ESTADO PANTALLA EN DUCHANDO \n");
                     if(mostrar==0){
                         LCDI2C_clear(); 
                         LCDI2C_setCursor(3,1);
                         LCDI2C_print("PRESIONE DUCHA");
                         LCDI2C_setCursor(3,2);
                         LCDI2C_print("PARA COMENZAR");
-                    vTaskDelay(3000 /portTICK_PERIOD_MS);
                         mostrar=1;
                     }
                     if(info.state_pump_shower==1){
                         LCDI2C_clear();
                         LCDI2C_setCursor(5,1);
                         LCDI2C_print("DUCHANDO...");
-                       // LCDI2C_setCursor(0,2);
-                      //  LCDI2C_print("Temp: ");
-                      //  LCDI2C_setCursor(6,2);
-                       // LCDI2C_print(my_cond_func.temperatura);
-                     //   LCDI2C_setCursor(8,2);
-                     //   LCDI2C_print("Nivel: ");
-                      //  LCDI2C_setCursor(15,2);
-                     //   LCDI2C_print("my_cond_func.level"); 
+                        LCDI2C_setCursor(0,2);
+                        LCDI2C_print("Temperatura:");
+                        LCDI2C_setCursor(13,2);
+                        GetConditions(&my_cond_func);
+                        snprintf(cadena_temp, 10, "%.1f", my_cond_func.temperature);
+                        LCDI2C_print(cadena_temp);
+                        LCDI2C_setCursor(18,2);
+                        LCDI2C_print("C");
+                        LCDI2C_setCursor(0,3);
+                        LCDI2C_print("Nivel: ");
+                        LCDI2C_setCursor(7,3);
+                        snprintf(cadena_level, 10, "%.2f", my_cond_func.level); 
+                        if(my_cond_func.level<LEVEL_MIN){
+                        LCDI2C_print("***");
+                        } else {
+                        LCDI2C_print(cadena_level); 
+                        LCDI2C_setCursor(12,3);
+                        LCDI2C_print("lt"); 
+
+                        }
                         }
                     if(info.state_pump_shower==0 && info.state_shower==true){
-                        const char *sub_menu_ducha_salir[] = {"1.REANUDAR DUCHA", "2.FINALIZAR DUCHA"};
+                        const char *sub_menu_ducha_salir[] = {"1.FINALIZAR DUCHA"};
                         int selected_shower_salir = 0;
                         button_event_t event_shower_salir;
                         LCDI2C_clear();
@@ -160,29 +183,18 @@ void eventos_ducha_normal(){
                     break;
                 case BUTTON_SELECT:
                 if (selected_shower_salir == 0){
-                   /* LCDI2C_clear();
-                    LCDI2C_setCursor(3,1);
-                    LCDI2C_print("PRESIONE DUCHA");
-                    LCDI2C_setCursor(3,2);
-                    LCDI2C_print("PARA CONTINUAR");*/
-                }
-                if (selected_shower_salir == 0){
-                    LCDI2C_clear();
-                    GetInfoShower(&info); 
-                    info.state_shower=false;
-                    SetInfoShower(&info); 
                     salir_ducha = 1;
+                    mostrar=0;
+                    LCDI2C_clear();
                     LCDI2C_setCursor(2,1);
                     LCDI2C_print("DUCHA FINALIZADA");
                     LCDI2C_setCursor(5,2);
                     LCDI2C_print("CON EXITO!");
-            vTaskDelay(3000 /portTICK_PERIOD_MS);
-                    LCDI2C_clear();
-                    menuPrincipal();}
+                   // menuPrincipal();
+                   }
                         }
                     }
                 break;
-            vTaskDelay(3000 /portTICK_PERIOD_MS);
             }
         }
     }
@@ -318,12 +330,23 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     break;
                 case BUTTON_SELECT:
                     if (selected_shower == 0) {
+                    GetInfoShower(&info);
+                    info.ducha_init = true;
+                    SetInfoShower(&info);
                     evento_ducha = REPOSO;
                     salir_ducha = 0;
                     while(salir_ducha==0){
                         eventos_ducha_normal();
-                        vTaskDelay(1000 /portTICK_PERIOD_MS);
+                        vTaskDelay(500 /portTICK_PERIOD_MS);
         			    }
+                    GetInfoShower(&info); 
+                    info.process=0;
+	                info.state_pump_shower=2;
+	            	printf("Estado cambiado  a  %d.\n",info.state_pump_shower);
+                    info.state_shower=false;
+                    info.ducha_init = false;
+                    SetInfoShower(&info); 
+                        menuPrincipal();
                     }
 
                     if (selected_shower == 1){

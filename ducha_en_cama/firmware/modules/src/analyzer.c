@@ -27,7 +27,7 @@
 #include "analyzer.h"
 #include "conditions.h"
 #include "alarms.h"
-
+#include "definitions.h"
 /*==================[macros]=================================================*/
 CONDIC_FUNC_T my_Data;
 ALARM_T my_Alarm;

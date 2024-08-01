@@ -25,7 +25,7 @@ struct tm current_time;
 typedef struct{
 float temperature;
 char temp[3];
-char lev[3];
+char lev[4];
 float level;
 }CONDIC_FUNC_T;
 
@@ -33,10 +33,8 @@ typedef struct{
 int shower;
 uint8_t process;
 uint8_t condition;
-char state[20];
-char msg1[20];
-char msg2[20];
 uint8_t state_pump_shower;
+bool ducha_init;
 bool state_shower;
 }INFO_SHOWER_T;
 

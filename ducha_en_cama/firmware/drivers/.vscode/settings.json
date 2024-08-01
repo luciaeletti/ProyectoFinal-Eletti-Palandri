@@ -3,5 +3,5 @@
     "idf.openOcdConfigs": [
         "board/esp32-wrover-kit-1.8v.cfg"
     ],
-    "idf.portWin": "COM8"
+    "idf.portWin": "COM9"
 }
