@@ -17,6 +17,7 @@
 /*==================[internal data declaration]==============================*/
 
 /*==================[internal functions declaration]=========================*/
+void ActivarSensores(float value, uint8_t sensor, uint8_t enable);
 void vAcquiringTask(void *pvParameters) ;
 void ReadSensorData();
 void ClearInactiveSensors(void);

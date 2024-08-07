@@ -29,8 +29,19 @@
 #define LEVEL_MIN 7
 #define LEVEL_MAX 20
 
+#define SENSOR_1 0x01
+#define SENSOR_2 0x02
+#define SENSOR_3 0x04
+#define SENSOR_4 0x08
+
+#define ACTIVATE_SENSOR_1 5
+#define ACTIVATE_SENSOR_2 5
+#define ACTIVATE_SENSOR_3 6
+#define ACTIVATE_SENSOR_4 7
+
 #define TEMP_MIN 15
 #define TEMP_MAX 35
+
 
 
 #endif   #ifndef DEFINITIONS_H

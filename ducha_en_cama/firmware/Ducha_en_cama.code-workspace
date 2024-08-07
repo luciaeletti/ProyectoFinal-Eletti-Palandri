@@ -94,7 +94,10 @@
             "cdefs.h": "c",
             "compare": "c",
             "regex": "c",
-            "esp_rom_gpio.h": "c"
+            "esp_rom_gpio.h": "c",
+            "ratio": "c",
+            "system_error": "c",
+            "type_traits": "c"
         },
     },
     "tasks": {

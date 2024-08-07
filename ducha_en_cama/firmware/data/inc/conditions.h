@@ -24,9 +24,10 @@ struct tm current_time;
  */
 typedef struct{
 float temperature;
+float level;
+uint8_t nivel_discreto;
 char temp[3];
 char lev[4];
-float level;
 }CONDIC_FUNC_T;
 
 typedef struct{

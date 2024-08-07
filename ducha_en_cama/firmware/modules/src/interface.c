@@ -24,6 +24,9 @@
 #include "connection.h"
 #include "interface.h"
 #include "alarms.h"
+
+//#define DEBUG_INTERFACE
+
 /*==================[macros and typedef]================================================*/
 typedef enum {
     BUTTON_UP,
@@ -36,7 +39,6 @@ typedef enum
     LLENANDO,
     CALENTANDO,
     DUCHANDO,
-	REPOSO,
 }EVENTOS_DUCHA_T;
 
 typedef enum
@@ -49,7 +51,7 @@ typedef enum
 }EVENTOS_AUTOLAVADO_T;
 
 button_event_t event;
-EVENTOS_DUCHA_T evento_ducha = REPOSO;
+EVENTOS_DUCHA_T evento_ducha = LLENANDO;
 EVENTOS_AUTOLAVADO_T evento_autolavado;
 TimerHandle_t button_timer;
 QueueHandle_t button_queue;
@@ -76,59 +78,53 @@ void delayMs(const TickType_t mSec)
 }
 
 void eventos_ducha_normal(){
-
 char cadena_temp[3];
 char cadena_level[4];
 
     switch (evento_ducha)
     {
-                case REPOSO:
-                        LCDI2C_clear();
-                        LCDI2C_setCursor(2,1);
-                        LCDI2C_print("LLENE EL TANQUE"); 
-                        LCDI2C_setCursor(2,2);
-                        LCDI2C_print("CON AGUA LIMPIA");
-                        GetInfoShower(&info);
-	                    printf("ESTADO PANTALLA EN REPOSO \n");
-                        if(info.condition==TRUE){ 
-                        evento_ducha = LLENANDO;
-                        }  
-                            break;
                 case LLENANDO:
                         LCDI2C_clear();
-                        LCDI2C_setCursor(5,1);
-                        LCDI2C_print("LLENANDO");
-                        LCDI2C_setCursor(5,2);
-                        LCDI2C_print("TANQUE...");
+                        LCDI2C_setCursor(2,0);
+                        LCDI2C_print("LLENE EL TANQUE"); 
+                        LCDI2C_setCursor(2,1);
+                        LCDI2C_print("CON AGUA LIMPIA");
+                        LCDI2C_setCursor(4,2);
+                        LCDI2C_print("Al finalizar"); 
+                        LCDI2C_setCursor(3,3);
+                        LCDI2C_print("presione ENTER");
                         GetInfoShower(&info);
-	                    printf("ESTADO PANTALLA EN LLENANDO \n");
-	                    printf("Process en llenando es: %d.\n", info.process);
-                        if(info.process==1){
-                            LCDI2C_clear();
-                            LCDI2C_setCursor(7,1);
-                            LCDI2C_print("TANQUE");
-                            LCDI2C_setCursor(7,2);
-                            LCDI2C_print("LLENO");
-                            evento_ducha=CALENTANDO;
-                        } 
+                        #ifdef DEBUG_INTERFACE
+	                    printf("ESTADO PANTALLA EN REPOSO \n");
+                        #endif
+                        if(info.process==1){ 
+                        evento_ducha = CALENTANDO;
+                        }  
                             break;
                 case CALENTANDO:
-                        vTaskDelay(3000 /portTICK_PERIOD_MS);
                         LCDI2C_clear();
+                        LCDI2C_setCursor(1,0);
+                        LCDI2C_print("CALENTANDO AGUA...");
+                        LCDI2C_setCursor(0,1);
+                        LCDI2C_print("Temp:");
+                        GetConditions(&my_cond_func);
+                        snprintf(cadena_temp, 10, "%.1f", my_cond_func.temperature);
                         LCDI2C_setCursor(5,1);
-                        LCDI2C_print("CALENTANDO");
-                        LCDI2C_setCursor(6,2);
-                        LCDI2C_print("AGUA...");
+                        LCDI2C_print(cadena_temp);
+                        LCDI2C_setCursor(10,1);
+                        LCDI2C_print("40.0");
+                        LCDI2C_setCursor(3,2);
+                        LCDI2C_print("Para continuar");
+                        LCDI2C_setCursor(3,3);
+                        LCDI2C_print("presione ENTER");
                         GetInfoShower(&info); 
-	                    printf("ESTADO PANTALLA EN CALENTANDO \n");
-	                    printf("Process en calentando es: %d.\n", info.process);
                          if(info.process==2){
                             evento_ducha=DUCHANDO;
                         }   
                             break;
                 case DUCHANDO:
                     GetInfoShower(&info); 
-	                printf("ESTADO PANTALLA EN DUCHANDO \n");
+	               // printf("ESTADO PANTALLA EN DUCHANDO \n");
                     if(mostrar==0){
                         LCDI2C_clear(); 
                         LCDI2C_setCursor(3,1);
@@ -139,66 +135,28 @@ char cadena_level[4];
                     }
                     if(info.state_pump_shower==1){
                         LCDI2C_clear();
-                        LCDI2C_setCursor(5,1);
+                        LCDI2C_setCursor(5,0);
                         LCDI2C_print("DUCHANDO...");
                         LCDI2C_setCursor(0,2);
                         LCDI2C_print("Temperatura:");
-                        LCDI2C_setCursor(13,2);
+                        LCDI2C_setCursor(13,1);
                         GetConditions(&my_cond_func);
                         snprintf(cadena_temp, 10, "%.1f", my_cond_func.temperature);
                         LCDI2C_print(cadena_temp);
-                        LCDI2C_setCursor(18,2);
+                        LCDI2C_setCursor(18,1);
                         LCDI2C_print("C");
-                        LCDI2C_setCursor(0,3);
-                        LCDI2C_print("Nivel: ");
-                        LCDI2C_setCursor(7,3);
-                        snprintf(cadena_level, 10, "%.2f", my_cond_func.level); 
-                        if(my_cond_func.level<LEVEL_MIN){
-                        LCDI2C_print("***");
-                        } else {
-                        LCDI2C_print(cadena_level); 
-                        LCDI2C_setCursor(12,3);
-                        LCDI2C_print("lt"); 
-
+                        LCDI2C_setCursor(3,2);
+                        LCDI2C_print("Para finalizar"); 
+                        LCDI2C_setCursor(3,3);
+                        LCDI2C_print("presione ENTER");
+                        if(info.process==2){
+                            salir_ducha=1;
                         }
                         }
-                    if(info.state_pump_shower==0 && info.state_shower==true){
-                        const char *sub_menu_ducha_salir[] = {"1.FINALIZAR DUCHA"};
-                        int selected_shower_salir = 0;
-                        button_event_t event_shower_salir;
-                        LCDI2C_clear();
-                        LCDI2C_setCursor(0,0);
-                        LCDI2C_print("Elija una opcion:");
-                        print_menu(sub_menu_ducha_salir, sizeof(sub_menu_ducha_salir) / sizeof(sub_menu_ducha_salir[0]), selected_shower_salir);
- while (1) {
-        if (xQueueReceive(button_queue, &event_shower_salir, portMAX_DELAY)) {
-            switch (event_shower_salir) {
-                case BUTTON_UP:
-                    selected_shower_salir= (selected_shower_salir - 1 + sizeof(sub_menu_ducha_salir) / sizeof(sub_menu_ducha_salir[0])) % (sizeof(sub_menu_ducha_salir) / sizeof(sub_menu_ducha_salir[0]));
-					print_menu(sub_menu_ducha_salir, sizeof(sub_menu_ducha_salir) / sizeof(sub_menu_ducha_salir[0]), selected_shower_salir);
-                    break;
-                case BUTTON_DOWN:
-                    selected_shower_salir = (selected_shower_salir + 1) % (sizeof(sub_menu_ducha_salir) / sizeof(sub_menu_ducha_salir[0]));
-					print_menu(sub_menu_ducha_salir, sizeof(sub_menu_ducha_salir) / sizeof(sub_menu_ducha_salir[0]), selected_shower_salir);
-                    break;
-                case BUTTON_SELECT:
-                if (selected_shower_salir == 0){
-                    salir_ducha = 1;
-                    mostrar=0;
-                    LCDI2C_clear();
-                    LCDI2C_setCursor(2,1);
-                    LCDI2C_print("DUCHA FINALIZADA");
-                    LCDI2C_setCursor(5,2);
-                    LCDI2C_print("CON EXITO!");
-                   // menuPrincipal();
-                   }
-                        }
+                        break;
                     }
-                break;
-            }
-        }
-    }
-}
+                }
+            
 
 void eventos_autolavado(){
     switch (evento_autolavado)
@@ -333,20 +291,14 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
                     GetInfoShower(&info);
                     info.ducha_init = true;
                     SetInfoShower(&info);
-                    evento_ducha = REPOSO;
+                    evento_ducha = LLENANDO;
                     salir_ducha = 0;
                     while(salir_ducha==0){
                         eventos_ducha_normal();
-                        vTaskDelay(500 /portTICK_PERIOD_MS);
+                        vTaskDelay(600 /portTICK_PERIOD_MS);
         			    }
                     GetInfoShower(&info); 
-                    info.process=0;
-	                info.state_pump_shower=2;
-	            	printf("Estado cambiado  a  %d.\n",info.state_pump_shower);
-                    info.state_shower=false;
-                    info.ducha_init = false;
-                    SetInfoShower(&info); 
-                        menuPrincipal();
+                    selected_shower = 2;
                     }
 
                     if (selected_shower == 1){
@@ -357,25 +309,27 @@ print_menu(sub_menu_ducha, sizeof(sub_menu_ducha) / sizeof(sub_menu_ducha[0]), s
 					LCDI2C_setCursor(0,0);
 					LCDI2C_print(" Elija una opcion: ");
  					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
-		 while (1) {
-       		if (xQueueReceive(button_queue, &event, portMAX_DELAY)) {
-            switch (event) {
-                case BUTTON_UP:
-                    selected = (selected - 1 + sizeof(menus) / sizeof(menus[0])) % (sizeof(menus) / sizeof(menus[0]));
-					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
-                    break;
-                case BUTTON_DOWN:
-                    selected = (selected + 1) % (sizeof(menus) / sizeof(menus[0]));
-					print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
-                    break;
-                case BUTTON_SELECT:
-                    sub_menu(selected);
-                    break;
-            }
-            
-        }
-    }
-}
+                    while (1)
+                    {
+                        if (xQueueReceive(button_queue, &event, portMAX_DELAY))
+                        {
+                            switch (event)
+                            {
+                            case BUTTON_UP:
+                                selected = (selected - 1 + sizeof(menus) / sizeof(menus[0])) % (sizeof(menus) / sizeof(menus[0]));
+                                print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
+                                break;
+                            case BUTTON_DOWN:
+                                selected = (selected + 1) % (sizeof(menus) / sizeof(menus[0]));
+                                print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
+                                break;
+                            case BUTTON_SELECT:
+                                sub_menu(selected);
+                                break;
+                            }
+                        }
+                    }
+                }
             break;
             }
             
@@ -577,7 +531,7 @@ void menuInit(){
 	LCDI2C_setCursor(0,0);
 	LCDI2C_print(" Elija una opcion: ");
  	print_menu(menus, sizeof(menus) / sizeof(menus[0]), selected);
-   while (1) {
+    while (1) {
         if (xQueueReceive(button_queue, &event, portMAX_DELAY)) {
             switch (event) {
                 case BUTTON_UP:
