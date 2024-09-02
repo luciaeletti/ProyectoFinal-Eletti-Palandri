@@ -97,7 +97,8 @@
             "esp_rom_gpio.h": "c",
             "ratio": "c",
             "system_error": "c",
-            "type_traits": "c"
+            "type_traits": "c",
+            "err.h": "c"
         },
     },
     "tasks": {

@@ -21,13 +21,15 @@
 #define BUTTON_ASP_PIN 3
 #define BOMBA_DUCHA GPIO_22
 #define ASPIRADORA GPIO_23
+#define RESISTENCIA GPIO_21
+#define BOMBA_RECIRCULACION GPIO_20
 #define TEMP_BUS GPIO_NUM_1
 #define WIFI_OK GPIO_20
 
 #define LCD_ADDR 0x3f
 
-#define LEVEL_MIN 7
-#define LEVEL_MAX 20
+#define LEVEL_MIN 5
+#define LEVEL_MAX 12
 
 #define SENSOR_1 0x01
 #define SENSOR_2 0x02

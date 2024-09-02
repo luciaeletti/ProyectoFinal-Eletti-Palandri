@@ -45,12 +45,18 @@ TIME_T tiempo_actual;
 void app_main(){
 
     I2C_initialize(I2C_MASTER_FREQ_HZ);
-      FDC1004_Reset();
-    MemoryInit();
+   //   FDC1004_Reset();
+    //MemoryInit();
     GPIOInit(BUTTON_PUMP_PIN, GPIO_INPUT);
     GPIOInit(BUTTON_ASP_PIN, GPIO_INPUT);
     GPIOInit(BOMBA_DUCHA, GPIO_OUTPUT);
     GPIOInit(ASPIRADORA, GPIO_OUTPUT);
+    GPIOInit(RESISTENCIA, GPIO_OUTPUT);
+    GPIOInit(BOMBA_RECIRCULACION, GPIO_OUTPUT);
+	GPIOOn(ASPIRADORA);
+	GPIOOn(BOMBA_DUCHA);
+	GPIOOn(RESISTENCIA);
+	GPIOOn(BOMBA_RECIRCULACION);
    // InitRom(&my_memory);
    /* GetTime(&tiempo_actual);
     ds3231_init_info(&tiempo_actual.my_rtc);
@@ -59,14 +65,15 @@ void app_main(){
 	tiempo_actual.current_time.tm_hour = 11;
     SetTime(&tiempo_actual);
     ds3231_set_time(&tiempo_actual.my_rtc, &tiempo_actual.current_time);*/
-    xTaskCreate(&vControlAspiradoraTask, "ASPIRADORA", 32768, NULL, 1, NULL);
     xTaskCreate(&vAcquiringTask, "adquirir", 65536, NULL, 1, &senderHandler);
+    xTaskCreate(&vControlAspiradoraTask, "ASPIRADORA", 32768, NULL, 1, NULL);
     xTaskCreate(&vControlBombaTask, "BOMBA DUCHA", 32768, NULL, 1, NULL);
     xTaskCreate(&vControlDuchaTask, "CONTROL PROCESO DUCHA", 32768, NULL, 1, NULL);
+    xTaskCreate(&vControlTemperaturaTask, "CONTROL TEMPERATURA Y RESIST", 32768, NULL, 1, NULL);
    // xTaskCreate(&vStoreDataConnectionTask, "GUARDA DATA WIFI", 65536, NULL, 1, NULL);
  //   xTaskCreate(&vReadDataConnectionTask, "GUARDA DATA WIFI", 65536, NULL, 1, NULL);
 
-    printf("inicio menu \n");
+   // printf("inicio menu \n");
     menuInit();
 
     //xTaskCreate(&vMonitoringTask, "monitoreo", 65536, NULL, 1, &receiverHandler);

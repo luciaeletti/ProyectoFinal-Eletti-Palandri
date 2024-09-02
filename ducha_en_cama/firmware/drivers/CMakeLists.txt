@@ -3,6 +3,7 @@ idf_build_get_property(target IDF_TARGET)
 # Always compiled source files
 set(srcs
     "microcontroller/src/gpio_mcu.c"
+    "microcontroller/src/analog_io_mcu"
     "microcontroller/src/gpio_fast_out_mcu.c"
     "microcontroller/src/delay_mcu.c"
     "microcontroller/src/timer_mcu.c"
@@ -21,4 +22,4 @@ set(includes "microcontroller/inc"
 
 idf_component_register(SRCS ${srcs}
                        INCLUDE_DIRS ${includes}
-                       REQUIRES driver esp_rom)
+                       REQUIRES driver esp_rom  esp_adc)

@@ -26,6 +26,7 @@
 #include "ds18b20.h"
 #include "acquire.h"
 #include "definitions.h"
+#include "analog_io_mcu.h"
 #include <math.h>
 /*==================[macros]=================================================*/
 #define HEIGHT	900
@@ -34,11 +35,6 @@
 #define GANANCIA 0.48
 #define OFFSET 0.8
 
-//9.2 rayitas 10.36lt
-//8 rayitas   8.88
-//5 rayitas   5.81
-//2 rayitas   2.65
-//vacío       0.72 
 
 DeviceAddress tempSensors[1]; 
 float level_corregido;
@@ -59,12 +55,22 @@ float canal_2;
 float canal_3;
 float canal_4;
 
+uint16_t dato_entrada;
+float altura;
+uint16_t area_base = 900;
+float volumen;
+
+ analog_input_config_t my_analog = {
+        .input = CH2,
+        .mode = ADC_SINGLE,
+
+    };
 /*==================[typedef]================================================*/
 
 /*==================[internal functions declaration]==========================*/
 
 /*==================[external functions declaration]==========================*/
-void ActivarSensores(float value, uint8_t sensor, uint8_t enable){
+/*void ActivarSensores(float value, uint8_t sensor, uint8_t enable){
  //   GetConditions(&my_condition);
  	//  printf("entro a la fncion activar sensores \n");
 
@@ -77,12 +83,29 @@ void ActivarSensores(float value, uint8_t sensor, uint8_t enable){
     printf("sensor: %d-----nivel: %x \n",sensor, my_condition.nivel_discreto);
 	//SetConditions(&my_condition);
 
-}
+}*/
+
 /*==================[internal functions definition]==========================*/
+double suma = 0;
+int indice = 0;
+float promedio_movil(uint16_t valor_actual) {
+static float promedio;
+    suma += valor_actual;
+    if (indice >= 100) {
+         promedio = suma / 100;
+         indice = 0;
+         suma = 0;
+         altura = (promedio/5.81)-(154/5.81);
+    volumen = (area_base*altura)/1000;
+    //printf("EL NIVEL ES: %.2f\n",volumen);
+    }
+    indice++;
+    return volumen;
+}
+
 void ReadSensorData(){ 
-
+/*
 	GetConditions(&my_condition);
-
 //canal 1 primeros electrodos
     FDC1004_configureMeasurementSingle(FDC1004_MEAS1, FDC1004_CIN1, 0);
     FDC1004_triggerSingleMeasurement(FDC1004_MEAS1,FDC1004_100HZ);
@@ -123,7 +146,17 @@ void ReadSensorData(){
     printf("Temp: %.2f ºC\n", my_condition.temperature);
 	printf("NIVEL DISCRETO ACTUAL  %d.\n", my_condition.nivel_discreto);
 
-	
+	SetConditions(&my_condition);*/
+	GetConditions(&my_condition);
+    AnalogInputReadSingle(CH2,&dato_entrada);
+  //  printf("dato_entrada: %d\n",  dato_entrada);
+    //promedio_movil(dato_entrada);
+    my_condition.level = promedio_movil(dato_entrada);
+	my_condition.temperature = ds18b20_get_temp();
+    printf("my_condition.level: %.2f\n",  my_condition.level);
+  //  printf("my_condition.temperature: %.2f\n", my_condition.temperature);
+	SetConditions(&my_condition);
+
 }
 
 /*==================[external functions definition]==========================*/
@@ -134,7 +167,7 @@ void ReadSensorData(){
  */
 void vAcquiringTask(void *pvParameters) {
 
-    FDC1004_configureMeasurementSingle(FDC1004_MEAS2, FDC1004_CIN2, 0);
+ /*   FDC1004_configureMeasurementSingle(FDC1004_MEAS2, FDC1004_CIN2, 0);
     FDC1004_triggerSingleMeasurement(FDC1004_MEAS2,FDC1004_100HZ);
     vTaskDelay(50/portTICK_PERIOD_MS);
 	valor_referencia_inicial = FDC1004_getCapacitance(FDC1004_MEAS2);
@@ -151,11 +184,14 @@ void vAcquiringTask(void *pvParameters) {
   //  printf("valor_nivel_inicial: %.2f\n", valor_nivel_inicial);
  //   valor_nivel_inicial = 2.74;
 
-
+*/
+    AnalogInputInit(&my_analog);
+    ds18b20_init(TEMP_BUS);
+    ds18b20_setResolution(tempSensors,2,10);
 	while(1){
         ReadSensorData();
         //xTaskNotifyGive(receiverHandler);
-		vTaskDelay(500 /portTICK_PERIOD_MS);
+		vTaskDelay(10 /portTICK_PERIOD_MS);
 	}
 
 

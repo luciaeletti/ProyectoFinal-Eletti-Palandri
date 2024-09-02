@@ -14,6 +14,9 @@
 #include "ds3231.h"
 
 /*==================[macros]=================================================*/
+
+
+/*==================[typedef]================================================*/
 typedef struct{
 DS3231_Info my_rtc;
 struct tm current_time;
@@ -26,6 +29,7 @@ typedef struct{
 float temperature;
 float level;
 uint8_t nivel_discreto;
+float temp_set;
 char temp[3];
 char lev[4];
 }CONDIC_FUNC_T;
@@ -35,7 +39,11 @@ int shower;
 uint8_t process;
 uint8_t condition;
 uint8_t state_pump_shower;
+bool tanque_lleno;
+bool llenar_tanque;
+bool actualizar_temp;
 bool ducha_init;
+bool resist_init;
 bool state_shower;
 }INFO_SHOWER_T;
 

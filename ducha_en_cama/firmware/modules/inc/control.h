@@ -31,6 +31,7 @@ void vControlAspiradoraTask(void *pvParameters);
 void ManejoAspiradora(bool state);
 void vControlTiempoTask(void *pvParameters);
 void vControlTemperaturaTask(void *pvParameters);
+void ManejoTemperatura();
 void ContarTiempo();
 void GuardarDatosWF();
 
